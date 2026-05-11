@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STB Heeten - Beheerpaneel</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--orange:#E8820C;--black:#0D0D0D;--dark:#141414;--dark2:#1C1C1C;--white:#fff;--text:#ccc;--gray:#888;--green:#2ecc71;--red:#e74c3c}
+body{font-family:'Segoe UI',sans-serif;background:#0f0f0f;color:var(--white);min-height:100vh}
+.admin-header{background:var(--dark);border-bottom:2px solid var(--orange);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.admin-logo{display:flex;align-items:center;gap:.75rem;font-size:1.1rem;font-weight:700;color:var(--white)}
+.admin-logo span{color:var(--orange)}
+.btn{padding:.55rem 1.25rem;border:none;cursor:pointer;font-size:.85rem;font-weight:600;border-radius:4px;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid #333}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
+.btn-green{background:var(--green);color:var(--black);font-weight:700}
+.admin-layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 130px)}
+.sidebar{background:var(--dark);border-right:1px solid #222;padding:1.5rem 0}
+.sidebar-title{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);padding:.5rem 1.25rem}
+.sidebar-item{display:flex;align-items:center;gap:.65rem;padding:.65rem 1.25rem;cursor:pointer;font-size:.875rem;color:var(--text);border-left:3px solid transparent;transition:all .15s}
+.sidebar-item:hover{background:rgba(232,130,12,.07);color:var(--white)}
+.sidebar-item.active{background:rgba(232,130,12,.1);border-left-color:var(--orange);color:var(--orange);font-weight:600}
+.main-content{padding:2rem}
+.section-panel{display:none}
+.section-panel.active{display:block}
+.panel-title{font-size:1.4rem;font-weight:700;margin-bottom:.4rem}
+.panel-subtitle{font-size:.85rem;color:var(--gray);margin-bottom:2rem}
+.card{background:var(--dark2);border:1px solid #2a2a2a;border-radius:8px;padding:1.5rem;margin-bottom:1.25rem}
+.card-title{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:1rem;padding-bottom:.65rem;border-bottom:1px solid #2a2a2a}
+.field-group{margin-bottom:1.1rem}
+.field-label{font-size:.78rem;font-weight:600;color:var(--text);margin-bottom:.4rem;display:block}
+.field-input{width:100%;background:#111;border:1px solid #333;color:var(--white);padding:.6rem .85rem;border-radius:4px;font-size:.9rem;outline:none;transition:border-color .2s}
+.field-input:focus{border-color:var(--orange)}
+.field-textarea{width:100%;background:#111;border:1px solid #333;color:var(--white);padding:.6rem .85rem;border-radius:4px;font-size:.9rem;resize:vertical;min-height:90px;outline:none;transition:border-color .2s}
+.field-textarea:focus{border-color:var(--orange)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.color-row{display:flex;align-items:center;gap:.75rem}
+.color-picker{width:44px;height:36px;border:1px solid #333;border-radius:4px;padding:2px;background:#111;cursor:pointer}
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--green);color:var(--black);padding:.85rem 1.5rem;border-radius:6px;font-weight:700;font-size:.9rem;transform:translateY(100px);opacity:0;transition:all .3s;z-index:999}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.error{background:var(--red);color:var(--white)}
+.token-info{background:rgba(232,130,12,.08);border:1px solid rgba(232,130,12,.2);border-radius:6px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.85rem;color:var(--text)}
+.token-info strong{color:var(--orange)}
+.token-status{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:.4rem}
+.token-status.ok{background:var(--green)}
+.save-bar{background:var(--dark);border-top:1px solid #222;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;bottom:0}
+.save-hint{font-size:.8rem;color:var(--gray)}
+.preview-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--gray);text-decoration:none;border:1px solid #333;padding:.4rem .85rem;border-radius:4px;margin-bottom:1.5rem;transition:all .2s}
+.preview-btn:hover{border-color:var(--orange);color:var(--orange)}
+.dienst-inner{background:#111;border:1px solid #2a2a2a;border-radius:6px;padding:1rem;margin-bottom:.75rem;border-left:3px solid var(--orange)}
+.dienst-badge{background:rgba(232,130,12,.15);color:var(--orange);font-weight:700;font-size:.75rem;padding:.2rem .6rem;border-radius:3px;display:inline-block;margin-bottom:.75rem}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="admin-header">
+  <div class="admin-logo">
+    <svg width="28" height="28" viewBox="0 0 38 38" fill="none"><polygon points="19,2 36,34 2,34" fill="none" stroke="#E8820C" stroke-width="2.5"/><circle cx="19" cy="22" r="6" fill="none" stroke="#E8820C" stroke-width="2"/><circle cx="19" cy="22" r="2" fill="#E8820C"/></svg>
+    STB <span>HEETEN</span>&nbsp; Beheerpaneel
+  </div>
+  <div style="display:flex;gap:.75rem;">
+    <a href="index.html" target="_blank" class="btn btn-ghost">&#128065; Bekijk website</a>
+    <button class="btn btn-green" onclick="saveAll()">&#10003; Opslaan en publiceren</button>
+  </div>
+</div>
+<div class="admin-layout">
+  <div class="sidebar">
+    <div class="sidebar-title">Pagina onderdelen</div>
+    <div class="sidebar-item active" onclick="showPanel('hero',this)">&#127968; Hero sectie</div>
+    <div class="sidebar-item" onclick="showPanel('diensten',this)">&#128295; Diensten</div>
+    <div class="sidebar-item" onclick="showPanel('over',this)">&#128100; Over ons</div>
+    <div class="sidebar-item" onclick="showPanel('contact',this)">&#128222; Contact</div>
+    <div class="sidebar-item" onclick="showPanel('footer',this)">&#128462; Footer</div>
+    <div style="height:1px;background:#222;margin:.75rem 0;"></div>
+    <div class="sidebar-title">Instellingen</div>
+    <div class="sidebar-item" onclick="showPanel('huisstijl',this)">&#127912; Huisstijl</div>
+    <div class="sidebar-item" onclick="showPanel('github',this)">&#9881; GitHub koppeling</div>
+  </div>
+  <div class="main-content">
+    <div class="section-panel active" id="panel-hero">
+      <div class="panel-title">Hero sectie</div>
+      <div class="panel-subtitle">De grote banner bovenaan de website.</div>
+      <a href="index.html#home" target="_blank" class="preview-btn">&#128065; Bekijk op website</a>
+      <div class="card">
+        <div class="card-title">Teksten</div>
+        <div class="field-group"><label class="field-label">Toptekst</label><input class="field-input" id="hero_tag" value="Heel Nederland - ZZP Techniek en Constructie"></div>
+        <div class="field-group"><label class="field-label">Titel regel 1</label><input class="field-input" id="hero_title1" value="Staal."></div>
+        <div class="field-group"><label class="field-label">Titel regel 2 (oranje)</label><input class="field-input" id="hero_title2" value="Techniek."></div>
+        <div class="field-group"><label class="field-label">Titel regel 3</label><input class="field-input" id="hero_title3" value="Bouw."></div>
+        <div class="field-group"><label class="field-label">Beschrijving</label><textarea class="field-textarea" id="hero_desc">Van lassen en metaalbewerking tot volledige staalconstructies. Vakmanschap door heel Nederland.</textarea></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Knoppen</div>
+        <div class="grid-2">
+          <div class="field-group"><label class="field-label">Primaire knop</label><input class="field-input" id="hero_btn1" value="Offerte aanvragen"></div>
+          <div class="field-group"><label class="field-label">Secundaire knop</label><input class="field-input" id="hero_btn2" value="Bekijk projecten"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-panel" id="panel-diensten">
+      <div class="panel-title">Diensten</div>
+      <div class="panel-subtitle">De drie diensten op de website.</div>
+      <a href="index.html#diensten" target="_blank" class="preview-btn">&#128065; Bekijk op website</a>
+      <div class="card"><div class="card-title">Dienst 1</div><div class="dienst-inner"><span class="dienst-badge">01</span><div class="field-group"><label class="field-label">Naam</label><input class="field-input" id="dienst1_title" value="Lassen en Metaalbewerking"></div><div class="field-group"><label class="field-label">Omschrijving</label><textarea class="field-textarea" id="dienst1_desc">MIG/MAG en TIG lassen, plaatbewerking en slijpen. Precisiewerk op maat.</textarea></div></div></div>
+      <div class="card"><div class="card-title">Dienst 2</div><div class="dienst-inner"><span class="dienst-badge">02</span><div class="field-group"><label class="field-label">Naam</label><input class="field-input" id="dienst2_title" value="Constructiewerk en Staalwerk"></div><div class="field-group"><label class="field-label">Omschrijving</label><textarea class="field-textarea" id="dienst2_desc">Staalconstructies, draagbalken en hekwerken. Van tekening tot montage.</textarea></div></div></div>
+      <div class="card"><div class="card-title">Dienst 3</div><div class="dienst-inner"><span class="dienst-badge">03</span><div class="field-group"><label class="field-label">Naam</label><input class="field-input" id="dienst3_title" value="Bouw en Verbouw"></div><div class="field-group"><label class="field-label">Omschrijving</label><textarea class="field-textarea" id="dienst3_desc">Nieuwbouw, verbouwingen en renovatieprojecten door heel Nederland.</textarea></div></div></div>
+    </div>
+    <div class="section-panel" id="panel-over">
+      <div class="panel-title">Over ons</div>
+      <div class="panel-subtitle">Informatie over het bedrijf.</div>
+      <div class="card">
+        <div class="card-title">Teksten</div>
+        <div class="field-group"><label class="field-label">Titel</label><input class="field-input" id="over_title" value="Vakmanschap Voorop"></div>
+        <div class="field-group"><label class="field-label">Alinea 1</label><textarea class="field-textarea" id="over_text1">STB Heeten is een gespecialiseerde ZZP-onderneming in lassen, constructiewerk en bouw. Actief door heel Nederland.</textarea></div>
+        <div class="field-group"><label class="field-label">Alinea 2</label><textarea class="field-textarea" id="over_text2">Flexibel inzetbaar, betrouwbaar en altijd aanspreekbaar.</textarea></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Statistieken</div>
+        <div class="grid-2">
+          <div class="field-group"><label class="field-label">Stat 1 getal</label><input class="field-input" id="stat1_num" value="100%"></div>
+          <div class="field-group"><label class="field-label">Stat 1 label</label><input class="field-input" id="stat1_label" value="Kwaliteitsgarantie"></div>
+          <div class="field-group"><label class="field-label">Stat 2 getal</label><input class="field-input" id="stat2_num" value="NL"></div>
+          <div class="field-group"><label class="field-label">Stat 2 label</label><input class="field-input" id="stat2_label" value="Heel Nederland"></div>
+          <div class="field-group"><label class="field-label">Stat 3 getal</label><input class="field-input" id="stat3_num" value="ZZP"></div>
+          <div class="field-group"><label class="field-label">Stat 3 label</label><input class="field-input" id="stat3_label" value="Flexibel en persoonlijk"></div>
+          <div class="field-group"><label class="field-label">Stat 4 getal</label><input class="field-input" id="stat4_num" value="3x"></div>
+          <div class="field-group"><label class="field-label">Stat 4 label</label><input class="field-input" id="stat4_label" value="Specialisaties"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-panel" id="panel-contact">
+      <div class="panel-title">Contactgegevens</div>
+      <div class="panel-subtitle">Telefoonnummer, e-mail en andere gegevens.</div>
+      <div class="card">
+        <div class="card-title">Gegevens</div>
+        <div class="field-group"><label class="field-label">Telefoonnummer</label><input class="field-input" id="contact_tel" value="+31 6 00 000 000"></div>
+        <div class="field-group"><label class="field-label">E-mailadres</label><input class="field-input" id="contact_email" value="info@stbheeten.nl"></div>
+        <div class="field-group"><label class="field-label">Werkgebied</label><input class="field-input" id="contact_werkgebied" value="Heel Nederland"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">CTA balk</div>
+        <div class="field-group"><label class="field-label">Titel</label><input class="field-input" id="cta_title" value="Klaar voor uw project?"></div>
+        <div class="field-group"><label class="field-label">Ondertitel</label><input class="field-input" id="cta_sub" value="Offerte op maat - Heel Nederland - Snel geregeld"></div>
+      </div>
+    </div>
+    <div class="section-panel" id="panel-footer">
+      <div class="panel-title">Footer</div>
+      <div class="panel-subtitle">De onderste balk van de website.</div>
+      <div class="card">
+        <div class="card-title">Tekst en social media</div>
+        <div class="field-group"><label class="field-label">Copyright tekst</label><input class="field-input" id="footer_copy" value="2025 STB Heeten - Alle rechten voorbehouden"></div>
+        <div class="field-group"><label class="field-label">Instagram URL</label><input class="field-input" id="social_instagram" placeholder="https://instagram.com/stbheeten"></div>
+        <div class="field-group"><label class="field-label">Facebook URL</label><input class="field-input" id="social_facebook" placeholder="https://facebook.com/stbheeten"></div>
+      </div>
+    </div>
+    <div class="section-panel" id="panel-huisstijl">
+      <div class="panel-title">Huisstijl en kleuren</div>
+      <div class="panel-subtitle">Pas de kleuren van de website aan.</div>
+      <div class="card">
+        <div class="card-title">Kleuren</div>
+        <div class="field-group"><label class="field-label">Accentkleur</label><div class="color-row"><input type="color" class="color-picker" id="color_orange" value="#E8820C" oninput="document.getElementById('color_orange_hex').value=this.value"><input class="field-input" id="color_orange_hex" value="#E8820C" style="flex:1" oninput="document.getElementById('color_orange').value=this.value"></div></div>
+        <div class="field-group"><label class="field-label">Achtergrondkleur</label><div class="color-row"><input type="color" class="color-picker" id="color_bg" value="#0D0D0D" oninput="document.getElementById('color_bg_hex').value=this.value"><input class="field-input" id="color_bg_hex" value="#0D0D0D" style="flex:1" oninput="document.getElementById('color_bg').value=this.value"></div></div>
+      </div>
+    </div>
+    <div class="section-panel" id="panel-github">
+      <div class="panel-title">GitHub koppeling</div>
+      <div class="panel-subtitle">Gegevens voor het publiceren naar je website.</div>
+      <div class="token-info"><span class="token-status" id="token-dot"></span>Status: <strong id="token-status-text">Laden...</strong></div>
+      <div class="card">
+        <div class="card-title">Instellingen</div>
+        <div class="field-group"><label class="field-label">GitHub gebruikersnaam</label><input class="field-input" id="gh_user" value="luukmekers"></div>
+        <div class="field-group"><label class="field-label">Repository naam</label><input class="field-input" id="gh_repo" value="STB-Heeten"></div>
+        <div class="field-group"><label class="field-label">Personal Access Token</label><input class="field-input" id="gh_token" type="password" placeholder="ghp_..."></div>
+        <button class="btn btn-green" onclick="saveGithubSettings()" style="margin-top:.5rem;">Opslaan</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="save-bar">
+  <span class="save-hint">Wijzigingen worden direct gepubliceerd naar je website</span>
+  <button class="btn btn-green" onclick="saveAll()">&#10003; Opslaan en publiceren</button>
+</div>
+<script>
+function showPanel(id,el){document.querySelectorAll('.section-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.sidebar-item').forEach(i=>i.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');el.classList.add('active');}
+function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(type==='error'?' error':'');setTimeout(()=>t.classList.remove('show'),3500);}
+function v(id){const el=document.getElementById(id);return el?el.value:'';}
+function saveGithubSettings(){localStorage.setItem('gh_user',v('gh_user'));localStorage.setItem('gh_repo',v('gh_repo'));localStorage.setItem('gh_token',v('gh_token'));updateTokenStatus();showToast('GitHub instellingen opgeslagen!');}
+function updateTokenStatus(){const token=localStorage.getItem('gh_token');const ok=token&&token.length>10;document.getElementById('token-dot').className='token-status'+(ok?' ok':'');document.getElementById('token-status-text').textContent=ok?'Geconfigureerd en klaar':'Nog niet geconfigureerd';}
+function loadSaved(){['gh_user','gh_repo','gh_token'].forEach(f=>{const s=localStorage.getItem(f);if(s&&document.getElementById(f))document.getElementById(f).value=s;});updateTokenStatus();}
+async function saveAll(){
+  const token=localStorage.getItem('gh_token')||v('gh_token');
+  const user=localStorage.getItem('gh_user')||'luukmekers';
+  const repo=localStorage.getItem('gh_repo')||'STB-Heeten';
+  if(!token||token.length<10){showToast('Vul een GitHub token in','error');return;}
+  const orange=v('color_orange_hex')||'#E8820C';
+  const bg=v('color_bg_hex')||'#0D0D0D';
+  const ig=v('social_instagram')||'#';
+  const fb=v('social_facebook')||'#';
+  const html='<!DOCTYPE html><html lang="nl"><head><meta charset="UTF-8"><title>STB Heeten</title><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"><style>/* Gegenereerd door beheerpaneel */body{font-family:Barlow,sans-serif;background:'+bg+';color:#fff;margin:0}nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:72px;background:rgba(13,13,13,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,130,12,.15)}.nav-logo{display:flex;align-items:center;gap:.75rem}.logo-text{font-family:Bebas Neue,sans-serif;font-size:1.6rem;color:#fff}.logo-sub{font-family:Barlow Condensed,sans-serif;font-size:.65rem;letter-spacing:.25em;color:'+orange+';display:block}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{font-family:Barlow Condensed,sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#ccc;text-decoration:none}.nav-links a:hover{color:'+orange+'}.nav-cta{background:'+orange+';color:'+bg+';font-family:Barlow Condensed,sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.4rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:#111}.hero-bg{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(232,130,12,.03) 0,rgba(232,130,12,.03) 1px,transparent 1px,transparent 40px)}.hero-sparks{position:absolute;inset:0;overflow:hidden;pointer-events:none}.spark{position:absolute;border-radius:50%;background:'+orange+';animation:spark-float linear infinite;opacity:0}@keyframes spark-float{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}90%{opacity:.6}100%{transform:translateY(-120vh) translateX(var(--dx,60px));opacity:0}}.hero-content{position:relative;z-index:2;padding:0 1.5rem;max-width:900px}.hero-tag{display:inline-block;font-family:Barlow Condensed,sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:'+orange+';border:1px solid rgba(232,130,12,.4);padding:.35rem 1rem;margin-bottom:1.5rem}.hero-title{font-family:Bebas Neue,sans-serif;font-size:clamp(3.5rem,9vw,7rem);line-height:.95;color:#fff;margin-bottom:1.5rem}.hero-title span{color:'+orange+'}.hero-desc{font-size:1.05rem;color:#ccc;max-width:520px;margin:0 auto 2.5rem;line-height:1.7}.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}.btn-primary{background:'+orange+';color:'+bg+';font-family:Barlow Condensed,sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2.2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}.btn-outline{background:transparent;color:#fff;font-family:Barlow Condensed,sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2.2rem;border:1px solid rgba(255,255,255,.3);cursor:pointer;text-decoration:none;display:inline-block}.btn-outline:hover{border-color:'+orange+';color:'+orange+'}section{padding:6rem 2.5rem}.container{max-width:1100px;margin:0 auto}.section-label{font-family:Barlow Condensed,sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:'+orange+';margin-bottom:.75rem}.section-title{font-family:Bebas Neue,sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);color:#fff;line-height:1}.section-title span{color:'+orange+'}.divider{width:48px;height:3px;background:'+orange+';margin:1.25rem 0 2.5rem}.diensten{background:#141414}.diensten-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;margin-top:3rem}.dienst-card{background:#1C1C1C;padding:2.5rem 2rem;position:relative;overflow:hidden}.dienst-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:'+orange+';transform:scaleX(0);transform-origin:left;transition:transform .35s}.dienst-card:hover::before{transform:scaleX(1)}.dienst-icon{width:52px;height:52px;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(232,130,12,.3)}.dienst-icon svg{width:26px;height:26px;stroke:'+orange+';fill:none;stroke-width:1.5}.dienst-num{font-family:Bebas Neue,sans-serif;font-size:3.5rem;color:rgba(232,130,12,.07);position:absolute;top:1.5rem;right:1.5rem;line-height:1}.dienst-title{font-family:Bebas Neue,sans-serif;font-size:1.5rem;color:#fff;margin-bottom:.75rem}.dienst-desc{font-size:.9rem;color:#ccc;line-height:1.7}.over{background:'+bg+'}.over-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}.over-visual{aspect-ratio:4/3;background:#1C1C1C;border:1px solid rgba(232,130,12,.12);display:flex;align-items:center;justify-content:center;position:relative}.over-visual-label{font-family:Barlow Condensed,sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2)}.over-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:'+orange+';padding:1.25rem 1.5rem;text-align:center}.over-badge-num{font-family:Bebas Neue,sans-serif;font-size:2.5rem;color:'+bg+';line-height:1}.over-badge-text{font-family:Barlow Condensed,sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:'+bg+';font-weight:700}.over-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2.5rem 0}.over-stat{border-left:2px solid '+orange+';padding-left:1rem}.over-stat-num{font-family:Bebas Neue,sans-serif;font-size:2rem;color:#fff}.over-stat-label{font-size:.82rem;color:#ccc}.over-text{font-size:1rem;color:#ccc;line-height:1.8;margin-bottom:1rem}.portfolio{background:#141414}.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;margin-top:3rem}.portfolio-item{background:#1C1C1C;aspect-ratio:4/3;position:relative;overflow:hidden}.portfolio-item:first-child{grid-column:span 2;aspect-ratio:auto;min-height:300px}.portfolio-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}.portfolio-placeholder span{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.15)}.portfolio-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.9) 0%,transparent 60%);opacity:0;transition:opacity .3s}.portfolio-item:hover .portfolio-overlay{opacity:1}.portfolio-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;transform:translateY(100%);transition:transform .3s}.portfolio-item:hover .portfolio-info{transform:translateY(0)}.portfolio-cat{font-family:Barlow Condensed,sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:'+orange+';margin-bottom:.25rem}.portfolio-name{font-family:Bebas Neue,sans-serif;font-size:1.3rem;color:#fff}.cta-band{background:'+orange+';padding:3.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}.cta-band-title{font-family:Bebas Neue,sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);color:'+bg+'}.cta-band-sub{font-family:Barlow Condensed,sans-serif;font-size:.9rem;color:rgba(0,0,0,.6);text-transform:uppercase;margin-top:.25rem}.cta-band-pills{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem}.cta-pill{font-family:Barlow Condensed,sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.12);color:'+bg+';padding:.3rem .8rem}.btn-dark{background:'+bg+';color:#fff;font-family:Barlow Condensed,sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:1rem 2.5rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}.contact{background:'+bg+'}.contact-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem}.contact-info-item{display:flex;gap:1rem;margin-bottom:2rem;align-items:flex-start}.contact-icon{width:44px;height:44px;border:1px solid rgba(232,130,12,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}.contact-icon svg{width:20px;height:20px;stroke:'+orange+';fill:none;stroke-width:1.5}.contact-info-label{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:'+orange+';margin-bottom:.25rem}.contact-info-val{font-size:.95rem;color:#fff}.social-row{display:flex;gap:.75rem;margin-top:2.5rem}.social-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none}.social-btn svg{width:18px;height:18px;stroke:#ccc;fill:none;stroke-width:1.5}.contact-form{display:flex;flex-direction:column;gap:1rem}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.form-group{display:flex;flex-direction:column;gap:.4rem}.form-label{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#888}.form-input,.form-textarea{background:#1C1C1C;border:1px solid rgba(255,255,255,.08);color:#fff;font-family:Barlow,sans-serif;font-size:.95rem;padding:.75rem 1rem;outline:none;width:100%}.form-textarea{min-height:130px;resize:vertical}footer{background:#141414;border-top:1px solid rgba(232,130,12,.1);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}.footer-logo{font-family:Bebas Neue,sans-serif;font-size:1.4rem;color:#fff}.footer-logo span{color:'+orange+'}.footer-links{display:flex;gap:1.5rem}.footer-links a{font-family:Barlow Condensed,sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:#888;text-decoration:none}.footer-copy{font-size:.78rem;color:#888}@media(max-width:768px){.nav-links{display:none}section{padding:4rem 1.25rem}.diensten-grid,.over-inner,.contact-inner,.form-row{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:1fr}.portfolio-item:first-child{grid-column:span 1}footer,.cta-band{flex-direction:column}}</style></head><body>'
+  +'<nav><div class="nav-logo"><svg width="38" height="38" viewBox="0 0 38 38" fill="none"><polygon points="19,2 36,34 2,34" fill="none" stroke="'+orange+'" stroke-width="2.5"/><circle cx="19" cy="22" r="6" fill="none" stroke="'+orange+'" stroke-width="2"/><circle cx="19" cy="22" r="2" fill="'+orange+'"/></svg><div><span class="logo-text">STB HEETEN</span><span class="logo-sub">Staal - Techniek - Bouw</span></div></div><ul class="nav-links"><li><a href="#diensten">Diensten</a></li><li><a href="#over">Over ons</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#contact">Contact</a></li></ul><a href="#contact" class="nav-cta">'+v('hero_btn1')+'</a></nav>'
+  +'<section class="hero" id="home"><div class="hero-bg"></div><div class="hero-sparks" id="sparks"></div><div class="hero-content"><div class="hero-tag">'+v('hero_tag')+'</div><h1 class="hero-title">'+v('hero_title1')+'<br><span>'+v('hero_title2')+'</span><br>'+v('hero_title3')+'</h1><p class="hero-desc">'+v('hero_desc')+'</p><div class="hero-btns"><a href="#contact" class="btn-primary">'+v('hero_btn1')+'</a><a href="#portfolio" class="btn-outline">'+v('hero_btn2')+'</a></div></div></section>'
+  +'<section class="diensten" id="diensten"><div class="container"><div class="section-label">Wat wij doen</div><h2 class="section-title">Onze <span>Diensten</span></h2><div class="divider"></div><div class="diensten-grid"><div class="dienst-card"><div class="dienst-num">01</div><div class="dienst-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="dienst-title">'+v('dienst1_title')+'</div><p class="dienst-desc">'+v('dienst1_desc')+'</p></div><div class="dienst-card"><div class="dienst-num">02</div><div class="dienst-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/></svg></div><div class="dienst-title">'+v('dienst2_title')+'</div><p class="dienst-desc">'+v('dienst2_desc')+'</p></div><div class="dienst-card"><div class="dienst-num">03</div><div class="dienst-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><div class="dienst-title">'+v('dienst3_title')+'</div><p class="dienst-desc">'+v('dienst3_desc')+'</p></div></div></div></section>'
+  +'<section class="over" id="over"><div class="container"><div class="over-inner"><div><div class="section-label">Over ons</div><h2 class="section-title">'+v('over_title')+'</h2><div class="divider"></div><p class="over-text">'+v('over_text1')+'</p><p class="over-text">'+v('over_text2')+'</p><div class="over-stats"><div class="over-stat"><div class="over-stat-num">'+v('stat1_num')+'</div><div class="over-stat-label">'+v('stat1_label')+'</div></div><div class="over-stat"><div class="over-stat-num">'+v('stat2_num')+'</div><div class="over-stat-label">'+v('stat2_label')+'</div></div><div class="over-stat"><div class="over-stat-num">'+v('stat3_num')+'</div><div class="over-stat-label">'+v('stat3_label')+'</div></div><div class="over-stat"><div class="over-stat-num">'+v('stat4_num')+'</div><div class="over-stat-label">'+v('stat4_label')+'</div></div></div><a href="#contact" class="btn-primary">Neem contact op</a></div><div style="position:relative;padding-bottom:2.5rem;padding-right:2.5rem;"><div class="over-visual"><span class="over-visual-label">Uw foto hier</span></div><div class="over-badge"><div class="over-badge-num">V</div><div class="over-badge-text">Offerte op maat</div></div></div></div></div></section>'
+  +'<section class="portfolio" id="portfolio"><div class="container"><div class="section-label">Ons werk</div><h2 class="section-title">Project<span>portfolio</span></h2><div class="divider"></div></div><div style="max-width:1100px;margin:0 auto"><div class="portfolio-grid"><div class="portfolio-item"><div class="portfolio-placeholder"><span>Projectfoto 1</span></div><div class="portfolio-overlay"></div><div class="portfolio-info"><div class="portfolio-cat">Staalconstructie</div><div class="portfolio-name">Industriele hal</div></div></div><div class="portfolio-item"><div class="portfolio-placeholder"><span>Projectfoto 2</span></div><div class="portfolio-overlay"></div><div class="portfolio-info"><div class="portfolio-cat">Bouw en Verbouw</div><div class="portfolio-name">Aanbouw woning</div></div></div><div class="portfolio-item"><div class="portfolio-placeholder"><span>Projectfoto 3</span></div><div class="portfolio-overlay"></div><div class="portfolio-info"><div class="portfolio-cat">Lassen en Metaal</div><div class="portfolio-name">Maatwerk hekwerk</div></div></div><div class="portfolio-item"><div class="portfolio-placeholder"><span>Projectfoto 4</span></div><div class="portfolio-overlay"></div><div class="portfolio-info"><div class="portfolio-cat">Constructiewerk</div><div class="portfolio-name">Draagconstructie</div></div></div></div></div></section>'
+  +'<div class="cta-band"><div><div class="cta-band-title">'+v('cta_title')+'</div><div class="cta-band-sub">'+v('cta_sub')+'</div><div class="cta-band-pills"><span class="cta-pill">Lassen</span><span class="cta-pill">Staalconstructie</span><span class="cta-pill">Bouw en Verbouw</span></div></div><a href="#contact" class="btn-dark">Offerte aanvragen</a></div>'
+  +'<section class="contact" id="contact"><div class="container"><div class="section-label">Contact</div><h2 class="section-title">Neem <span>Contact Op</span></h2><div class="divider"></div><div class="contact-inner"><div><div class="contact-info-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.13 1 .38 1.97.74 2.91a2 2 0 01-.45 2.11L6.09 9.2a16 16 0 006.71 6.71l1.28-1.27a2 2 0 012.11-.45c.94.36 1.91.61 2.91.74A2 2 0 0122 16.92z"/></svg></div><div><div class="contact-info-label">Telefoon</div><div class="contact-info-val">'+v('contact_tel')+'</div></div></div><div class="contact-info-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="contact-info-label">E-mail</div><div class="contact-info-val">'+v('contact_email')+'</div></div></div><div class="contact-info-item"><div class="contact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div><div class="contact-info-label">Werkgebied</div><div class="contact-info-val">'+v('contact_werkgebied')+'</div></div></div><div class="social-row"><a href="'+ig+'" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg></a><a href="'+fb+'" class="social-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div></div><div class="contact-form"><div class="form-row"><div class="form-group"><label class="form-label">Naam</label><input type="text" class="form-input" placeholder="Uw naam"></div><div class="form-group"><label class="form-label">Bedrijf</label><input type="text" class="form-input"></div></div><div class="form-row"><div class="form-group"><label class="form-label">Telefoon</label><input type="tel" class="form-input" placeholder="+31 6 ..."></div><div class="form-group"><label class="form-label">E-mail</label><input type="email" class="form-input" placeholder="uw@email.nl"></div></div><div class="form-group"><label class="form-label">Dienst</label><select class="form-input"><option>Lassen en Metaalbewerking</option><option>Constructiewerk en Staalwerk</option><option>Bouw en Verbouw</option><option>Overig</option></select></div><div class="form-group"><label class="form-label">Omschrijving</label><textarea class="form-textarea" placeholder="Vertel ons over uw project..."></textarea></div><button class="btn-primary" style="align-self:flex-start;padding:.9rem 2.5rem;">Offerte aanvragen</button></div></div></div></section>'
+  +'<footer><div class="footer-logo">STB <span>HEETEN</span></div><div class="footer-links"><a href="#">Privacybeleid</a><a href="#">Algemene voorwaarden</a><a href="#">KvK</a></div><div class="footer-copy">'+v('footer_copy')+'</div></footer>'
+  +'<script>const s=document.getElementById("sparks");for(let i=0;i<18;i++){const el=document.createElement("div");el.className="spark";const l=30+Math.random()*40,d=4+Math.random()*5,dl=Math.random()*6,dx=(Math.random()-.5)*120,sz=1+Math.random()*2.5;el.style.cssText="left:"+l+"%;bottom:-10px;width:"+sz+"px;height:"+sz+"px;animation-duration:"+d+"s;animation-delay:"+dl+"s;--dx:"+dx+"px;";s.appendChild(el);}</script></body></html>';
+  const enc=btoa(unescape(encodeURIComponent(html)));
+  try{
+    const g=await fetch('https://api.github.com/repos/'+user+'/'+repo+'/contents/index.html',{headers:{Authorization:'token '+token}});
+    const gd=await g.json();
+    const p=await fetch('https://api.github.com/repos/'+user+'/'+repo+'/contents/index.html',{method:'PUT',headers:{Authorization:'token '+token,'Content-Type':'application/json'},body:JSON.stringify({message:'Bijgewerkt via beheerpaneel',content:enc,sha:gd.sha})});
+    if(p.ok){showToast('Gepubliceerd!');}else{const e=await p.json();showToast('Fout: '+(e.message||'?'),'error');}
+  }catch(e){showToast('Fout: '+e.message,'error');}
+}
+loadSaved();
+</script>
+</body>
+</html>
