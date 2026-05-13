@@ -122,6 +122,180 @@ textarea{resize:vertical;min-height:80px}
         </div>
       </div>
       <div class="card"><div class="ch">Portfolio foto's</div>
+                <div class="photo-grid">
+
+          <div class="photo-item">
+            <span class="badge">Foto 1</span>
+            <div class="fg"><label class="main">Projectnaam</label><input type="text" id="p1_name" value="Industriele hal"></div>
+            <div class="fg"><label class="main">Categorie</label><input type="text" id="p1_cat" value="Staalconstructie"></div>
+            <div class="upload-box"><input type="file" accept="image/*" onchange="previewAndUpload(this,'p1','images/portfolio1.jpg')"><span class="ico">&#128247;</span><div class="utext"><span>Foto uploaden</span></div></div>
+            <img class="preview-img" id="p1-preview" src="" alt=""><div class="upload-status" id="p1-status"></div>
+          </div>
+
+          <div class="photo-item">
+            <span class="badge">Foto 2</span>
+            <div class="fg"><label class="main">Projectnaam</label><input type="text" id="p2_name" value="Aanbouw woning"></div>
+            <div class="fg"><label class="main">Categorie</label><input type="text" id="p2_cat" value="Bouw en Verbouw"></div>
+            <div class="upload-box"><input type="file" accept="image/*" onchange="previewAndUpload(this,'p2','images/portfolio2.jpg')"><span class="ico">&#128247;</span><div class="utext"><span>Foto uploaden</span></div></div>
+            <img class="preview-img" id="p2-preview" src="" alt=""><div class="upload-status" id="p2-status"></div>
+          </div>
+
+          <div class="photo-item">
+            <span class="badge">Foto 3</span>
+            <div class="fg"><label class="main">Projectnaam</label><input type="text" id="p3_name" value="Maatwerk hekwerk"></div>
+            <div class="fg"><label class="main">Categorie</label><input type="text" id="p3_cat" value="Lassen en Metaal"></div>
+            <div class="upload-box"><input type="file" accept="image/*" onchange="previewAndUpload(this,'p3','images/portfolio3.jpg')"><span class="ico">&#128247;</span><div class="utext"><span>Foto uploaden</span></div></div>
+            <img class="preview-img" id="p3-preview" src="" alt=""><div class="upload-status" id="p3-status"></div>
+          </div>
+
+          <div class="photo-item">
+            <span class="badge">Foto 4</span>
+            <div class="fg"><label class="main">Projectnaam</label><input type="text" id="p4_name" value="Draagconstructie"></div>
+            <div class="fg"><label class="main">Categorie</label><input type="text" id="p4_cat" value="Constructiewerk"></div>
+            <div class="upload-box"><input type="file" accept="image/*" onchange="previewAndUpload(this,'p4','images/portfolio4.jpg')"><span class="ico">&#128247;</span><div class="utext"><span>Foto uploaden</span></div></div>
+            <img class="preview-img" id="p4-preview" src="" alt=""><div class="upload-status" id="p4-status"></div>
+          </div>
+
+          <div class="photo-item">
+            <span class="badge">Foto 5</span>
+            <div class="fg"><label class="main">Projectnaam</label><input type="text" id="p5_name" value="Stalen trap"></div>
+            <div class="fg"><label class="main">Categorie</label><input type="text" id="p5_cat" value="Staalwerk"></div>
+            <div class="upload-box"><input type="file" accept="image/*" onchange="previewAndUpload(this,'p5','images/portfolio5.jpg')"><span class="ico">&#128247;</span><div class="utext"><span>Foto uploaden</span></div></div>
+            <img class="preview-img" id="p5-preview" src="" alt=""><div class="upload-status" id="p5-status"></div>
+          </div>
+
+          <div class="photo-item">
+            <span class="badge">Foto 6</span>
+            <div class="fg"><label class="main">Projectnaam</label><input type="text" id="p6_name" value="Industrieel complex"></div>
+            <div class="fg"><label class="main">Categorie</label><input type="text" id="p6_cat" value="Renovatie"></div>
+            <div class="upload-box"><input type="file" accept="image/*" onchange="previewAndUpload(this,'p6','images/portfolio6.jpg')"><span class="ico">&#128247;</span><div class="utext"><span>Foto uploaden</span></div></div>
+            <img class="preview-img" id="p6-preview" src="" alt=""><div class="upload-status" id="p6-status"></div>
+          </div>
+
+        </div><!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STB Heeten Beheerpaneel</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#E8820C;--dark:#141414;--card:#1a1a1a;--bdr:#2a2a2a;--txt:#ccc;--wht:#fff;--gr:#888;--grn:#27ae60}
+body{font-family:sans-serif;background:#0f0f0f;color:var(--wht);min-height:100vh}
+header{background:var(--dark);border-bottom:3px solid var(--or);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.1rem;font-weight:700;color:var(--wht)}
+.logo span{color:var(--or)}
+button,a.btn{padding:.5rem 1rem;border:none;cursor:pointer;font-size:.82rem;font-weight:600;border-radius:4px;text-decoration:none;display:inline-block;font-family:inherit}
+.b-ghost{background:transparent;color:var(--txt);border:1px solid #444}
+.b-ghost:hover{border-color:var(--or);color:var(--or)}
+.b-grn{background:var(--grn);color:#fff}
+.b-or{background:var(--or);color:#000}
+.wrap{display:flex;min-height:calc(100vh - 130px)}
+nav{width:210px;background:var(--dark);border-right:1px solid var(--bdr);padding:.75rem 0;flex-shrink:0}
+.lbl{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);padding:.5rem 1rem;display:block}
+.sep{height:1px;background:var(--bdr);margin:.4rem 0}
+.nav-item{display:block;padding:.65rem 1rem;cursor:pointer;font-size:.85rem;color:var(--txt);border:none;border-left:3px solid transparent;background:none;width:100%;text-align:left;font-family:inherit}
+.nav-item:hover{background:rgba(232,130,12,.08);color:var(--wht)}
+.nav-item.on{background:rgba(232,130,12,.12);border-left-color:var(--or);color:var(--or);font-weight:700}
+main{flex:1;padding:1.5rem;overflow-y:auto}
+.panel{display:none}
+.panel.on{display:block}
+.ptit{font-size:1.3rem;font-weight:700;margin-bottom:.3rem}
+.psub{font-size:.82rem;color:var(--gr);margin-bottom:1.5rem}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:1.25rem;margin-bottom:1rem}
+.ch{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--bdr)}
+.fg{margin-bottom:.85rem}
+label{font-size:.75rem;font-weight:600;color:var(--txt);margin-bottom:.3rem;display:block}
+input[type=text],input[type=email],input[type=tel],input[type=password],select,textarea{width:100%;background:#0d0d0d;border:1px solid #333;color:var(--wht);padding:.55rem .8rem;border-radius:4px;font-size:.88rem;outline:none;font-family:inherit;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--or)}
+textarea{resize:vertical;min-height:80px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.cr{display:flex;align-items:center;gap:.6rem}
+.cr input[type=color]{width:42px;height:34px;padding:2px;flex-shrink:0}
+.cr input[type=text]{flex:1}
+.di{background:#0d0d0d;border:1px solid var(--bdr);border-radius:6px;padding:.9rem;margin-bottom:.65rem;border-left:3px solid var(--or)}
+.dbadge{background:rgba(232,130,12,.15);color:var(--or);font-weight:700;font-size:.72rem;padding:.18rem .55rem;border-radius:3px;display:inline-block;margin-bottom:.65rem}
+.tokbox{background:rgba(232,130,12,.07);border:1px solid rgba(232,130,12,.2);border-radius:6px;padding:.9rem 1.1rem;margin-bottom:1.25rem;font-size:.83rem;color:var(--txt)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e74c3c;margin-right:.4rem}
+.dot.ok{background:var(--grn)}
+.savebar{background:var(--dark);border-top:1px solid var(--bdr);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.hint{font-size:.78rem;color:var(--gr)}
+.toast{position:fixed;bottom:1.25rem;right:1.25rem;background:var(--grn);color:#fff;padding:.7rem 1.2rem;border-radius:6px;font-weight:700;font-size:.88rem;transform:translateY(60px);opacity:0;transition:all .3s;z-index:999}
+.toast.on{transform:translateY(0);opacity:1}
+.toast.err{background:#e74c3c}
+.upload-box{border:2px dashed #444;border-radius:8px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s;position:relative;background:#0d0d0d}
+.upload-box:hover{border-color:var(--or)}
+.upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-box .ico{font-size:2rem;margin-bottom:.5rem;display:block}
+.upload-box .utext{font-size:.82rem;color:var(--gr)}
+.upload-box .utext span{color:var(--or);font-weight:600}
+.preview-img{width:100%;max-height:180px;object-fit:cover;border-radius:6px;margin-top:.75rem;display:none;border:1px solid var(--bdr)}
+.preview-img.show{display:block}
+.upload-status{font-size:.78rem;margin-top:.5rem;color:var(--gr)}
+.upload-status.ok{color:var(--grn)}
+.upload-status.err{color:#e74c3c}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.photo-item{background:#0d0d0d;border:1px solid var(--bdr);border-radius:6px;padding:1rem}
+.photo-item .badge{background:rgba(232,130,12,.15);color:var(--or);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;display:inline-block;margin-bottom:.65rem}
+.photo-item label.main{font-size:.8rem;font-weight:700;color:var(--wht);margin-bottom:.5rem}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<header>
+  <div class="logo">STB <span>HEETEN</span> Beheerpaneel</div>
+  <div style="display:flex;gap:.5rem">
+    <a href="index.html" target="_blank" class="btn b-ghost">Bekijk website</a>
+    <button class="b-grn" id="saveBtn" onclick="saveAll()">Opslaan en publiceren</button>
+  </div>
+</header>
+<div class="wrap">
+  <nav id="nav">
+    <span class="lbl">Pagina onderdelen</span>
+    <button class="nav-item on" data-p="hero">&#127968; Hero sectie</button>
+    <button class="nav-item" data-p="logo">&#128444; Logo en afbeeldingen</button>
+    <button class="nav-item" data-p="diensten">&#128295; Diensten</button>
+    <button class="nav-item" data-p="over">&#128100; Over ons</button>
+    <button class="nav-item" data-p="contact">&#128222; Contact</button>
+    <button class="nav-item" data-p="footer">&#128462; Footer</button>
+    <div class="sep"></div>
+    <span class="lbl">Instellingen</span>
+    <button class="nav-item" data-p="huisstijl">&#127912; Huisstijl</button>
+    <button class="nav-item" data-p="github">&#9881; GitHub koppeling</button>
+  </nav>
+  <main>
+    <div class="panel on" id="p-hero">
+      <div class="ptit">Hero sectie</div>
+      <div class="psub">De grote banner bovenaan de website.</div>
+      <div class="card"><div class="ch">Teksten</div>
+        <div class="fg"><label>Toptekst</label><input type="text" id="hero_tag" value="Heel Nederland - ZZP Techniek en Constructie"></div>
+        <div class="fg"><label>Titel regel 1</label><input type="text" id="hero_r1" value="Staal."></div>
+        <div class="fg"><label>Titel regel 2 (oranje)</label><input type="text" id="hero_r2" value="Techniek."></div>
+        <div class="fg"><label>Titel regel 3</label><input type="text" id="hero_r3" value="Bouw."></div>
+        <div class="fg"><label>Beschrijving</label><textarea id="hero_desc">Van lassen en metaalbewerking tot volledige staalconstructies. Vakmanschap door heel Nederland.</textarea></div>
+      </div>
+      <div class="card"><div class="ch">Knoppen</div>
+        <div class="g2">
+          <div class="fg"><label>Primaire knop</label><input type="text" id="hero_b1" value="Offerte aanvragen"></div>
+          <div class="fg"><label>Secundaire knop</label><input type="text" id="hero_b2" value="Bekijk projecten"></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" id="p-logo">
+      <div class="ptit">Logo en afbeeldingen</div>
+      <div class="psub">Upload je logo en projectfoto's. Bestanden worden opgeslagen in je GitHub repository.</div>
+      <div class="card"><div class="ch">Logo (linksbovenin de navigatie)</div>
+        <div class="fg">
+          <div class="upload-box" id="logo-box">
+            <input type="file" id="logo-file" accept="image/*" onchange="previewAndUpload(this,'logo','images/logo.png')">
+            <span class="ico">&#128444;</span>
+            <div class="utext">Klik of sleep je logo hier<br><span>PNG, JPG of SVG aanbevolen</span></div>
+          </div>
+          <img class="preview-img" id="logo-preview" src="" alt="Logo preview">
+          <div class="upload-status" id="logo-status"></div>
+        </div>
+      </div>
+      <div class="card"><div class="ch">Portfolio foto's</div>
         <div class="photo-grid">
           <div class="photo-item">
             <span class="badge">Foto 1</span>
@@ -352,7 +526,7 @@ function loadSaved() {
     var t = localStorage.getItem("ght"); if (t) document.getElementById("gh_t").value = t;
     updateTokStatus();
     // Load saved photo names
-    var fields = ["p1_name","p1_cat","p2_name","p2_cat","p3_name","p3_cat","p4_name","p4_cat"];
+    var fields = ["p1_name","p1_cat","p2_name","p2_cat","p3_name","p3_cat","p4_name","p4_cat","p5_name","p5_cat","p6_name","p6_cat"];
     fields.forEach(function(f) { var v = localStorage.getItem(f); if (v) { var el = document.getElementById(f); if (el) el.value = v; } });
   }
 
@@ -417,10 +591,14 @@ function loadSaved() {
     var p2img = "images/portfolio2.jpg";
     var p3img = "images/portfolio3.jpg";
     var p4img = "images/portfolio4.jpg";
+    var p5img = "images/portfolio5.jpg";
+    var p6img = "images/portfolio6.jpg";
     var p1n = g("p1_name") || "Industriele hal"; var p1c = g("p1_cat") || "Staalconstructie";
     var p2n = g("p2_name") || "Aanbouw woning"; var p2c = g("p2_cat") || "Bouw en Verbouw";
     var p3n = g("p3_name") || "Maatwerk hekwerk"; var p3c = g("p3_cat") || "Lassen en Metaal";
     var p4n = g("p4_name") || "Draagconstructie"; var p4c = g("p4_cat") || "Constructiewerk";
+    var p5n = g("p5_name") || "Stalen trap"; var p5c = g("p5_cat") || "Staalwerk";
+    var p6n = g("p6_name") || "Industrieel complex"; var p6c = g("p6_cat") || "Renovatie";
     // Logo: toon afbeelding maar val terug op SVG als het niet bestaat
     var svgLogo = "<svg width=\"38\" height=\"38\" viewBox=\"0 0 38 38\" fill=\"none\"><polygon points=\"19,2 36,34 2,34\" fill=\"none\" stroke=\"" + or + "\" stroke-width=\"2.5\"/><circle cx=\"19\" cy=\"22\" r=\"6\" fill=\"none\" stroke=\"" + or + "\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"22\" r=\"2\" fill=\"" + or + "\"/></svg>";
     var logoHTML = "<img src=\"" + logoImg + ts + "\" alt=\"STB Heeten\" style=\"height:42px;object-fit:contain\" onerror=\"this.style.display='none';this.nextSibling.style.display='inline'\"><span style=\"display:none\">" + svgLogo + "</span>";
@@ -451,7 +629,7 @@ function loadSaved() {
     p.push("<section class=\"hero\" id=\"home\"><div class=\"hbg\"></div><div class=\"hsp\" id=\"sp\"></div><div class=\"hpl\"></div><div class=\"hc\"><div class=\"htag\">" + g("hero_tag") + "</div><h1 class=\"htit\">" + g("hero_r1") + "<br><span>" + g("hero_r2") + "</span><br>" + g("hero_r3") + "</h1><p class=\"hdesc\">" + g("hero_desc") + "</p><div class=\"hbtns\"><a href=\"#ct\" class=\"bp\">" + g("hero_b1") + "</a><a href=\"#pf\" class=\"bo\">" + g("hero_b2") + "</a></div></div><div class=\"hscr\"><div class=\"hscrl\"></div>Scroll</div></section>");
     p.push("<section class=\"ds\" id=\"ds\"><div class=\"cn\"><div class=\"sl\">Wat wij doen</div><h2 class=\"st\">Onze <span>Diensten</span></h2><div class=\"dv\"></div><div class=\"dg\"><div class=\"dc\"><div class=\"dn\">01</div><div class=\"di\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 2L2 7l10 5 10-5-10-5z\"/><path d=\"M2 17l10 5 10-5\"/><path d=\"M2 12l10 5 10-5\"/></svg></div><div class=\"dt\">" + g("d1t") + "</div><p class=\"dd\">" + g("d1d") + "</p></div><div class=\"dc\"><div class=\"dn\">02</div><div class=\"di\"><svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"1\"/><path d=\"M8 21h8M12 17v4\"/></svg></div><div class=\"dt\">" + g("d2t") + "</div><p class=\"dd\">" + g("d2d") + "</p></div><div class=\"dc\"><div class=\"dn\">03</div><div class=\"di\"><svg viewBox=\"0 0 24 24\"><path d=\"M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\"/><polyline points=\"9,22 9,12 15,12 15,22\"/></svg></div><div class=\"dt\">" + g("d3t") + "</div><p class=\"dd\">" + g("d3d") + "</p></div></div></div></section>");
     p.push("<section class=\"ov\" id=\"ov\"><div class=\"cn\"><div class=\"oi\"><div><div class=\"sl\">Over ons</div><h2 class=\"st\">" + g("ov_t") + "</h2><div class=\"dv\"></div><p class=\"otx\">" + g("ov_p1") + "</p><p class=\"otx\">" + g("ov_p2") + "</p><div class=\"os\"><div class=\"ostat\"><div class=\"osn\">" + g("s1n") + "</div><div class=\"osl\">" + g("s1l") + "</div></div><div class=\"ostat\"><div class=\"osn\">" + g("s2n") + "</div><div class=\"osl\">" + g("s2l") + "</div></div><div class=\"ostat\"><div class=\"osn\">" + g("s3n") + "</div><div class=\"osl\">" + g("s3l") + "</div></div><div class=\"ostat\"><div class=\"osn\">" + g("s4n") + "</div><div class=\"osl\">" + g("s4l") + "</div></div></div><a href=\"#ct\" class=\"bp\">Neem contact op</a></div><div style=\"position:relative;padding-bottom:2.5rem;padding-right:2.5rem\"><div class=\"ovis\" style=\"" + overBgStyle + "\"><span class=\"ovl\">" + (overImg ? "" : "Uw foto hier") + "</span></div><div class=\"obg\"><div class=\"obn\">V</div><div class=\"obt\">Offerte op maat</div></div></div></div></div></section>");
-    p.push("<section class=\"pf\" id=\"pf\"><div class=\"cn\"><div class=\"sl\">Ons werk</div><h2 class=\"st\">Project<span>portfolio</span></h2><div class=\"dv\"></div></div><div style=\"max-width:1100px;margin:0 auto\"><div class=\"pg\">" + piHTML(p1img,p1n,p1c) + piHTML(p2img,p2n,p2c) + piHTML(p3img,p3n,p3c) + piHTML(p4img,p4n,p4c) + "</div></div></section>");
+    p.push("<section class=\"pf\" id=\"pf\"><div class=\"cn\"><div class=\"sl\">Ons werk</div><h2 class=\"st\">Project<span>portfolio</span></h2><div class=\"dv\"></div></div><div style=\"max-width:1100px;margin:0 auto\"><div class=\"pg\">" + piHTML(p1img,p1n,p1c) + piHTML(p2img,p2n,p2c) + piHTML(p3img,p3n,p3c) + piHTML(p4img,p4n,p4c) + piHTML(p5img,p5n,p5c) + piHTML(p6img,p6n,p6c) + "</div></div></section>");
     p.push("<div class=\"cb\"><div><div class=\"cbt\">" + g("cta_t") + "</div><div class=\"cbs\">" + g("cta_s") + "</div><div class=\"cbp\"><span class=\"cbl\">Lassen</span><span class=\"cbl\">Staalconstructie</span><span class=\"cbl\">Bouw en Verbouw</span></div></div><a href=\"#ct\" class=\"bd\">Offerte aanvragen</a></div>");
     p.push("<section class=\"ct\" id=\"ct\"><div class=\"cn\"><div class=\"sl\">Contact</div><h2 class=\"st\">Neem <span>Contact Op</span></h2><div class=\"dv\"></div><div class=\"ci\"><div><div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><path d=\"M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.13 1 .38 1.97.74 2.91a2 2 0 01-.45 2.11L6.09 9.2a16 16 0 006.71 6.71l1.28-1.27a2 2 0 012.11-.45c.94.36 1.91.61 2.91.74A2 2 0 0122 16.92z\"/></svg></div><div><div class=\"cil\">Telefoon</div><div class=\"civ\">" + g("c_tel") + "</div></div></div><div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/></svg></div><div><div class=\"cil\">E-mail</div><div class=\"civ\">" + g("c_mail") + "</div></div></div><div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/></svg></div><div><div class=\"cil\">Werkgebied</div><div class=\"civ\">" + g("c_area") + "</div></div></div><div class=\"sr\"><a href=\"" + ig + "\" class=\"sb\" target=\"_blank\"><svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/></svg></a><a href=\"" + fb + "\" class=\"sb\" target=\"_blank\"><svg viewBox=\"0 0 24 24\"><path d=\"M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z\"/></svg></a></div></div><div class=\"cf\"><div class=\"fr\"><div class=\"fg\"><label class=\"fgl\">Naam</label><input type=\"text\" class=\"fi\" placeholder=\"Uw naam\"></div><div class=\"fg\"><label class=\"fgl\">Bedrijf</label><input type=\"text\" class=\"fi\" placeholder=\"Bedrijfsnaam\"></div></div><div class=\"fr\"><div class=\"fg\"><label class=\"fgl\">Telefoon</label><input type=\"tel\" class=\"fi\" placeholder=\"+31 6 ...\"></div><div class=\"fg\"><label class=\"fgl\">E-mail</label><input type=\"email\" class=\"fi\" placeholder=\"uw@email.nl\"></div></div><div class=\"fg\"><label class=\"fgl\">Dienst</label><select class=\"fi\"><option>Lassen en Metaalbewerking</option><option>Constructiewerk en Staalwerk</option><option>Bouw en Verbouw</option><option>Overig</option></select></div><div class=\"fg\"><label class=\"fgl\">Omschrijving</label><textarea class=\"ft\" placeholder=\"Vertel ons over uw project...\"></textarea></div><button class=\"bp\" style=\"align-self:flex-start;padding:.9rem 2.5rem\">Offerte aanvragen</button></div></div></div></section>");
     p.push("<footer><div class=\"fl\">STB <span>HEETEN</span></div><div class=\"fls\"><a href=\"#\">Privacybeleid</a><a href=\"#\">Algemene voorwaarden</a><a href=\"#\">KvK</a></div><div class=\"fc\">" + g("f_copy") + "</div></footer>");
