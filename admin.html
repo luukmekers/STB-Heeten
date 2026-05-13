@@ -320,7 +320,33 @@ textarea{resize:vertical;min-height:80px}
     document.getElementById("tok_txt").textContent = ok ? "Geconfigureerd" : "Niet geconfigureerd";
   }
 
-  function loadSaved() {
+  
+  // Eenmalige setup popup
+  var setupHTML = "<div id=\"setup-overlay\" style=\"position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center\"><div style=\"background:#1a1a1a;border:1px solid #E8820C;border-radius:10px;padding:2rem;max-width:440px;width:90%\"><h2 style=\"font-size:1.1rem;margin-bottom:.5rem;color:#fff\">Eenmalige instelling</h2><p style=\"font-size:.83rem;color:#aaa;margin-bottom:1.25rem;line-height:1.6\">Voer je GitHub token in. Dit wordt opgeslagen in je browser zodat je het niet meer hoeft in te vullen.</p><input type=\"password\" id=\"setup_tok\" placeholder=\"ghp_...\" style=\"width:100%;background:#0d0d0d;border:1px solid #444;color:#fff;padding:.65rem .9rem;border-radius:4px;font-size:.9rem;outline:none;margin-bottom:1rem\"><button onclick=\"doSetup()\" style=\"width:100%;background:#E8820C;color:#000;border:none;padding:.75rem;border-radius:4px;font-size:.9rem;font-weight:700;cursor:pointer\">Opslaan en doorgaan</button></div></div>";
+  function showSetup() {
+    document.body.insertAdjacentHTML("beforeend", setupHTML);
+    var el = document.getElementById("setup_tok");
+    if (el) el.focus();
+  }
+  window.doSetup = function() {
+    var t = document.getElementById("setup_tok").value.trim();
+    if (!t || t.length < 10) { alert("Voer een geldig token in."); return; }
+    localStorage.setItem("ght", t);
+    localStorage.setItem("ghu", "luukmekers");
+    localStorage.setItem("ghr", "STB-Heeten");
+    var overlay = document.getElementById("setup-overlay");
+    if (overlay) overlay.remove();
+    updateTokStatus();
+    document.getElementById("gh_t").value = t;
+    showToast("Token opgeslagen! Je kunt nu foto's uploaden.");
+  };
+
+function loadSaved() {
+    // Als er nog geen token is opgeslagen, toon setup popup
+    if (!localStorage.getItem("ght")) {
+      setTimeout(function() { showSetup(); }, 400);
+    }
+
     var u = localStorage.getItem("ghu"); if (u) document.getElementById("gh_u").value = u;
     var r = localStorage.getItem("ghr"); if (r) document.getElementById("gh_r").value = r;
     var t = localStorage.getItem("ght"); if (t) document.getElementById("gh_t").value = t;
