@@ -409,28 +409,26 @@ function loadSaved() {
     var bg = g("c_bg_h") || "#0D0D0D";
     var ig = g("c_ig") || "#";
     var fb = g("c_fb") || "#";
-    var logoImg = localStorage.getItem("img_logo") ? "images/logo.png" : "";
-    var overImg = localStorage.getItem("img_over") ? "images/over.jpg" : "";
-    var p1img = localStorage.getItem("img_p1") ? "images/portfolio1.jpg" : "";
-    var p2img = localStorage.getItem("img_p2") ? "images/portfolio2.jpg" : "";
-    var p3img = localStorage.getItem("img_p3") ? "images/portfolio3.jpg" : "";
-    var p4img = localStorage.getItem("img_p4") ? "images/portfolio4.jpg" : "";
+    // Gebruik altijd de afbeeldingen uit de repo - timestamp voorkomt cache
+    var ts = "?v=" + Date.now();
+    var logoImg = "images/logo.png";
+    var overImg = "images/over.jpg";
+    var p1img = "images/portfolio1.jpg";
+    var p2img = "images/portfolio2.jpg";
+    var p3img = "images/portfolio3.jpg";
+    var p4img = "images/portfolio4.jpg";
     var p1n = g("p1_name") || "Industriele hal"; var p1c = g("p1_cat") || "Staalconstructie";
     var p2n = g("p2_name") || "Aanbouw woning"; var p2c = g("p2_cat") || "Bouw en Verbouw";
     var p3n = g("p3_name") || "Maatwerk hekwerk"; var p3c = g("p3_cat") || "Lassen en Metaal";
     var p4n = g("p4_name") || "Draagconstructie"; var p4c = g("p4_cat") || "Constructiewerk";
-    var logoHTML = logoImg
-      ? "<img src=\"" + logoImg + "\" alt=\"STB Heeten\" style=\"height:42px;object-fit:contain\">"
-      : "<svg width=\"38\" height=\"38\" viewBox=\"0 0 38 38\" fill=\"none\"><polygon points=\"19,2 36,34 2,34\" fill=\"none\" stroke=\"" + or + "\" stroke-width=\"2.5\"/><circle cx=\"19\" cy=\"22\" r=\"6\" fill=\"none\" stroke=\"" + or + "\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"22\" r=\"2\" fill=\"" + or + "\"/></svg>";
+    // Logo: toon afbeelding maar val terug op SVG als het niet bestaat
+    var svgLogo = "<svg width=\"38\" height=\"38\" viewBox=\"0 0 38 38\" fill=\"none\"><polygon points=\"19,2 36,34 2,34\" fill=\"none\" stroke=\"" + or + "\" stroke-width=\"2.5\"/><circle cx=\"19\" cy=\"22\" r=\"6\" fill=\"none\" stroke=\"" + or + "\" stroke-width=\"2\"/><circle cx=\"19\" cy=\"22\" r=\"2\" fill=\"" + or + "\"/></svg>";
+    var logoHTML = "<img src=\"" + logoImg + ts + "\" alt=\"STB Heeten\" style=\"height:42px;object-fit:contain\" onerror=\"this.style.display='none';this.nextSibling.style.display='inline'\"><span style=\"display:none\">" + svgLogo + "</span>";
     function piHTML(img, name, cat) {
-      var bg2 = img
-        ? "background-image:url(\"" + img + "\");background-size:cover;background-position:center"
-        : "background:#1C1C1C";
+      var bg2 = "background-image:url(\"" + img + ts + "\");background-size:cover;background-position:center;min-height:220px";
       return "<div class=\"pi\" style=\"" + bg2 + "\"><div class=\"pio\"></div><div class=\"pii\"><div class=\"pc\">" + cat + "</div><div class=\"pn\">" + name + "</div></div></div>";
     }
-    var overBgStyle = overImg
-      ? "background-image:url(\"" + overImg + "\");background-size:cover;background-position:center"
-      : "";
+    var overBgStyle = "background-image:url(\"" + overImg + ts + "\");background-size:cover;background-position:center";
     var p = [];
     p.push("<!DOCTYPE html><html lang=\"nl\"><head>");
     p.push("<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
