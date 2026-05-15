@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STB Heeten - Staal, Techniek en Bouw</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -138,78 +138,95 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 .fls a:hover{color:var(--or)}
 .fc{font-size:.74rem;color:var(--gr);white-space:nowrap}
 
-/* ════════════════════════════
-   RESPONSIVE - TABLET
-════════════════════════════ */
+/* ════ TABLET ════ */
 @media(max-width:1024px){
   .dg{grid-template-columns:1fr 1fr}
-  .oi{gap:2.5rem}
-  .ci{gap:2.5rem}
+  .pg{grid-auto-rows:220px}
 }
 
-/* ════════════════════════════
-   RESPONSIVE - MOBIEL
-════════════════════════════ */
+/* ════ MOBIEL (≤768px) ════ */
 @media(max-width:768px){
-  /* Nav */
-  nav{padding:0 1rem;height:60px}
+  /* Nav: compact, niks overloopt */
+  nav{padding:0 .875rem;height:56px}
   .nm,.nc{display:none}
   .hbgr{display:flex}
-  .mob-menu{top:60px}
-  .nl{gap:.5rem}
-  .nav-logo-img{height:32px}
-  .lt{font-size:1.25rem}
-  .ls{font-size:.55rem;letter-spacing:.15em}
+  .mob-menu{top:56px}
+  .nav-logo-img{height:28px}
+  .lt{font-size:1.1rem;letter-spacing:.05em}
+  .ls{font-size:.5rem;letter-spacing:.1em}
+  .nl{gap:.4rem}
 
-  /* Sections */
-  section{padding:3.5rem 1rem}
+  /* Sections: kleine padding */
+  section{padding:2.5rem .875rem}
 
-  /* Hero */
+  /* Hero: alles smal en compact */
   .hpl{display:none}
-  .htag{font-size:.68rem;letter-spacing:.18em;padding:.28rem .7rem}
-  .htit{font-size:clamp(2.8rem,13vw,4.5rem);line-height:.92}
-  .hdesc{font-size:.92rem;padding:0 .5rem}
-  .hbtns{flex-direction:column;align-items:center;gap:.6rem}
-  .bp,.bo{width:100%;max-width:280px;text-align:center;padding:.8rem 1.5rem}
+  .htag{font-size:.62rem;letter-spacing:.15em;padding:.25rem .6rem}
+  .htit{font-size:2.6rem;line-height:.9}
+  .hdesc{font-size:.85rem;line-height:1.55;padding:0}
+  .hbtns{flex-direction:column;align-items:stretch;gap:.5rem;padding:0 1rem}
+  .bp,.bo{text-align:center;padding:.75rem 1rem;font-size:.82rem}
+  .hscr{display:none}
 
-  /* Diensten: 1 kolom */
+  /* Diensten: 1 kolom, kleine kaarten */
   .dg{grid-template-columns:1fr;gap:2px}
-  .dc{padding:1.75rem 1.25rem}
+  .dc{padding:1.25rem 1rem}
+  .di{width:40px;height:40px;margin-bottom:.9rem}
+  .di svg{width:20px;height:20px}
+  .dn{font-size:2.5rem}
+  .dt{font-size:1.15rem}
+  .dd{font-size:.82rem}
 
   /* Over ons: 1 kolom */
-  .oi{grid-template-columns:1fr;gap:2.5rem}
-  .oi > div:last-child{padding-bottom:1.5rem;padding-right:1.5rem}
-  .os{grid-template-columns:1fr 1fr;gap:1rem}
+  .oi{grid-template-columns:1fr;gap:1.75rem}
+  .oi > div:last-child{padding-bottom:1.25rem;padding-right:1.25rem}
+  .ovis{aspect-ratio:16/9}
+  .os{grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0}
+  .osn{font-size:1.5rem}
+  .osl{font-size:.72rem}
+  .otx{font-size:.85rem}
+  .dv{margin:1rem 0 1.5rem}
 
-  /* Portfolio: 2 kolommen */
-  .pg{grid-template-columns:1fr 1fr;grid-auto-rows:160px;gap:3px}
-  .pii{padding:.75rem}
-  .pn{font-size:1rem}
+  /* Portfolio: 1 kolom op mobiel */
+  .pg{grid-template-columns:1fr;grid-auto-rows:180px;gap:3px}
 
-  /* CTA */
-  .cb{flex-direction:column;align-items:flex-start;padding:2.25rem 1rem;gap:1.25rem}
-  .bd{width:100%;text-align:center;padding:.85rem}
+  /* CTA balk */
+  .cb{flex-direction:column;align-items:stretch;padding:1.75rem .875rem;gap:1rem}
+  .cbt{font-size:1.6rem}
+  .cbs{font-size:.78rem}
+  .bd{text-align:center;padding:.75rem 1rem;width:100%}
 
   /* Contact: 1 kolom */
-  .ci{grid-template-columns:1fr;gap:2.5rem}
-  .fr{grid-template-columns:1fr;gap:.75rem}
-  .cii{margin-bottom:1.25rem}
+  .ci{grid-template-columns:1fr;gap:2rem}
+  .fr{grid-template-columns:1fr;gap:.6rem}
+  .cii{margin-bottom:1rem;gap:.6rem}
+  .cic{width:36px;height:36px;flex-shrink:0}
+  .cic svg{width:16px;height:16px}
+  .cil{font-size:.62rem}
+  .civ{font-size:.85rem}
+  .fi,.ft{font-size:.85rem;padding:.6rem .75rem}
+  .cf{gap:.6rem}
+  .fgl{font-size:.62rem}
+  .sr{margin-top:1.25rem}
 
   /* Footer */
-  footer{flex-direction:column;align-items:flex-start;gap:.85rem;padding:1.25rem 1rem}
-  .fls{gap:.65rem}
+  footer{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.1rem .875rem}
+  .footer-logo-img{height:28px}
+  .fl{font-size:1.1rem}
+  .fls{gap:.5rem}
+  .fls a{font-size:.68rem}
+  .fc{font-size:.68rem}
 }
 
-/* ════════════════════════════
-   RESPONSIVE - KLEIN MOBIEL
-════════════════════════════ */
+/* ════ KLEIN SCHERM (≤390px) ════ */
 @media(max-width:390px){
-  section{padding:3rem .75rem}
+  section{padding:2rem .75rem}
   nav{padding:0 .75rem}
-  .htit{font-size:clamp(2.5rem,14vw,3.5rem)}
-  .pg{grid-template-columns:1fr;grid-auto-rows:200px}
-  .dg{grid-template-columns:1fr}
+  .htit{font-size:2.2rem}
+  .hbtns{padding:0 .25rem}
+  .pg{grid-auto-rows:160px}
 }
+
 </style>
 </head>
 <body>
