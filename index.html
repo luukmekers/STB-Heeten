@@ -140,91 +140,81 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 
 /* ════ TABLET ════ */
 @media(max-width:1024px){
-  .dg{grid-template-columns:1fr 1fr}
+  .dg{grid-template-columns:1fr 1fr !important}
   .pg{grid-auto-rows:220px}
 }
 
-/* ════ MOBIEL (≤768px) ════ */
+/* ════ MOBIEL ════ */
 @media(max-width:768px){
-  /* Nav: compact, niks overloopt */
-  nav{padding:0 .875rem;height:56px}
-  .nm,.nc{display:none}
-  .hbgr{display:flex}
-  .mob-menu{top:56px}
-  .nav-logo-img{height:28px}
-  .lt{font-size:1.1rem;letter-spacing:.05em}
-  .ls{font-size:.5rem;letter-spacing:.1em}
-  .nl{gap:.4rem}
+  /* Nav */
+  nav{padding:0 .875rem !important;height:56px !important}
+  .nm,.nc{display:none !important}
+  .hbgr{display:flex !important}
+  .mob-menu{top:56px !important}
+  .nav-logo-img{height:28px !important}
+  .lt{font-size:1.1rem !important}
+  .ls{font-size:.5rem !important;letter-spacing:.1em !important}
+  .nl{gap:.4rem !important}
 
-  /* Sections: kleine padding */
-  section{padding:2.5rem .875rem}
+  /* Sections */
+  section{padding:2.5rem .875rem !important}
 
-  /* Hero: alles smal en compact */
-  .hpl{display:none}
-  .htag{font-size:.62rem;letter-spacing:.15em;padding:.25rem .6rem}
-  .htit{font-size:2.6rem;line-height:.9}
-  .hdesc{font-size:.85rem;line-height:1.55;padding:0}
-  .hbtns{flex-direction:column;align-items:stretch;gap:.5rem;padding:0 1rem}
-  .bp,.bo{text-align:center;padding:.75rem 1rem;font-size:.82rem}
-  .hscr{display:none}
+  /* Hero */
+  .hpl{display:none !important}
+  .htag{font-size:.62rem !important;letter-spacing:.15em !important;padding:.25rem .6rem !important}
+  .htit{font-size:2.4rem !important;line-height:.9 !important}
+  .hdesc{font-size:.85rem !important;line-height:1.55 !important}
+  .hbtns{flex-direction:column !important;align-items:stretch !important;gap:.5rem !important;padding:0 .5rem !important}
+  .bp,.bo{text-align:center !important;padding:.75rem 1rem !important;font-size:.82rem !important;width:100% !important}
+  .hscr{display:none !important}
 
-  /* Diensten: 1 kolom, kleine kaarten */
-  .dg{grid-template-columns:1fr;gap:2px}
-  .dc{padding:1.25rem 1rem}
-  .di{width:40px;height:40px;margin-bottom:.9rem}
-  .di svg{width:20px;height:20px}
-  .dn{font-size:2.5rem}
-  .dt{font-size:1.15rem}
-  .dd{font-size:.82rem}
+  /* Diensten: alles 1 kolom */
+  .dg{display:flex !important;flex-direction:column !important;gap:2px !important}
+  .dc{padding:1.25rem 1rem !important}
+  .dn{display:none !important}
+  .dt{font-size:1.1rem !important}
+  .dd{font-size:.82rem !important}
 
-  /* Over ons: 1 kolom */
-  .oi{grid-template-columns:1fr;gap:1.75rem}
-  .oi > div:last-child{padding-bottom:1.25rem;padding-right:1.25rem}
-  .ovis{aspect-ratio:16/9}
-  .os{grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0}
-  .osn{font-size:1.5rem}
-  .osl{font-size:.72rem}
-  .otx{font-size:.85rem}
-  .dv{margin:1rem 0 1.5rem}
+  /* Over ons: alles 1 kolom */
+  .oi{display:flex !important;flex-direction:column !important;gap:1.75rem !important}
+  .ovis{aspect-ratio:16/9 !important}
+  /* Statistieken: 2 kolommen is OK want dat zijn kleine blokjes */
+  .os{display:grid !important;grid-template-columns:1fr 1fr !important;gap:.75rem !important;margin:1.25rem 0 !important}
+  .osn{font-size:1.4rem !important}
+  .otx{font-size:.85rem !important}
 
-  /* Portfolio: 1 kolom op mobiel */
-  .pg{grid-template-columns:1fr;grid-auto-rows:180px;gap:3px}
+  /* Portfolio: 1 kolom */
+  .pg{display:grid !important;grid-template-columns:1fr !important;grid-auto-rows:200px !important;gap:3px !important}
 
-  /* CTA balk */
-  .cb{flex-direction:column;align-items:stretch;padding:1.75rem .875rem;gap:1rem}
-  .cbt{font-size:1.6rem}
-  .cbs{font-size:.78rem}
-  .bd{text-align:center;padding:.75rem 1rem;width:100%}
+  /* CTA */
+  .cb{display:flex !important;flex-direction:column !important;align-items:stretch !important;padding:1.75rem .875rem !important;gap:1rem !important}
+  .cbt{font-size:1.5rem !important}
+  .bd{text-align:center !important;padding:.75rem 1rem !important;display:block !important;width:100% !important}
 
-  /* Contact: 1 kolom */
-  .ci{grid-template-columns:1fr;gap:2rem}
-  .fr{grid-template-columns:1fr;gap:.6rem}
-  .cii{margin-bottom:1rem;gap:.6rem}
-  .cic{width:36px;height:36px;flex-shrink:0}
-  .cic svg{width:16px;height:16px}
-  .cil{font-size:.62rem}
-  .civ{font-size:.85rem}
-  .fi,.ft{font-size:.85rem;padding:.6rem .75rem}
-  .cf{gap:.6rem}
-  .fgl{font-size:.62rem}
-  .sr{margin-top:1.25rem}
+  /* Contact: alles 1 kolom */
+  .ci{display:flex !important;flex-direction:column !important;gap:2rem !important}
+  .fr{display:flex !important;flex-direction:column !important;gap:.6rem !important}
+  .cii{margin-bottom:1rem !important}
+  .cic{width:36px !important;height:36px !important}
+  .cic svg{width:15px !important;height:15px !important}
+  .civ{font-size:.85rem !important}
+  .fi,.ft{font-size:.85rem !important;padding:.6rem .75rem !important}
+  .bp[style]{padding:.75rem 1.5rem !important;align-self:stretch !important;text-align:center !important}
 
   /* Footer */
-  footer{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.1rem .875rem}
-  .footer-logo-img{height:28px}
-  .fl{font-size:1.1rem}
-  .fls{gap:.5rem}
-  .fls a{font-size:.68rem}
-  .fc{font-size:.68rem}
+  footer{display:flex !important;flex-direction:column !important;align-items:flex-start !important;gap:.75rem !important;padding:1.1rem .875rem !important}
+  .footer-logo-img{height:28px !important}
+  .fl{font-size:1.1rem !important}
+  .fls{gap:.5rem !important}
+  .fls a,.fc{font-size:.68rem !important}
 }
 
-/* ════ KLEIN SCHERM (≤390px) ════ */
+/* ════ KLEIN SCHERM ════ */
 @media(max-width:390px){
-  section{padding:2rem .75rem}
-  nav{padding:0 .75rem}
-  .htit{font-size:2.2rem}
-  .hbtns{padding:0 .25rem}
-  .pg{grid-auto-rows:160px}
+  section{padding:2rem .75rem !important}
+  nav{padding:0 .75rem !important}
+  .htit{font-size:2rem !important}
+  .pg{grid-auto-rows:160px !important}
 }
 
 </style>
