@@ -10,13 +10,12 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :root{--or:#E8820C;--bg:#0D0D0D;--dark:#141414;--c2:#1C1C1C;--c3:#252525;--gr:#888;--wh:#fff;--tx:#CCC}
 body{font-family:Barlow,sans-serif;background:var(--bg);color:var(--wh);overflow-x:hidden;width:100%}
-img{max-width:100%;height:auto}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;background:rgba(13,13,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,130,12,.15)}
 .nl{display:flex;align-items:center;gap:.6rem;overflow:hidden;flex:1;min-width:0}
 .nav-logo-img{height:38px;object-fit:contain;flex-shrink:0}
-.nav-text{min-width:0;overflow:hidden}
+.nav-text{min-width:0}
 .lt{font-family:Bebas Neue,sans-serif;font-size:1.5rem;letter-spacing:.08em;color:var(--wh);white-space:nowrap;display:block}
 .ls{font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.2em;color:var(--or);white-space:nowrap;display:block;margin-top:-3px}
 .nm{display:flex;gap:1.5rem;list-style:none;flex-shrink:0}
@@ -24,45 +23,44 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nm a:hover{color:var(--or)}
 .nc{background:var(--or);color:var(--bg);font-family:Barlow Condensed,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;flex-shrink:0}
 .hbgr{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;width:36px;height:36px;background:none;border:none;flex-shrink:0;padding:4px}
-.hbgr span{display:block;width:100%;height:2px;background:var(--wh);transition:all .3s;border-radius:1px}
+.hbgr span{display:block;width:100%;height:2px;background:var(--wh);border-radius:1px}
 
-/* ── MOBIEL MENU ── */
-.mob-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--dark);z-index:98;overflow-y:auto;border-top:2px solid var(--or)}
+/* MOBIEL MENU */
+.mob-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--dark);z-index:98;border-top:2px solid var(--or);overflow-y:auto}
 .mob-menu.open{display:flex;flex-direction:column}
 .mob-menu a{font-family:Barlow Condensed,sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--tx);text-decoration:none;padding:1.1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.07);display:block}
-.mob-menu a:hover{color:var(--or);background:rgba(232,130,12,.06)}
-.mob-menu .mob-cta{background:var(--or);color:var(--bg);margin:1.25rem;border:none;text-align:center;border-radius:2px;font-size:1rem}
-.mob-menu .mob-cta:hover{opacity:.9;background:var(--or)}
+.mob-menu a:hover{color:var(--or)}
+.mob-menu .mob-cta{background:var(--or);color:var(--bg);margin:1.25rem;text-align:center;border:none}
 
-/* ── HERO ── */
-.hero{height:100svh;min-height:500px;position:relative;display:flex;align-items:center;justify-content:center;background:#111;overflow:hidden}
-.hbg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.6) 0%,rgba(13,13,13,.25) 50%,rgba(13,13,13,.9) 100%),repeating-linear-gradient(45deg,rgba(232,130,12,.03) 0,rgba(232,130,12,.03) 1px,transparent 1px,transparent 40px)}
+/* HERO */
+.hero{height:100vh;min-height:500px;position:relative;display:flex;align-items:center;justify-content:center;background:#111;overflow:hidden}
+.hbg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.6) 0%,rgba(13,13,13,.2) 50%,rgba(13,13,13,.9) 100%),repeating-linear-gradient(45deg,rgba(232,130,12,.03) 0,rgba(232,130,12,.03) 1px,transparent 1px,transparent 40px)}
 .hsp{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .sp{position:absolute;border-radius:50%;background:var(--or);animation:sf linear infinite;opacity:0}
 @keyframes sf{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}90%{opacity:.6}100%{transform:translateY(-120vh) translateX(var(--dx,60px));opacity:0}}
 .hpl{position:absolute;top:0;right:0;width:45%;height:100%;border-left:1px solid rgba(232,130,12,.08)}
-.hc{position:relative;z-index:2;text-align:center;padding:0 1.25rem;max-width:860px;width:100%}
-.htag{display:inline-block;font-family:Barlow Condensed,sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--or);border:1px solid rgba(232,130,12,.4);padding:.3rem .85rem;margin-bottom:1.25rem}
-.htit{font-family:Bebas Neue,sans-serif;font-size:clamp(3.2rem,9vw,7rem);line-height:.92;color:var(--wh);margin-bottom:1.25rem}
+.hc{position:relative;z-index:2;text-align:center;padding:0 1.5rem;max-width:860px;width:100%}
+.htag{display:inline-block;font-family:Barlow Condensed,sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--or);border:1px solid rgba(232,130,12,.4);padding:.3rem .85rem;margin-bottom:1.25rem}
+.htit{font-family:Bebas Neue,sans-serif;font-size:clamp(3.5rem,9vw,7rem);line-height:.92;color:var(--wh);margin-bottom:1.25rem}
 .htit span{color:var(--or)}
-.hdesc{font-size:clamp(.9rem,2.5vw,1.05rem);color:var(--tx);max-width:500px;margin:0 auto 2rem;line-height:1.65}
+.hdesc{font-size:1rem;color:var(--tx);max-width:500px;margin:0 auto 2rem;line-height:1.65}
 .hbtns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
-.bp{background:var(--or);color:var(--bg);font-family:Barlow Condensed,sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}
-.bo{background:transparent;color:var(--wh);font-family:Barlow Condensed,sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2rem;border:1px solid rgba(255,255,255,.3);cursor:pointer;text-decoration:none;display:inline-block}
+.bp{background:var(--or);color:var(--bg);font-family:Barlow Condensed,sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.bo{background:transparent;color:var(--wh);font-family:Barlow Condensed,sans-serif;font-size:.92rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2rem;border:1px solid rgba(255,255,255,.3);cursor:pointer;text-decoration:none;display:inline-block}
 .bo:hover{border-color:var(--or);color:var(--or)}
 .hscr{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;z-index:2;font-family:Barlow Condensed,sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);animation:bn 2s ease-in-out infinite}
 .hscrl{width:1px;height:36px;background:linear-gradient(180deg,var(--or) 0%,transparent 100%)}
 @keyframes bn{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
 
-/* ── SECTIONS ── */
+/* SECTIONS */
 section{padding:5rem 2rem}
 .sl{font-family:Barlow Condensed,sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.65rem}
 .st{font-family:Bebas Neue,sans-serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.04em;color:var(--wh);line-height:1}
 .st span{color:var(--or)}
 .cn{max-width:1100px;margin:0 auto}
-.dv{width:44px;height:3px;background:var(--or);margin:1.1rem 0 2.25rem}
+.dv{width:44px;height:3px;background:var(--or);margin:1rem 0 2.25rem}
 
-/* ── DIENSTEN ── */
+/* DIENSTEN */
 .ds{background:var(--dark)}
 .dg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;margin-top:2.5rem}
 .dc{background:var(--c2);padding:2.25rem 1.75rem;position:relative;overflow:hidden;transition:background .2s}
@@ -75,12 +73,12 @@ section{padding:5rem 2rem}
 .dt{font-family:Bebas Neue,sans-serif;font-size:1.35rem;letter-spacing:.04em;color:var(--wh);margin-bottom:.6rem}
 .dd{font-size:.88rem;color:var(--tx);line-height:1.65}
 
-/* ── OVER ONS ── */
+/* OVER ONS */
 .ov{background:var(--bg)}
 .oi{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .ovis{aspect-ratio:4/3;border:1px solid rgba(232,130,12,.12);position:relative;background-size:cover;background-position:center;background-repeat:no-repeat;background-image:url('images/over.jpg')}
 .obg{position:absolute;bottom:-1.25rem;right:-1.25rem;background:var(--or);padding:1rem 1.25rem;text-align:center}
-.obn{font-family:Bebas Neue,sans-serif;font-size:2.25rem;color:var(--bg);line-height:1}
+.obn{font-family:Bebas Neue,sans-serif;font-size:2rem;color:var(--bg);line-height:1}
 .obt{font-family:Barlow Condensed,sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--bg);font-weight:700}
 .os{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:2rem 0}
 .ostat{border-left:2px solid var(--or);padding-left:.9rem}
@@ -88,7 +86,7 @@ section{padding:5rem 2rem}
 .osl{font-size:.8rem;color:var(--tx)}
 .otx{font-size:.95rem;color:var(--tx);line-height:1.75;margin-bottom:.9rem}
 
-/* ── PORTFOLIO ── */
+/* PORTFOLIO */
 .pf{background:var(--dark)}
 .pg{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:280px;gap:4px;margin-top:2.5rem}
 .pi{position:relative;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--c2)}
@@ -99,7 +97,7 @@ section{padding:5rem 2rem}
 .pc{font-family:Barlow Condensed,sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:.2rem}
 .pn{font-family:Bebas Neue,sans-serif;font-size:1.2rem;color:var(--wh)}
 
-/* ── CTA ── */
+/* CTA */
 .cb{background:var(--or);padding:3rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
 .cbt{font-family:Bebas Neue,sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);color:var(--bg)}
 .cbs{font-family:Barlow Condensed,sans-serif;font-size:.85rem;color:rgba(0,0,0,.6);text-transform:uppercase;margin-top:.2rem}
@@ -107,9 +105,10 @@ section{padding:5rem 2rem}
 .cbl{font-family:Barlow Condensed,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.12);color:var(--bg);padding:.25rem .7rem}
 .bd{background:var(--bg);color:var(--wh);font-family:Barlow Condensed,sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 2.25rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap}
 
-/* ── CONTACT ── */
+/* CONTACT */
 .ct{background:var(--bg)}
-.ci{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem}
+/* Desktop: formulier links, gegevens rechts — op mobiel omgedraaid */
+.ci{display:grid;grid-template-columns:1.5fr 1fr;gap:4rem}
 .cii{display:flex;gap:.85rem;margin-bottom:1.75rem;align-items:flex-start}
 .cic{width:42px;height:42px;border:1px solid rgba(232,130,12,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .cic svg{width:19px;height:19px;stroke:var(--or);fill:none;stroke-width:1.5}
@@ -127,7 +126,7 @@ section{padding:5rem 2rem}
 .fi:focus,.ft:focus{border-color:var(--or)}
 .ft{min-height:120px;resize:vertical}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-left{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
 .footer-logo-img{height:34px;object-fit:contain}
@@ -140,84 +139,88 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 
 /* ════ TABLET ════ */
 @media(max-width:1024px){
-  .dg{grid-template-columns:1fr 1fr !important}
-  .pg{grid-template-columns:1fr 1fr !important;grid-auto-rows:200px}
+  .dg{grid-template-columns:1fr 1fr}
+  .pg{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
+  .ci{grid-template-columns:1fr 1fr;gap:2.5rem}
 }
 
 /* ════ MOBIEL ════ */
 @media(max-width:768px){
   /* Nav */
-  nav{padding:0 .875rem !important;height:56px !important}
-  .nm,.nc{display:none !important}
-  .hbgr{display:flex !important}
-  .mob-menu{top:56px !important}
-  .nav-logo-img{height:28px !important}
-  .lt{font-size:1.1rem !important}
-  .ls{font-size:.5rem !important;letter-spacing:.1em !important}
-  .nl{gap:.4rem !important}
+  nav{padding:0 1rem;height:58px}
+  .nm,.nc{display:none}
+  .hbgr{display:flex}
+  .mob-menu{top:58px}
+  .nav-logo-img{height:30px}
+  .lt{font-size:1.15rem}
+  .ls{font-size:.52rem}
 
   /* Sections */
-  section{padding:2.5rem .875rem !important}
+  section{padding:2.5rem 1rem}
 
-  /* Hero */
-  .hpl{display:none !important}
-  .htag{font-size:.62rem !important;letter-spacing:.15em !important;padding:.25rem .6rem !important}
-  .htit{font-size:2.4rem !important;line-height:.9 !important}
-  .hdesc{font-size:.85rem !important;line-height:1.55 !important}
-  .hbtns{flex-direction:column !important;align-items:stretch !important;gap:.5rem !important;padding:0 .5rem !important}
-  .bp,.bo{text-align:center !important;padding:.75rem 1rem !important;font-size:.82rem !important;width:100% !important}
-  .hscr{display:none !important}
+  /* Hero: compact, geen lege ruimte */
+  .hero{height:auto;min-height:100svh;padding:6rem 0 3rem;align-items:center}
+  .hpl{display:none}
+  .hc{padding:0 1rem}
+  .htag{font-size:.62rem;letter-spacing:.15em;padding:.25rem .6rem;margin-bottom:1rem}
+  .htit{font-size:3rem;margin-bottom:1rem}
+  .hdesc{font-size:.88rem;margin-bottom:1.5rem;padding:0}
+  .hbtns{flex-direction:column;align-items:stretch;gap:.5rem}
+  .bp,.bo{width:100%;text-align:center;padding:.8rem 1rem;font-size:.85rem}
+  .hscr{display:none}
 
-  /* Diensten: alles 1 kolom */
-  .dg{display:flex !important;flex-direction:column !important;gap:2px !important}
-  .dc{padding:1.25rem 1rem !important}
-  .dn{display:none !important}
-  .dt{font-size:1.1rem !important}
-  .dd{font-size:.82rem !important}
+  /* Diensten: 1 kolom volledig breed */
+  .dg{display:flex;flex-direction:column;gap:2px}
+  .dc{padding:1.5rem 1rem;width:100%}
+  .dn{display:none}
 
-  /* Over ons: alles 1 kolom */
-  .oi{display:flex !important;flex-direction:column !important;gap:1.75rem !important}
-  .ovis{aspect-ratio:16/9 !important}
-  /* Statistieken: 2 kolommen is OK want dat zijn kleine blokjes */
-  .os{display:grid !important;grid-template-columns:1fr 1fr !important;gap:.75rem !important;margin:1.25rem 0 !important}
-  .osn{font-size:1.4rem !important}
-  .otx{font-size:.85rem !important}
+  /* Over ons: tekst → foto → knop (foto tussen tekst en knop) */
+  .oi{display:flex;flex-direction:column;gap:2rem}
+  /* Verplaats de foto-div naar boven de knop via order */
+  .oi > div:first-child{display:flex;flex-direction:column}
+  .oi > div:last-child{order:-1;padding-bottom:1.5rem;padding-right:1.5rem}
+  .ovis{aspect-ratio:16/9}
+  .os{grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0}
+  .osn{font-size:1.4rem}
+  .otx{font-size:.85rem}
 
-  /* Portfolio: 1 kolom */
-  .pg{display:flex !important;flex-direction:column !important;gap:3px !important}
-  .pi{height:220px !important;width:100% !important}
+  /* Portfolio: 1 kolom, elke foto volledig breed */
+  .pg{display:flex !important;flex-direction:column !important;gap:3px !important;margin-top:1.5rem}
+  .pi{height:240px;width:100%}
 
   /* CTA */
-  .cb{display:flex !important;flex-direction:column !important;align-items:stretch !important;padding:1.75rem .875rem !important;gap:1rem !important}
-  .cbt{font-size:1.5rem !important}
-  .bd{text-align:center !important;padding:.75rem 1rem !important;display:block !important;width:100% !important}
+  .cb{flex-direction:column;align-items:stretch;padding:2rem 1rem;gap:1rem}
+  .cbt{font-size:1.6rem}
+  .bd{text-align:center;padding:.8rem;width:100%}
 
-  /* Contact: alles 1 kolom */
-  .ci{display:flex !important;flex-direction:column !important;gap:2rem !important}
-  .fr{display:flex !important;flex-direction:column !important;gap:.6rem !important}
-  .cii{margin-bottom:1rem !important}
-  .cic{width:36px !important;height:36px !important}
-  .cic svg{width:15px !important;height:15px !important}
-  .civ{font-size:.85rem !important}
-  .fi,.ft{font-size:.85rem !important;padding:.6rem .75rem !important}
-  .bp[style]{padding:.75rem 1.5rem !important;align-self:stretch !important;text-align:center !important}
+  /* Contact: formulier BOVEN gegevens */
+  .ci{display:flex;flex-direction:column;gap:2rem}
+  /* Formulier (eerste child) blijft boven, gegevens (tweede child) eronder */
+  .ci > div:first-child{order:1}
+  .ci > div:last-child{order:2}
+  .fr{display:flex;flex-direction:column;gap:.6rem}
+  .cii{margin-bottom:1rem}
+  .cic{width:36px;height:36px}
+  .cic svg{width:15px;height:15px}
+  .civ{font-size:.85rem}
+  .fi,.ft{font-size:.85rem;padding:.65rem .8rem}
+  .cf{gap:.65rem}
 
   /* Footer */
-  footer{display:flex !important;flex-direction:column !important;align-items:flex-start !important;gap:.75rem !important;padding:1.1rem .875rem !important}
-  .footer-logo-img{height:28px !important}
-  .fl{font-size:1.1rem !important}
-  .fls{gap:.5rem !important}
-  .fls a,.fc{font-size:.68rem !important}
+  footer{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.25rem 1rem}
+  .footer-logo-img{height:28px}
+  .fl{font-size:1.1rem}
+  .fls{gap:.5rem}
+  .fls a,.fc{font-size:.68rem}
 }
 
 /* ════ KLEIN SCHERM ════ */
 @media(max-width:390px){
-  section{padding:2rem .75rem !important}
-  nav{padding:0 .75rem !important}
-  .htit{font-size:2rem !important}
-  .pi{height:190px !important}
+  section{padding:2rem .75rem}
+  nav{padding:0 .75rem}
+  .htit{font-size:2.6rem}
+  .pi{height:200px}
 }
-
 </style>
 </head>
 <body>
@@ -337,16 +340,6 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
     <h2 class="st">Neem <span>Contact Op</span></h2>
     <div class="dv"></div>
     <div class="ci">
-      <div>
-        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.13 1 .38 1.97.74 2.91a2 2 0 01-.45 2.11L6.09 9.2a16 16 0 006.71 6.71l1.28-1.27a2 2 0 012.11-.45c.94.36 1.91.61 2.91.74A2 2 0 0122 16.92z"/></svg></div><div><div class="cil">Telefoon</div><div class="civ">+31 6 00 000 000</div></div></div>
-        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cil">E-mail</div><div class="civ">info@stbheeten.nl</div></div></div>
-        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div><div class="cil">Werkgebied</div><div class="civ">Heel Nederland</div></div></div>
-        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="cil">Adres</div><div class="civ">Vul in via beheerpaneel</div></div></div>
-        <div class="sr">
-          <a href="#" class="sb"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg></a>
-          <a href="#" class="sb"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        </div>
-      </div>
       <div class="cf">
         <div class="fr">
           <div class="fg"><label class="fgl">Naam</label><input type="text" class="fi" placeholder="Uw naam"></div>
@@ -359,6 +352,16 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
         <div class="fg"><label class="fgl">Dienst</label><select class="fi"><option>Lassen en Metaalbewerking</option><option>Constructiewerk en Staalwerk</option><option>Bouw en Verbouw</option><option>Overig</option></select></div>
         <div class="fg"><label class="fgl">Omschrijving</label><textarea class="ft" placeholder="Vertel ons over uw project..."></textarea></div>
         <button class="bp" style="align-self:flex-start;padding:.85rem 2rem">Offerte aanvragen</button>
+      </div>
+      <div>
+        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.13 1 .38 1.97.74 2.91a2 2 0 01-.45 2.11L6.09 9.2a16 16 0 006.71 6.71l1.28-1.27a2 2 0 012.11-.45c.94.36 1.91.61 2.91.74A2 2 0 0122 16.92z"/></svg></div><div><div class="cil">Telefoon</div><div class="civ" id="site-tel">+31 6 00 000 000</div></div></div>
+        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cil">E-mail</div><div class="civ" id="site-mail">info@stbheeten.nl</div></div></div>
+        <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div><div class="cil">Werkgebied</div><div class="civ">Heel Nederland</div></div></div>
+        <div class="cii" id="adres-block" style="display:none"><div class="cic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="cil">Adres</div><div class="civ" id="site-adres"></div></div></div>
+        <div class="sr" id="social-row" style="display:none">
+          <a id="ig-link" href="#" class="sb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.5" stroke="#ccc" fill="none"/><circle cx="12" cy="12" r="5" stroke-width="1.5" stroke="#ccc" fill="none"/><circle cx="17.5" cy="6.5" r="1.5" fill="#ccc"/></svg></a>
+          <a id="fb-link" href="#" class="sb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke-width="1.5" stroke="#ccc" fill="none"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -378,26 +381,53 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 </footer>
 
 <script>
-function toggleMenu() {
-  var m = document.getElementById('mobMenu');
-  var b = document.getElementById('menuBtn');
-  var open = m.classList.toggle('open');
-  b.setAttribute('aria-expanded', open);
-}
-function closeMenu() {
-  document.getElementById('mobMenu').classList.remove('open');
-  document.getElementById('menuBtn').setAttribute('aria-expanded', false);
-}
-var s = document.getElementById('sp');
-for (var i = 0; i < 18; i++) {
-  var el = document.createElement('div');
-  el.className = 'sp';
-  var l = 30 + Math.random() * 40;
-  var d = 4 + Math.random() * 5;
-  var dl = Math.random() * 6;
-  var dx = (Math.random() - .5) * 120;
-  var sz = 1 + Math.random() * 2.5;
-  el.style.cssText = 'left:'+l+'%;bottom:-10px;width:'+sz+'px;height:'+sz+'px;animation-duration:'+d+'s;animation-delay:'+dl+'s;--dx:'+dx+'px;';
+// Menu
+function toggleMenu(){var m=document.getElementById('mobMenu');m.classList.toggle('open');}
+function closeMenu(){document.getElementById('mobMenu').classList.remove('open');}
+
+// Contactgegevens uit localStorage laden (ingevuld via admin)
+(function(){
+  var adres = localStorage.getItem('c_street');
+  var city  = localStorage.getItem('c_city');
+  var ig    = localStorage.getItem('c_ig');
+  var fb    = localStorage.getItem('c_fb');
+  var tel   = localStorage.getItem('c_tel');
+  var mail  = localStorage.getItem('c_mail');
+
+  if(tel){ var el=document.getElementById('site-tel'); if(el) el.textContent=tel; }
+  if(mail){ var el2=document.getElementById('site-mail'); if(el2) el2.textContent=mail; }
+
+  if(adres){
+    var block=document.getElementById('adres-block');
+    var txt=document.getElementById('site-adres');
+    if(block && txt){
+      txt.innerHTML = adres + (city ? '<br>' + city : '');
+      block.style.display='flex';
+    }
+  }
+
+  var showSocial = false;
+  if(ig && ig !== '#' && ig.length > 5){
+    var igEl=document.getElementById('ig-link');
+    if(igEl){ igEl.href=ig; showSocial=true; }
+  }
+  if(fb && fb !== '#' && fb.length > 5){
+    var fbEl=document.getElementById('fb-link');
+    if(fbEl){ fbEl.href=fb; showSocial=true; }
+  }
+  if(showSocial){
+    var row=document.getElementById('social-row');
+    if(row) row.style.display='flex';
+  }
+})();
+
+// Sparkles
+var s=document.getElementById('sp');
+for(var i=0;i<18;i++){
+  var el=document.createElement('div');
+  el.className='sp';
+  var l=30+Math.random()*40,d=4+Math.random()*5,dl=Math.random()*6,dx=(Math.random()-.5)*120,sz=1+Math.random()*2.5;
+  el.style.cssText='left:'+l+'%;bottom:-10px;width:'+sz+'px;height:'+sz+'px;animation-duration:'+d+'s;animation-delay:'+dl+'s;--dx:'+dx+'px;';
   s.appendChild(el);
 }
 </script>
