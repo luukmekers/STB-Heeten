@@ -9,31 +9,30 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 :root{--or:#E8820C;--bg:#0D0D0D;--dark:#141414;--c2:#1C1C1C;--c3:#252525;--gr:#888;--wh:#fff;--tx:#CCC}
-body{font-family:Barlow,sans-serif;background:var(--bg);color:var(--wh);overflow-x:hidden;width:100%}
+body{font-family:Barlow,sans-serif;background:var(--bg);color:var(--wh);overflow-x:hidden;max-width:100vw}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;background:rgba(13,13,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,130,12,.15)}
-.nl{display:flex;align-items:center;gap:.6rem;overflow:hidden;flex:1;min-width:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:70px;background:rgba(13,13,13,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,130,12,.15)}
+.nl{display:flex;align-items:center;gap:.6rem;min-width:0;flex:1;overflow:hidden}
 .nav-logo-img{height:38px;object-fit:contain;flex-shrink:0}
 .nav-text{min-width:0}
 .lt{font-family:Bebas Neue,sans-serif;font-size:1.5rem;letter-spacing:.08em;color:var(--wh);white-space:nowrap;display:block}
 .ls{font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.2em;color:var(--or);white-space:nowrap;display:block;margin-top:-3px}
 .nm{display:flex;gap:1.5rem;list-style:none;flex-shrink:0}
-.nm a{font-family:Barlow Condensed,sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tx);text-decoration:none;transition:color .2s}
+.nm a{font-family:Barlow Condensed,sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tx);text-decoration:none}
 .nm a:hover{color:var(--or)}
-.nc{background:var(--or);color:var(--bg);font-family:Barlow Condensed,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;flex-shrink:0}
+.nc{background:var(--or);color:var(--bg);font-family:Barlow Condensed,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;flex-shrink:0}
 .hbgr{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;width:36px;height:36px;background:none;border:none;flex-shrink:0;padding:4px}
 .hbgr span{display:block;width:100%;height:2px;background:var(--wh);border-radius:1px}
 
-/* MOBIEL MENU */
-.mob-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--dark);z-index:98;border-top:2px solid var(--or);overflow-y:auto}
-.mob-menu.open{display:flex;flex-direction:column}
-.mob-menu a{font-family:Barlow Condensed,sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--tx);text-decoration:none;padding:1.1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.07);display:block}
-.mob-menu a:hover{color:var(--or)}
+/* MOB MENU */
+.mob-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--dark);z-index:98;border-top:2px solid var(--or);overflow-y:auto;flex-direction:column}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:Barlow Condensed,sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--tx);text-decoration:none;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.07);display:block}
 .mob-menu .mob-cta{background:var(--or);color:var(--bg);margin:1.25rem;text-align:center;border:none}
 
 /* HERO */
-.hero{height:100vh;min-height:500px;position:relative;display:flex;align-items:center;justify-content:center;background:#111;overflow:hidden}
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;background:#111;overflow:hidden}
 .hbg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.6) 0%,rgba(13,13,13,.2) 50%,rgba(13,13,13,.9) 100%),repeating-linear-gradient(45deg,rgba(232,130,12,.03) 0,rgba(232,130,12,.03) 1px,transparent 1px,transparent 40px)}
 .hsp{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .sp{position:absolute;border-radius:50%;background:var(--or);animation:sf linear infinite;opacity:0}
@@ -105,9 +104,8 @@ section{padding:5rem 2rem}
 .cbl{font-family:Barlow Condensed,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.12);color:var(--bg);padding:.25rem .7rem}
 .bd{background:var(--bg);color:var(--wh);font-family:Barlow Condensed,sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 2.25rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap}
 
-/* CONTACT */
+/* CONTACT - formulier links, gegevens rechts */
 .ct{background:var(--bg)}
-/* Desktop: formulier links, gegevens rechts — op mobiel omgedraaid */
 .ci{display:grid;grid-template-columns:1.5fr 1fr;gap:4rem}
 .cii{display:flex;gap:.85rem;margin-bottom:1.75rem;align-items:flex-start}
 .cic{width:42px;height:42px;border:1px solid rgba(232,130,12,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -135,91 +133,90 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 .fls{display:flex;gap:1.25rem;flex-wrap:wrap}
 .fls a{font-family:Barlow Condensed,sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);text-decoration:none;white-space:nowrap}
 .fls a:hover{color:var(--or)}
-.fc{font-size:.74rem;color:var(--gr);white-space:nowrap}
+.fc{font-size:.74rem;color:var(--gr)}
 
-/* ════ TABLET ════ */
-@media(max-width:1024px){
-  .dg{grid-template-columns:1fr 1fr}
-  .pg{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
-  .ci{grid-template-columns:1fr 1fr;gap:2.5rem}
-}
-
-/* ════ MOBIEL ════ */
+/* ═══════════════════════════════
+   MOBIEL - alles onder elkaar
+═══════════════════════════════ */
 @media(max-width:768px){
+
   /* Nav */
   nav{padding:0 1rem;height:58px}
-  .nm,.nc{display:none}
+  .nm{display:none}
+  .nc{display:none}
   .hbgr{display:flex}
   .mob-menu{top:58px}
   .nav-logo-img{height:30px}
   .lt{font-size:1.15rem}
   .ls{font-size:.52rem}
 
-  /* Sections */
-  section{padding:2.5rem 1rem}
-
-  /* Hero: compact, geen lege ruimte */
-  .hero{height:auto;min-height:100svh;padding:6rem 0 3rem;align-items:center}
+  /* Hero - vul het scherm, geen lege ruimte */
+  .hero{min-height:100svh;padding-top:58px}
   .hpl{display:none}
-  .hc{padding:0 1rem}
-  .htag{font-size:.62rem;letter-spacing:.15em;padding:.25rem .6rem;margin-bottom:1rem}
-  .htit{font-size:3rem;margin-bottom:1rem}
-  .hdesc{font-size:.88rem;margin-bottom:1.5rem;padding:0}
-  .hbtns{flex-direction:column;align-items:stretch;gap:.5rem}
-  .bp,.bo{width:100%;text-align:center;padding:.8rem 1rem;font-size:.85rem}
+  .hc{padding:1.5rem 1rem}
+  .htag{font-size:.62rem;letter-spacing:.12em;padding:.25rem .65rem;margin-bottom:.9rem;display:block;width:fit-content;margin-left:auto;margin-right:auto}
+  .htit{font-size:clamp(2.8rem,12vw,4rem);margin-bottom:.9rem}
+  .hdesc{font-size:.88rem;margin-bottom:1.25rem}
+  .hbtns{flex-direction:column;align-items:stretch;gap:.5rem;padding:0}
+  .bp,.bo{width:100%;text-align:center;padding:.8rem 1rem;font-size:.85rem;display:block}
   .hscr{display:none}
 
-  /* Diensten: 1 kolom volledig breed */
-  .dg{display:flex;flex-direction:column;gap:2px}
-  .dc{padding:1.5rem 1rem;width:100%}
+  /* Sections */
+  section{padding:2.5rem 1rem}
+  .dv{margin:.75rem 0 1.5rem}
+
+  /* Diensten - 1 kolom, volledig breed */
+  .dg{display:block}
+  .dc{display:block;width:100%;margin-bottom:2px;padding:1.25rem 1rem}
   .dn{display:none}
+  .dt{font-size:1.1rem}
+  .dd{font-size:.84rem}
 
-  /* Over ons: tekst → foto → knop (foto tussen tekst en knop) */
-  .oi{display:flex;flex-direction:column;gap:2rem}
-  /* Verplaats de foto-div naar boven de knop via order */
-  .oi > div:first-child{display:flex;flex-direction:column}
-  .oi > div:last-child{order:-1;padding-bottom:1.5rem;padding-right:1.5rem}
-  .ovis{aspect-ratio:16/9}
-  .os{grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0}
+  /* Over ons - foto boven knop */
+  .oi{display:block}
+  .oi > div:first-child{display:block}
+  /* Foto div verschijnt eerst via padding trick */
+  .oi > div:last-child{display:block;margin-bottom:1.5rem;padding-bottom:1.25rem;padding-right:1.25rem}
+  .ovis{aspect-ratio:16/9;width:100%}
+  .os{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:1rem 0}
   .osn{font-size:1.4rem}
-  .otx{font-size:.85rem}
+  .otx{font-size:.85rem;margin-bottom:.65rem}
 
-  /* Portfolio: 1 kolom, elke foto volledig breed */
-  .pg{display:flex !important;flex-direction:column !important;gap:3px !important;margin-top:1.5rem}
-  .pi{height:240px;width:100%}
+  /* Over ons: foto VOOR de knop - gebruik flex column met order */
+  .oi{display:flex;flex-direction:column}
+  .oi > div:first-child{order:2}
+  .oi > div:last-child{order:1}
+
+  /* Portfolio - 1 kolom, volledige breedte */
+  .pg{display:block}
+  .pi{display:block;width:100%;height:220px;margin-bottom:3px}
 
   /* CTA */
-  .cb{flex-direction:column;align-items:stretch;padding:2rem 1rem;gap:1rem}
+  .cb{display:block;padding:1.75rem 1rem}
   .cbt{font-size:1.6rem}
-  .bd{text-align:center;padding:.8rem;width:100%}
+  .cbs{font-size:.8rem}
+  .cbp{margin-top:.5rem}
+  .bd{display:block;width:100%;text-align:center;padding:.8rem;margin-top:1.25rem}
 
-  /* Contact: formulier BOVEN gegevens */
+  /* Contact - formulier boven gegevens */
   .ci{display:flex;flex-direction:column;gap:2rem}
-  /* Formulier (eerste child) blijft boven, gegevens (tweede child) eronder */
-  .ci > div:first-child{order:1}
+  .ci > .cf{order:1}
   .ci > div:last-child{order:2}
-  .fr{display:flex;flex-direction:column;gap:.6rem}
-  .cii{margin-bottom:1rem}
+  .fr{display:block}
+  .fr .fg{margin-bottom:.6rem}
+  .cii{margin-bottom:1rem;gap:.65rem}
   .cic{width:36px;height:36px}
   .cic svg{width:15px;height:15px}
   .civ{font-size:.85rem}
-  .fi,.ft{font-size:.85rem;padding:.65rem .8rem}
-  .cf{gap:.65rem}
+  .fi,.ft{font-size:.85rem;padding:.6rem .75rem}
 
   /* Footer */
-  footer{flex-direction:column;align-items:flex-start;gap:.75rem;padding:1.25rem 1rem}
+  footer{display:block;padding:1.25rem 1rem}
+  .footer-left{margin-bottom:.75rem}
   .footer-logo-img{height:28px}
   .fl{font-size:1.1rem}
-  .fls{gap:.5rem}
-  .fls a,.fc{font-size:.68rem}
-}
-
-/* ════ KLEIN SCHERM ════ */
-@media(max-width:390px){
-  section{padding:2rem .75rem}
-  nav{padding:0 .75rem}
-  .htit{font-size:2.6rem}
-  .pi{height:200px}
+  .fls{margin-bottom:.5rem;gap:.5rem}
+  .fls a,.fc{font-size:.7rem}
 }
 </style>
 </head>
@@ -359,8 +356,8 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
         <div class="cii"><div class="cic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><div><div class="cil">Werkgebied</div><div class="civ">Heel Nederland</div></div></div>
         <div class="cii" id="adres-block" style="display:none"><div class="cic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="cil">Adres</div><div class="civ" id="site-adres"></div></div></div>
         <div class="sr" id="social-row" style="display:none">
-          <a id="ig-link" href="#" class="sb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.5" stroke="#ccc" fill="none"/><circle cx="12" cy="12" r="5" stroke-width="1.5" stroke="#ccc" fill="none"/><circle cx="17.5" cy="6.5" r="1.5" fill="#ccc"/></svg></a>
-          <a id="fb-link" href="#" class="sb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke-width="1.5" stroke="#ccc" fill="none"/></svg></a>
+          <a id="ig-link" href="#" class="sb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#ccc" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="#ccc" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="#ccc"/></svg></a>
+          <a id="fb-link" href="#" class="sb" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="#ccc" stroke-width="1.5"/></svg></a>
         </div>
       </div>
     </div>
@@ -381,51 +378,28 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 </footer>
 
 <script>
-// Menu
-function toggleMenu(){var m=document.getElementById('mobMenu');m.classList.toggle('open');}
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
 function closeMenu(){document.getElementById('mobMenu').classList.remove('open');}
 
-// Contactgegevens uit localStorage laden (ingevuld via admin)
 (function(){
-  var adres = localStorage.getItem('c_street');
-  var city  = localStorage.getItem('c_city');
-  var ig    = localStorage.getItem('c_ig');
-  var fb    = localStorage.getItem('c_fb');
-  var tel   = localStorage.getItem('c_tel');
-  var mail  = localStorage.getItem('c_mail');
-
-  if(tel){ var el=document.getElementById('site-tel'); if(el) el.textContent=tel; }
-  if(mail){ var el2=document.getElementById('site-mail'); if(el2) el2.textContent=mail; }
-
+  var tel=localStorage.getItem('c_tel'),mail=localStorage.getItem('c_mail');
+  var adres=localStorage.getItem('c_street'),city=localStorage.getItem('c_city');
+  var ig=localStorage.getItem('c_ig'),fb=localStorage.getItem('c_fb');
+  if(tel){var e=document.getElementById('site-tel');if(e)e.textContent=tel;}
+  if(mail){var e2=document.getElementById('site-mail');if(e2)e2.textContent=mail;}
   if(adres){
-    var block=document.getElementById('adres-block');
-    var txt=document.getElementById('site-adres');
-    if(block && txt){
-      txt.innerHTML = adres + (city ? '<br>' + city : '');
-      block.style.display='flex';
-    }
+    var b=document.getElementById('adres-block'),t=document.getElementById('site-adres');
+    if(b&&t){t.innerHTML=adres+(city?'<br>'+city:'');b.style.display='flex';}
   }
-
-  var showSocial = false;
-  if(ig && ig !== '#' && ig.length > 5){
-    var igEl=document.getElementById('ig-link');
-    if(igEl){ igEl.href=ig; showSocial=true; }
-  }
-  if(fb && fb !== '#' && fb.length > 5){
-    var fbEl=document.getElementById('fb-link');
-    if(fbEl){ fbEl.href=fb; showSocial=true; }
-  }
-  if(showSocial){
-    var row=document.getElementById('social-row');
-    if(row) row.style.display='flex';
-  }
+  var show=false;
+  if(ig&&ig.length>5&&ig!=='#'){var el=document.getElementById('ig-link');if(el){el.href=ig;show=true;}}
+  if(fb&&fb.length>5&&fb!=='#'){var el2=document.getElementById('fb-link');if(el2){el2.href=fb;show=true;}}
+  if(show){var r=document.getElementById('social-row');if(r)r.style.display='flex';}
 })();
 
-// Sparkles
 var s=document.getElementById('sp');
 for(var i=0;i<18;i++){
-  var el=document.createElement('div');
-  el.className='sp';
+  var el=document.createElement('div');el.className='sp';
   var l=30+Math.random()*40,d=4+Math.random()*5,dl=Math.random()*6,dx=(Math.random()-.5)*120,sz=1+Math.random()*2.5;
   el.style.cssText='left:'+l+'%;bottom:-10px;width:'+sz+'px;height:'+sz+'px;animation-duration:'+d+'s;animation-delay:'+dl+'s;--dx:'+dx+'px;';
   s.appendChild(el);
