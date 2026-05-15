@@ -141,7 +141,7 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
 /* ════ TABLET ════ */
 @media(max-width:1024px){
   .dg{grid-template-columns:1fr 1fr !important}
-  .pg{grid-auto-rows:220px}
+  .pg{grid-template-columns:1fr 1fr !important;grid-auto-rows:200px}
 }
 
 /* ════ MOBIEL ════ */
@@ -184,7 +184,8 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
   .otx{font-size:.85rem !important}
 
   /* Portfolio: 1 kolom */
-  .pg{display:grid !important;grid-template-columns:1fr !important;grid-auto-rows:200px !important;gap:3px !important}
+  .pg{display:flex !important;flex-direction:column !important;gap:3px !important}
+  .pi{height:220px !important;width:100% !important}
 
   /* CTA */
   .cb{display:flex !important;flex-direction:column !important;align-items:stretch !important;padding:1.75rem .875rem !important;gap:1rem !important}
@@ -214,7 +215,7 @@ footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:1
   section{padding:2rem .75rem !important}
   nav{padding:0 .75rem !important}
   .htit{font-size:2rem !important}
-  .pg{grid-auto-rows:160px !important}
+  .pi{height:190px !important}
 }
 
 </style>
