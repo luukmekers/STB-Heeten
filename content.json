@@ -81,7 +81,7 @@
     "accent": "portfolio",
     "items": [
       {
-        "name": "Industriele hal",
+        "name": "Montage nieuwe hal",
         "cat": "Staalconstructie",
         "img": "images/portfolio1.jpg"
       },
@@ -96,8 +96,8 @@
         "img": "images/portfolio3.jpg"
       },
       {
-        "name": "Draagconstructie",
-        "cat": "Constructiewerk",
+        "name": "Montage staal voor verdiepingsvloer",
+        "cat": "Staalconstructie",
         "img": "images/portfolio4.jpg"
       },
       {
