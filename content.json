@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "tag": "Wat doen we niet?",
+    "lines": [
+      { "t": "Staal.", "or": false },
+      { "t": "Techniek.", "or": true },
+      { "t": "Bouw.", "or": false }
+    ],
+    "desc": "Voor elk probleem een oplossing!",
+    "b1": "Offerte aanvragen",
+    "b2": "Bekijk projecten"
+  },
+  "diensten": {
+    "label": "Wat wij doen",
+    "title": "Onze",
+    "accent": "Diensten",
+    "items": [
+      { "t": "Lassen en Metaalbewerking", "d": "MIG/MAG en TIG lassen, plaatbewerking en slijpen.", "icon": "lagen" },
+      { "t": "Constructiewerk en Staalwerk", "d": "Staalconstructies, draagbalken en hekwerken.", "icon": "monitor" },
+      { "t": "Bouw en Verbouw", "d": "Nieuwbouw, verbouwingen en renovatieprojecten.", "icon": "huis" }
+    ]
+  },
+  "over": {
+    "label": "Over ons",
+    "title": "Vakmanschap Voorop",
+    "paras": [
+      "STB Heeten is een gespecialiseerde ZZP-onderneming. Actief door heel Nederland.",
+      "Flexibel inzetbaar, betrouwbaar en altijd aanspreekbaar."
+    ],
+    "stats": [
+      { "n": "100%", "l": "Kwaliteitsgarantie" },
+      { "n": "NL", "l": "Heel Nederland" },
+      { "n": "ZZP", "l": "Flexibel en persoonlijk" },
+      { "n": "3x", "l": "Specialisaties" }
+    ],
+    "btn": "Neem contact op",
+    "badgeN": "V",
+    "badgeT": "Offerte op maat"
+  },
+  "portfolio": {
+    "label": "Ons werk",
+    "title": "Project",
+    "accent": "portfolio",
+    "items": [
+      { "name": "Industriele hal", "cat": "Staalconstructie", "img": "images/portfolio1.jpg" },
+      { "name": "Aanbouw woning", "cat": "Bouw en Verbouw", "img": "images/portfolio2.jpg" },
+      { "name": "Maatwerk hekwerk", "cat": "Lassen en Metaal", "img": "images/portfolio3.jpg" },
+      { "name": "Draagconstructie", "cat": "Constructiewerk", "img": "images/portfolio4.jpg" },
+      { "name": "Stalen trap", "cat": "Staalwerk", "img": "images/portfolio5.jpg" },
+      { "name": "Industrieel complex", "cat": "Renovatie", "img": "images/portfolio6.jpg" }
+    ]
+  },
+  "extra": [],
+  "cta": {
+    "t": "Klaar voor uw project?",
+    "s": "Offerte op maat - Heel Nederland - Snel geregeld",
+    "tags": ["Lassen", "Staalconstructie", "Bouw en Verbouw"],
+    "btn": "Offerte aanvragen"
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Neem",
+    "accent": "Contact Op",
+    "tel": "+31 (0)6 119 607 95",
+    "mail": "info@stbheeten.nl",
+    "area": "Heel Nederland",
+    "street": "Schoonhetenseweg 72",
+    "city": "8111 PV Heeten, Nederland",
+    "extra": [],
+    "socials": [
+      { "type": "facebook", "url": "https://www.facebook.com/p/STB-Heeten-100086719867729/" }
+    ],
+    "w3f": "ddabd029-c9ed-463f-94d4-b8ed4aeb3565",
+    "formBtn": "Offerte aanvragen"
+  },
+  "footer": {
+    "copy": "2025 STB Heeten - Alle rechten voorbehouden",
+    "links": [
+      { "t": "Privacybeleid", "u": "#" },
+      { "t": "Algemene voorwaarden", "u": "#" },
+      { "t": "KvK", "u": "#" }
+    ]
+  },
+  "style": { "or": "#E8820C", "bg": "#0D0D0D" },
+  "seo": {
+    "title": "STB Heeten - Staal, Techniek en Bouw | ZZP Heel Nederland",
+    "desc": "STB Heeten is een ZZP-specialist in lassen, metaalbewerking, staalconstructies en bouw & verbouw. Flexibel en betrouwbaar inzetbaar door heel Nederland. Vraag vrijblijvend een offerte aan."
+  }
+}

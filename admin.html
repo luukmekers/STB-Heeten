@@ -3,50 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>STB Heeten Beheerpaneel</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--or:#E8820C;--dark:#141414;--card:#1a1a1a;--bdr:#2a2a2a;--txt:#ccc;--wht:#fff;--gr:#888;--grn:#27ae60}
+:root{--or:#E8820C;--dark:#141414;--card:#1a1a1a;--bdr:#2a2a2a;--txt:#ccc;--wht:#fff;--gr:#888;--grn:#27ae60;--red:#e74c3c}
 body{font-family:sans-serif;background:#0f0f0f;color:var(--wht);min-height:100vh}
-header{background:var(--dark);border-bottom:3px solid var(--or);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+header{background:var(--dark);border-bottom:3px solid var(--or);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .logo{font-size:1.1rem;font-weight:700;color:var(--wht)}.logo span{color:var(--or)}
 button,a.btn{padding:.5rem 1rem;border:none;cursor:pointer;font-size:.82rem;font-weight:600;border-radius:4px;text-decoration:none;display:inline-block;font-family:inherit}
+button:disabled{opacity:.5;cursor:default}
 .b-ghost{background:transparent;color:var(--txt);border:1px solid #444}.b-ghost:hover{border-color:var(--or);color:var(--or)}
 .b-grn{background:var(--grn);color:#fff}.b-or{background:var(--or);color:#000}
+.b-add{background:transparent;color:var(--or);border:1px dashed rgba(232,130,12,.6);width:100%;padding:.7rem;font-size:.85rem}.b-add:hover{background:rgba(232,130,12,.08)}
+.b-ico{background:#222;color:var(--txt);border:1px solid #333;padding:.25rem .55rem;font-size:.8rem;line-height:1}.b-ico:hover{border-color:var(--or);color:var(--or)}
+.b-ico.del:hover{border-color:var(--red);color:var(--red)}
 .wrap{display:flex;min-height:calc(100vh - 130px)}
 nav{width:210px;background:var(--dark);border-right:1px solid var(--bdr);padding:.75rem 0;flex-shrink:0}
 .lbl{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);padding:.5rem 1rem;display:block}
 .sep{height:1px;background:var(--bdr);margin:.4rem 0}
-.nav-item{display:block;padding:.65rem 1rem;cursor:pointer;font-size:.85rem;color:var(--txt);border:none;border-left:3px solid transparent;background:none;width:100%;text-align:left;font-family:inherit}
+.nav-item{display:block;padding:.65rem 1rem;cursor:pointer;font-size:.85rem;color:var(--txt);border:none;border-left:3px solid transparent;background:none;width:100%;text-align:left;font-family:inherit;border-radius:0}
 .nav-item:hover{background:rgba(232,130,12,.08);color:var(--wht)}.nav-item.on{background:rgba(232,130,12,.12);border-left-color:var(--or);color:var(--or);font-weight:700}
-main{flex:1;padding:1.5rem;overflow-y:auto}.panel{display:none}.panel.on{display:block}
+main{flex:1;padding:1.5rem;overflow-y:auto;min-width:0}.panel{display:none;max-width:900px}.panel.on{display:block}
 .ptit{font-size:1.3rem;font-weight:700;margin-bottom:.3rem}.psub{font-size:.82rem;color:var(--gr);margin-bottom:1.5rem}
 .card{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:1.25rem;margin-bottom:1rem}
 .ch{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--bdr)}
 .fg{margin-bottom:.85rem}
 label{font-size:.75rem;font-weight:600;color:var(--txt);margin-bottom:.3rem;display:block}
+label.chk{display:flex;align-items:center;gap:.5rem;cursor:pointer}
 input[type=text],input[type=email],input[type=tel],input[type=password],select,textarea{width:100%;background:#0d0d0d;border:1px solid #333;color:var(--wht);padding:.55rem .8rem;border-radius:4px;font-size:.88rem;outline:none;font-family:inherit;transition:border-color .2s}
 input:focus,select:focus,textarea:focus{border-color:var(--or)}textarea{resize:vertical;min-height:80px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.85rem}
 .cr{display:flex;align-items:center;gap:.6rem}.cr input[type=color]{width:42px;height:34px;padding:2px;flex-shrink:0}.cr input[type=text]{flex:1}
 .tokbox{background:rgba(232,130,12,.07);border:1px solid rgba(232,130,12,.2);border-radius:6px;padding:.9rem 1.1rem;margin-bottom:1.25rem;font-size:.83rem;color:var(--txt)}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e74c3c;margin-right:.4rem}.dot.ok{background:var(--grn)}
-.savebar{background:var(--dark);border-top:1px solid var(--bdr);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:.4rem}.dot.ok{background:var(--grn)}
+.savebar{background:var(--dark);border-top:1px solid var(--bdr);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:sticky;bottom:0}
 .hint{font-size:.78rem;color:var(--gr)}
-.toast{position:fixed;bottom:1.25rem;right:1.25rem;background:var(--grn);color:#fff;padding:.7rem 1.2rem;border-radius:6px;font-weight:700;font-size:.88rem;transform:translateY(60px);opacity:0;transition:all .3s;z-index:999}
-.toast.on{transform:translateY(0);opacity:1}.toast.err{background:#e74c3c}
+.toast{position:fixed;bottom:1.25rem;right:1.25rem;background:var(--grn);color:#fff;padding:.7rem 1.2rem;border-radius:6px;font-weight:700;font-size:.88rem;transform:translateY(60px);opacity:0;transition:all .3s;z-index:999;pointer-events:none}
+.toast.on{transform:translateY(0);opacity:1}.toast.err{background:var(--red)}
 .upload-box{border:2px dashed #444;border-radius:8px;padding:1rem;text-align:center;cursor:pointer;position:relative;background:#0d0d0d;transition:border-color .2s}
 .upload-box:hover{border-color:var(--or)}.upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .upload-box .ico{font-size:1.5rem;display:block;margin-bottom:.25rem}.upload-box .ut{font-size:.78rem;color:var(--gr)}
 .prev{width:100%;max-height:140px;object-fit:cover;border-radius:4px;margin-top:.5rem;display:none;border:1px solid var(--bdr)}.prev.show{display:block}
-.us{font-size:.75rem;margin-top:.35rem;color:var(--gr)}.us.ok{color:var(--grn)}.us.err{color:#e74c3c}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
-.pitem{background:#0d0d0d;border:1px solid var(--bdr);border-radius:6px;padding:.85rem}
-.pbadge{background:rgba(232,130,12,.15);color:var(--or);font-weight:700;font-size:.7rem;padding:.15rem .5rem;border-radius:3px;display:inline-block;margin-bottom:.5rem}
+.us{font-size:.75rem;margin-top:.35rem;color:var(--gr)}.us.ok{color:var(--grn)}.us.err{color:var(--red)}
+.list{display:grid;gap:.85rem;margin-bottom:.85rem}
+.list.cols2{grid-template-columns:1fr 1fr}
+.item{background:#0d0d0d;border:1px solid var(--bdr);border-radius:6px;padding:.85rem}
+.ihead{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;gap:.5rem}
+.iacts{display:flex;gap:.3rem}
+.pbadge{background:rgba(232,130,12,.15);color:var(--or);font-weight:700;font-size:.7rem;padding:.15rem .5rem;border-radius:3px;display:inline-block}
+.empty{font-size:.8rem;color:var(--gr);padding:.5rem 0}
+.loading{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:998;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--txt)}
+@media(max-width:760px){.wrap{flex-direction:column}nav{width:100%;display:flex;overflow-x:auto;padding:0;border-right:none;border-bottom:1px solid var(--bdr)}.nav-item{white-space:nowrap;border-left:none;border-bottom:3px solid transparent;width:auto}.nav-item.on{border-bottom-color:var(--or)}.lbl,.sep{display:none}main{padding:1rem}.g2,.g3,.list.cols2{grid-template-columns:1fr}.savebar .hint{display:none}}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
+<div class="loading" id="loading">Huidige inhoud van de website laden...</div>
 <header>
   <div class="logo">STB <span>HEETEN</span> Beheerpaneel</div>
   <div style="display:flex;gap:.5rem">
@@ -58,172 +72,148 @@ input:focus,select:focus,textarea:focus{border-color:var(--or)}textarea{resize:v
   <nav id="nav">
     <span class="lbl">Pagina onderdelen</span>
     <button class="nav-item on" data-p="hero">Hero sectie</button>
-    <button class="nav-item" data-p="fotos">Logo en fotos</button>
     <button class="nav-item" data-p="diensten">Diensten</button>
     <button class="nav-item" data-p="over">Over ons</button>
+    <button class="nav-item" data-p="portfolio">Portfolio</button>
+    <button class="nav-item" data-p="extra">Extra secties</button>
+    <button class="nav-item" data-p="cta">CTA balk</button>
     <button class="nav-item" data-p="contact">Contact</button>
     <button class="nav-item" data-p="footer">Footer</button>
     <div class="sep"></div>
     <span class="lbl">Instellingen</span>
-    <button class="nav-item" data-p="huisstijl">Huisstijl</button>
+    <button class="nav-item" data-p="huisstijl">Logo en huisstijl</button>
+    <button class="nav-item" data-p="seo">Google (SEO)</button>
     <button class="nav-item" data-p="github">GitHub koppeling</button>
   </nav>
   <main>
     <div class="panel on" id="p-hero">
       <div class="ptit">Hero sectie</div><div class="psub">De grote banner bovenaan.</div>
       <div class="card"><div class="ch">Teksten</div>
-        <div class="fg"><label>Toptekst</label><input type="text" id="hero_tag" value="Heel Nederland - ZZP Techniek en Constructie"></div>
-        <div class="fg"><label>Titel regel 1</label><input type="text" id="hero_r1" value="Staal."></div>
-        <div class="fg"><label>Titel regel 2 (oranje)</label><input type="text" id="hero_r2" value="Techniek."></div>
-        <div class="fg"><label>Titel regel 3</label><input type="text" id="hero_r3" value="Bouw."></div>
-        <div class="fg"><label>Beschrijving</label><textarea id="hero_desc">Van lassen en metaalbewerking tot volledige staalconstructies. Vakmanschap door heel Nederland.</textarea></div>
+        <div class="fg"><label>Toptekst</label><input type="text" data-k="hero.tag"></div>
+        <div class="fg"><label>Beschrijving</label><textarea data-k="hero.desc"></textarea></div>
+      </div>
+      <div class="card"><div class="ch">Titelregels</div>
+        <div id="l-herolines"></div>
       </div>
       <div class="card"><div class="ch">Knoppen</div><div class="g2">
-        <div class="fg"><label>Primaire knop</label><input type="text" id="hero_b1" value="Offerte aanvragen"></div>
-        <div class="fg"><label>Secundaire knop</label><input type="text" id="hero_b2" value="Bekijk projecten"></div>
+        <div class="fg"><label>Primaire knop (ook in menu)</label><input type="text" data-k="hero.b1"></div>
+        <div class="fg"><label>Secundaire knop</label><input type="text" data-k="hero.b2"></div>
       </div></div>
     </div>
-    <div class="panel" id="p-fotos">
-      <div class="ptit">Logo en fotos</div><div class="psub">Upload logo en alle projectfotos. Worden direct opgeslagen in GitHub.</div>
-      <div class="card"><div class="ch">Logo (linksbovenin navigatie)</div>
-        <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'logo','images/logo.png')">
-          <span class="ico">&#128444;</span><div class="ut">Klik om logo te uploaden (PNG/SVG aanbevolen)</div>
-        </div>
-        <img class="prev" id="logo-prev"><div class="us" id="logo-us"></div>
-      </div>
-      <div class="card"><div class="ch">Over ons foto</div>
-        <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'over','images/over.jpg')">
-          <span class="ico">&#128100;</span><div class="ut">Foto voor de Over ons sectie</div>
-        </div>
-        <img class="prev" id="over-prev"><div class="us" id="over-us"></div>
-      </div>
-      <div class="card"><div class="ch">Portfolio fotos (6 stuks - 3 kolommen x 2 rijen)</div>
-        <div class="pgrid">
-          <div class="pitem">
-            <span class="pbadge">Foto 1</span>
-            <div class="fg"><label>Projectnaam</label><input type="text" id="p1_name" value="Industriele hal"></div>
-            <div class="fg"><label>Categorie</label><input type="text" id="p1_cat" value="Staalconstructie"></div>
-            <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'p1','images/portfolio1.jpg')">
-              <span class="ico">&#128247;</span><div class="ut">Foto 1 uploaden</div>
-            </div>
-            <img class="prev" id="p1-prev"><div class="us" id="p1-us"></div>
-          </div>
-          <div class="pitem">
-            <span class="pbadge">Foto 2</span>
-            <div class="fg"><label>Projectnaam</label><input type="text" id="p2_name" value="Aanbouw woning"></div>
-            <div class="fg"><label>Categorie</label><input type="text" id="p2_cat" value="Bouw en Verbouw"></div>
-            <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'p2','images/portfolio2.jpg')">
-              <span class="ico">&#128247;</span><div class="ut">Foto 2 uploaden</div>
-            </div>
-            <img class="prev" id="p2-prev"><div class="us" id="p2-us"></div>
-          </div>
-          <div class="pitem">
-            <span class="pbadge">Foto 3</span>
-            <div class="fg"><label>Projectnaam</label><input type="text" id="p3_name" value="Maatwerk hekwerk"></div>
-            <div class="fg"><label>Categorie</label><input type="text" id="p3_cat" value="Lassen en Metaal"></div>
-            <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'p3','images/portfolio3.jpg')">
-              <span class="ico">&#128247;</span><div class="ut">Foto 3 uploaden</div>
-            </div>
-            <img class="prev" id="p3-prev"><div class="us" id="p3-us"></div>
-          </div>
-          <div class="pitem">
-            <span class="pbadge">Foto 4</span>
-            <div class="fg"><label>Projectnaam</label><input type="text" id="p4_name" value="Draagconstructie"></div>
-            <div class="fg"><label>Categorie</label><input type="text" id="p4_cat" value="Constructiewerk"></div>
-            <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'p4','images/portfolio4.jpg')">
-              <span class="ico">&#128247;</span><div class="ut">Foto 4 uploaden</div>
-            </div>
-            <img class="prev" id="p4-prev"><div class="us" id="p4-us"></div>
-          </div>
-          <div class="pitem">
-            <span class="pbadge">Foto 5</span>
-            <div class="fg"><label>Projectnaam</label><input type="text" id="p5_name" value="Stalen trap"></div>
-            <div class="fg"><label>Categorie</label><input type="text" id="p5_cat" value="Staalwerk"></div>
-            <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'p5','images/portfolio5.jpg')">
-              <span class="ico">&#128247;</span><div class="ut">Foto 5 uploaden</div>
-            </div>
-            <img class="prev" id="p5-prev"><div class="us" id="p5-us"></div>
-          </div>
-          <div class="pitem">
-            <span class="pbadge">Foto 6</span>
-            <div class="fg"><label>Projectnaam</label><input type="text" id="p6_name" value="Industrieel complex"></div>
-            <div class="fg"><label>Categorie</label><input type="text" id="p6_cat" value="Renovatie"></div>
-            <div class="upload-box"><input type="file" accept="image/*" onchange="upload(this,'p6','images/portfolio6.jpg')">
-              <span class="ico">&#128247;</span><div class="ut">Foto 6 uploaden</div>
-            </div>
-            <img class="prev" id="p6-prev"><div class="us" id="p6-us"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="panel" id="p-diensten">
-      <div class="ptit">Diensten</div><div class="psub">De drie diensten op de website.</div>
-      <div class="card"><div class="ch">Dienst 1</div>
-        <div class="fg"><label>Naam</label><input type="text" id="d1t" value="Lassen en Metaalbewerking"></div>
-        <div class="fg"><label>Omschrijving</label><textarea id="d1d">MIG/MAG en TIG lassen, plaatbewerking en slijpen.</textarea></div>
-      </div>
-      <div class="card"><div class="ch">Dienst 2</div>
-        <div class="fg"><label>Naam</label><input type="text" id="d2t" value="Constructiewerk en Staalwerk"></div>
-        <div class="fg"><label>Omschrijving</label><textarea id="d2d">Staalconstructies, draagbalken en hekwerken.</textarea></div>
-      </div>
-      <div class="card"><div class="ch">Dienst 3</div>
-        <div class="fg"><label>Naam</label><input type="text" id="d3t" value="Bouw en Verbouw"></div>
-        <div class="fg"><label>Omschrijving</label><textarea id="d3d">Nieuwbouw, verbouwingen en renovatieprojecten.</textarea></div>
-      </div>
+      <div class="ptit">Diensten</div><div class="psub">Voeg zoveel diensten toe als je wilt. Ze verschijnen ook in de keuzelijst van het offerteformulier.</div>
+      <div class="card"><div class="ch">Kop</div><div class="g3">
+        <div class="fg"><label>Label</label><input type="text" data-k="diensten.label"></div>
+        <div class="fg"><label>Titel</label><input type="text" data-k="diensten.title"></div>
+        <div class="fg"><label>Titel (oranje deel)</label><input type="text" data-k="diensten.accent"></div>
+      </div></div>
+      <div class="card"><div class="ch">Diensten</div><div id="l-diensten"></div></div>
     </div>
+
     <div class="panel" id="p-over">
       <div class="ptit">Over ons</div><div class="psub">Informatie over het bedrijf.</div>
-      <div class="card"><div class="ch">Teksten</div>
-        <div class="fg"><label>Titel</label><input type="text" id="ov_t" value="Vakmanschap Voorop"></div>
-        <div class="fg"><label>Alinea 1</label><textarea id="ov_p1">STB Heeten is een gespecialiseerde ZZP-onderneming. Actief door heel Nederland.</textarea></div>
-        <div class="fg"><label>Alinea 2</label><textarea id="ov_p2">Flexibel inzetbaar, betrouwbaar en altijd aanspreekbaar.</textarea></div>
-      </div>
-      <div class="card"><div class="ch">Statistieken</div><div class="g2">
-        <div class="fg"><label>Getal</label><input type="text" id="s1n" value="100%"></div>
-        <div class="fg"><label>Label</label><input type="text" id="s1l" value="Kwaliteitsgarantie"></div>
-        <div class="fg"><label>Getal</label><input type="text" id="s2n" value="NL"></div>
-        <div class="fg"><label>Label</label><input type="text" id="s2l" value="Heel Nederland"></div>
-        <div class="fg"><label>Getal</label><input type="text" id="s3n" value="ZZP"></div>
-        <div class="fg"><label>Label</label><input type="text" id="s3l" value="Flexibel en persoonlijk"></div>
-        <div class="fg"><label>Getal</label><input type="text" id="s4n" value="3x"></div>
-        <div class="fg"><label>Label</label><input type="text" id="s4l" value="Specialisaties"></div>
+      <div class="card"><div class="ch">Kop</div><div class="g2">
+        <div class="fg"><label>Label</label><input type="text" data-k="over.label"></div>
+        <div class="fg"><label>Titel</label><input type="text" data-k="over.title"></div>
       </div></div>
+      <div class="card"><div class="ch">Alinea's</div><div id="l-paras"></div></div>
+      <div class="card"><div class="ch">Statistieken</div><div id="l-stats"></div></div>
+      <div class="card"><div class="ch">Foto en knop</div>
+        <div class="upload-box"><input type="file" accept="image/*" onchange="uploadFixed(this,'over','images/over.jpg')">
+          <span class="ico">&#128100;</span><div class="ut">Klik om de Over ons foto te vervangen</div>
+        </div>
+        <img class="prev show" id="over-prev" src="images/over.jpg" onerror="this.classList.remove('show')"><div class="us" id="over-us"></div>
+        <div class="g3" style="margin-top:1rem">
+          <div class="fg"><label>Knoptekst</label><input type="text" data-k="over.btn"></div>
+          <div class="fg"><label>Badge groot</label><input type="text" data-k="over.badgeN"></div>
+          <div class="fg"><label>Badge tekst</label><input type="text" data-k="over.badgeT"></div>
+        </div>
+      </div>
     </div>
+
+    <div class="panel" id="p-portfolio">
+      <div class="ptit">Portfolio</div><div class="psub">Projecten met foto. Voeg toe, verwijder of verander de volgorde. Foto's worden direct naar GitHub geupload; klik daarna op Opslaan en publiceren.</div>
+      <div class="card"><div class="ch">Kop</div><div class="g3">
+        <div class="fg"><label>Label</label><input type="text" data-k="portfolio.label"></div>
+        <div class="fg"><label>Titel</label><input type="text" data-k="portfolio.title"></div>
+        <div class="fg"><label>Titel (oranje deel)</label><input type="text" data-k="portfolio.accent"></div>
+      </div></div>
+      <div class="card"><div class="ch">Projecten</div><div id="l-portfolio"></div></div>
+    </div>
+
+    <div class="panel" id="p-extra">
+      <div class="ptit">Extra secties</div><div class="psub">Losse tekstblokken die tussen Portfolio en de CTA balk komen, bijvoorbeeld "Werkwijze", "Certificaten" of "Vacatures". Laat een lege regel tussen alinea's.</div>
+      <div class="card"><div class="ch">Secties</div><div id="l-extra"></div></div>
+    </div>
+
+    <div class="panel" id="p-cta">
+      <div class="ptit">CTA balk</div><div class="psub">De oranje balk boven het contactblok.</div>
+      <div class="card"><div class="ch">Teksten</div>
+        <div class="fg"><label>Titel</label><input type="text" data-k="cta.t"></div>
+        <div class="fg"><label>Ondertitel</label><input type="text" data-k="cta.s"></div>
+        <div class="fg"><label>Knoptekst</label><input type="text" data-k="cta.btn"></div>
+      </div>
+      <div class="card"><div class="ch">Labels</div><div id="l-tags"></div></div>
+    </div>
+
     <div class="panel" id="p-contact">
-      <div class="ptit">Contactgegevens</div><div class="psub">Telefoonnummer, e-mail en andere info.</div>
+      <div class="ptit">Contact</div><div class="psub">Telefoonnummer, e-mail en andere info.</div>
+      <div class="card"><div class="ch">Kop</div><div class="g3">
+        <div class="fg"><label>Label</label><input type="text" data-k="contact.label"></div>
+        <div class="fg"><label>Titel</label><input type="text" data-k="contact.title"></div>
+        <div class="fg"><label>Titel (oranje deel)</label><input type="text" data-k="contact.accent"></div>
+      </div></div>
       <div class="card"><div class="ch">Gegevens</div>
-        <div class="fg"><label>Telefoon</label><input type="tel" id="c_tel" value="+31 6 00 000 000"></div>
-        <div class="fg"><label>E-mail</label><input type="email" id="c_mail" value="info@stbheeten.nl"></div>
-        <div class="fg"><label>Werkgebied</label><input type="text" id="c_area" value="Heel Nederland"></div>
-        <div class="fg"><label>Adres (straat en huisnummer)</label><input type="text" id="c_street" placeholder="Dorpsstraat 1"></div>
-        <div class="fg"><label>Postcode en plaats</label><input type="text" id="c_city" placeholder="7481 AA Haaksbergen"></div>
+        <div class="g2">
+          <div class="fg"><label>Telefoon</label><input type="tel" data-k="contact.tel"></div>
+          <div class="fg"><label>E-mail</label><input type="email" data-k="contact.mail"></div>
+        </div>
+        <div class="fg"><label>Werkgebied</label><input type="text" data-k="contact.area"></div>
+        <div class="g2">
+          <div class="fg"><label>Adres (straat en huisnummer)</label><input type="text" data-k="contact.street" placeholder="Dorpsstraat 1"></div>
+          <div class="fg"><label>Postcode en plaats</label><input type="text" data-k="contact.city" placeholder="8111 PV Heeten"></div>
+        </div>
       </div>
+      <div class="card"><div class="ch">Extra gegevens (bijv. KvK, BTW, openingstijden)</div><div id="l-cextra"></div></div>
+      <div class="card"><div class="ch">Social media</div><div id="l-socials"></div></div>
       <div class="card"><div class="ch">Offerteformulier</div>
-        <div class="fg"><label>Web3Forms Access Key</label><input type="text" id="c_w3f" value="ddabd029-c9ed-463f-94d4-b8ed4aeb3565" placeholder="Gratis verkrijgen op web3forms.com, aanvragen met info@stbheeten.nl"></div>
-        <div class="hint" style="margin-top:.3rem">Zonder deze key verstuurt het offerteformulier op de site geen mail.</div>
-      </div>
-      <div class="card"><div class="ch">Social media</div>
-        <div class="fg"><label>Instagram URL</label><input type="text" id="c_ig" placeholder="https://instagram.com/stbheeten"></div>
-        <div class="fg"><label>Facebook URL</label><input type="text" id="c_fb" placeholder="https://facebook.com/stbheeten"></div>
-      </div>
-      <div class="card"><div class="ch">CTA balk</div>
-        <div class="fg"><label>Titel</label><input type="text" id="cta_t" value="Klaar voor uw project?"></div>
-        <div class="fg"><label>Ondertitel</label><input type="text" id="cta_s" value="Offerte op maat - Heel Nederland - Snel geregeld"></div>
+        <div class="fg"><label>Knoptekst</label><input type="text" data-k="contact.formBtn"></div>
+        <div class="fg"><label>Web3Forms Access Key</label><input type="text" data-k="contact.w3f" placeholder="Gratis verkrijgen op web3forms.com"></div>
+        <div class="hint" style="margin-top:.3rem">Zonder deze key verstuurt het offerteformulier op de site geen mail. De keuzelijst "Dienst" wordt automatisch gevuld met je diensten.</div>
       </div>
     </div>
+
     <div class="panel" id="p-footer">
       <div class="ptit">Footer</div><div class="psub">De onderste balk.</div>
       <div class="card"><div class="ch">Tekst</div>
-        <div class="fg"><label>Copyright</label><input type="text" id="f_copy" value="2025 STB Heeten - Alle rechten voorbehouden"></div>
+        <div class="fg"><label>Copyright</label><input type="text" data-k="footer.copy"></div>
       </div>
+      <div class="card"><div class="ch">Links</div><div id="l-flinks"></div></div>
     </div>
+
     <div class="panel" id="p-huisstijl">
-      <div class="ptit">Huisstijl</div><div class="psub">Kleuren aanpassen.</div>
+      <div class="ptit">Logo en huisstijl</div><div class="psub">Logo en kleuren.</div>
+      <div class="card"><div class="ch">Logo (linksbovenin navigatie)</div>
+        <div class="upload-box"><input type="file" accept="image/*" onchange="uploadFixed(this,'logo','images/logo.png')">
+          <span class="ico">&#128444;</span><div class="ut">Klik om logo te uploaden (PNG aanbevolen)</div>
+        </div>
+        <img class="prev show" id="logo-prev" src="images/logo.png" style="object-fit:contain" onerror="this.classList.remove('show')"><div class="us" id="logo-us"></div>
+      </div>
       <div class="card"><div class="ch">Kleuren</div>
-        <div class="fg"><label>Accentkleur</label><div class="cr"><input type="color" id="c_or" value="#E8820C"><input type="text" id="c_or_h" value="#E8820C"></div></div>
-        <div class="fg"><label>Achtergrond</label><div class="cr"><input type="color" id="c_bg" value="#0D0D0D"><input type="text" id="c_bg_h" value="#0D0D0D"></div></div>
+        <div class="fg"><label>Accentkleur</label><div class="cr"><input type="color" id="c_or"><input type="text" data-k="style.or" id="c_or_h"></div></div>
+        <div class="fg"><label>Achtergrond</label><div class="cr"><input type="color" id="c_bg"><input type="text" data-k="style.bg" id="c_bg_h"></div></div>
       </div>
     </div>
+
+    <div class="panel" id="p-seo">
+      <div class="ptit">Google (SEO)</div><div class="psub">Hoe de site in Google en bij het delen van links verschijnt.</div>
+      <div class="card"><div class="ch">Zoekresultaat</div>
+        <div class="fg"><label>Paginatitel</label><input type="text" data-k="seo.title"></div>
+        <div class="fg"><label>Omschrijving (ca. 150 tekens)</label><textarea data-k="seo.desc"></textarea></div>
+      </div>
+    </div>
+
     <div class="panel" id="p-github">
       <div class="ptit">GitHub koppeling</div><div class="psub">Token voor publiceren.</div>
       <div class="tokbox"><span class="dot" id="tok_dot"></span> Status: <strong id="tok_txt">Laden...</strong></div>
@@ -237,32 +227,222 @@ input:focus,select:focus,textarea:focus{border-color:var(--or)}textarea{resize:v
   </main>
 </div>
 <div class="savebar">
-  <span class="hint">Wijzigingen worden direct gepubliceerd op je website</span>
+  <span class="hint">Wijzigingen worden direct gepubliceerd op je website (kan 1-2 minuten duren)</span>
   <button class="b-grn" onclick="saveAll()">Opslaan en publiceren</button>
 </div>
 <script>
 (function() {
+  // Standaardinhoud; wordt overschreven door content.json uit de repository.
+  var DEFAULTS = {
+    hero: { tag: "Heel Nederland - ZZP Techniek en Constructie", lines: [{ t: "Staal.", or: false }, { t: "Techniek.", or: true }, { t: "Bouw.", or: false }], desc: "Van lassen en metaalbewerking tot volledige staalconstructies. Vakmanschap door heel Nederland.", b1: "Offerte aanvragen", b2: "Bekijk projecten" },
+    diensten: { label: "Wat wij doen", title: "Onze", accent: "Diensten", items: [
+      { t: "Lassen en Metaalbewerking", d: "MIG/MAG en TIG lassen, plaatbewerking en slijpen.", icon: "lagen" },
+      { t: "Constructiewerk en Staalwerk", d: "Staalconstructies, draagbalken en hekwerken.", icon: "monitor" },
+      { t: "Bouw en Verbouw", d: "Nieuwbouw, verbouwingen en renovatieprojecten.", icon: "huis" }] },
+    over: { label: "Over ons", title: "Vakmanschap Voorop", paras: ["STB Heeten is een gespecialiseerde ZZP-onderneming. Actief door heel Nederland.", "Flexibel inzetbaar, betrouwbaar en altijd aanspreekbaar."],
+      stats: [{ n: "100%", l: "Kwaliteitsgarantie" }, { n: "NL", l: "Heel Nederland" }, { n: "ZZP", l: "Flexibel en persoonlijk" }, { n: "3x", l: "Specialisaties" }],
+      btn: "Neem contact op", badgeN: "V", badgeT: "Offerte op maat" },
+    portfolio: { label: "Ons werk", title: "Project", accent: "portfolio", items: [
+      { name: "Industriele hal", cat: "Staalconstructie", img: "images/portfolio1.jpg" },
+      { name: "Aanbouw woning", cat: "Bouw en Verbouw", img: "images/portfolio2.jpg" },
+      { name: "Maatwerk hekwerk", cat: "Lassen en Metaal", img: "images/portfolio3.jpg" },
+      { name: "Draagconstructie", cat: "Constructiewerk", img: "images/portfolio4.jpg" },
+      { name: "Stalen trap", cat: "Staalwerk", img: "images/portfolio5.jpg" },
+      { name: "Industrieel complex", cat: "Renovatie", img: "images/portfolio6.jpg" }] },
+    extra: [],
+    cta: { t: "Klaar voor uw project?", s: "Offerte op maat - Heel Nederland - Snel geregeld", tags: ["Lassen", "Staalconstructie", "Bouw en Verbouw"], btn: "Offerte aanvragen" },
+    contact: { label: "Contact", title: "Neem", accent: "Contact Op", tel: "", mail: "info@stbheeten.nl", area: "Heel Nederland", street: "", city: "", extra: [], socials: [], w3f: "", formBtn: "Offerte aanvragen" },
+    footer: { copy: "2025 STB Heeten - Alle rechten voorbehouden", links: [{ t: "Privacybeleid", u: "#" }, { t: "Algemene voorwaarden", u: "#" }, { t: "KvK", u: "#" }] },
+    style: { or: "#E8820C", bg: "#0D0D0D" },
+    seo: { title: "STB Heeten - Staal, Techniek en Bouw", desc: "" }
+  };
+
+  var ICONS = {
+    lagen: "<path d=\"M12 2L2 7l10 5 10-5-10-5z\"/><path d=\"M2 17l10 5 10-5\"/><path d=\"M2 12l10 5 10-5\"/>",
+    monitor: "<rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"1\"/><path d=\"M8 21h8M12 17v4\"/>",
+    huis: "<path d=\"M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\"/><polyline points=\"9,22 9,12 15,12 15,22\"/>",
+    moersleutel: "<path d=\"M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z\"/>",
+    tandwiel: "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8L7 17M17 7l2.8-2.8\"/>",
+    bliksem: "<polygon points=\"13,2 3,14 12,14 11,22 21,10 12,10\"/>",
+    vlam: "<path d=\"M12 22c4 0 7-3 7-7 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-3 3-5 5-5 8 0 4 3 7 7 7z\"/>",
+    schild: "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/>",
+    vrachtwagen: "<rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"/><polygon points=\"16,8 20,8 23,11 23,16 16,16\"/><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"/><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"/>",
+    meetlat: "<path d=\"M3 17L17 3l4 4L7 21z\"/><path d=\"M7 13l2 2M10 10l2 2M13 7l2 2\"/>",
+    vinkje: "<circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"8,12 11,15 16,9\"/>"
+  };
+  var ICON_NAMES = { lagen: "Lagen", monitor: "Scherm", huis: "Huis", moersleutel: "Moersleutel", tandwiel: "Tandwiel", bliksem: "Bliksem", vlam: "Vlam", schild: "Schild", vrachtwagen: "Vrachtwagen", meetlat: "Meetlat", vinkje: "Vinkje" };
+  var SOCIALS = {
+    instagram: { n: "Instagram", svg: "<rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/>" },
+    facebook: { n: "Facebook", svg: "<path d=\"M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z\"/>" },
+    linkedin: { n: "LinkedIn", svg: "<path d=\"M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z\"/><rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"/><circle cx=\"4\" cy=\"4\" r=\"2\"/>" },
+    youtube: { n: "YouTube", svg: "<path d=\"M22.5 6.4a2.8 2.8 0 00-2-2C18.8 4 12 4 12 4s-6.8 0-8.5.4a2.8 2.8 0 00-2 2A29 29 0 001 12a29 29 0 00.5 5.6 2.8 2.8 0 002 2c1.7.4 8.5.4 8.5.4s6.8 0 8.5-.4a2.8 2.8 0 002-2A29 29 0 0023 12a29 29 0 00-.5-5.6z\"/><polygon points=\"9.75,15 15.5,12 9.75,9\"/>" },
+    tiktok: { n: "TikTok", svg: "<path d=\"M9 12a4 4 0 104 4V2c.5 2.5 2.5 4.5 5 5\"/>" },
+    whatsapp: { n: "WhatsApp", svg: "<path d=\"M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1121 11.5z\"/>" },
+    website: { n: "Website", svg: "<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M12 2a15 15 0 010 20M12 2a15 15 0 000 20\"/>" }
+  };
+  function opts(map, nameFn) { return Object.keys(map).map(function(k) { return { v: k, t: nameFn(k) }; }); }
+
+  // Lijsten die je kunt uitbreiden. `path` wijst naar een array in de inhoud.
+  var LISTS = {
+    "l-herolines": { path: "hero.lines", name: "Regel", add: "Titelregel toevoegen", make: function() { return { t: "", or: false }; },
+      fields: [{ k: "t", label: "Tekst" }, { k: "or", label: "Oranje", type: "check" }] },
+    "l-diensten": { path: "diensten.items", name: "Dienst", add: "Dienst toevoegen", cols: 2, make: function() { return { t: "Nieuwe dienst", d: "", icon: "moersleutel" }; },
+      fields: [{ k: "t", label: "Naam" }, { k: "d", label: "Omschrijving", type: "textarea" }, { k: "icon", label: "Icoon", type: "select", options: opts(ICONS, function(k) { return ICON_NAMES[k]; }) }] },
+    "l-paras": { path: "over.paras", name: "Alinea", add: "Alinea toevoegen", plain: true, make: function() { return ""; },
+      fields: [{ k: "", label: "Tekst", type: "textarea" }] },
+    "l-stats": { path: "over.stats", name: "Statistiek", add: "Statistiek toevoegen", cols: 2, make: function() { return { n: "", l: "" }; },
+      fields: [{ k: "n", label: "Getal" }, { k: "l", label: "Label" }] },
+    "l-portfolio": { path: "portfolio.items", name: "Project", add: "Project toevoegen", cols: 2, make: function() { return { name: "Nieuw project", cat: "", img: "" }; },
+      fields: [{ k: "name", label: "Projectnaam" }, { k: "cat", label: "Categorie" }, { k: "img", label: "Foto", type: "image", prefix: "images/portfolio-" }] },
+    "l-extra": { path: "extra", name: "Sectie", add: "Sectie toevoegen", make: function() { return { label: "", title: "Nieuwe sectie", accent: "", text: "", menu: true }; },
+      fields: [{ k: "label", label: "Label (klein, boven de titel; ook menutekst)" }, { k: "title", label: "Titel" }, { k: "accent", label: "Titel (oranje deel)" }, { k: "text", label: "Tekst", type: "textarea" }, { k: "menu", label: "Tonen in het menu", type: "check" }] },
+    "l-tags": { path: "cta.tags", name: "Label", add: "Label toevoegen", plain: true, cols: 2, make: function() { return ""; },
+      fields: [{ k: "", label: "Tekst" }] },
+    "l-cextra": { path: "contact.extra", name: "Gegeven", add: "Gegeven toevoegen", cols: 2, make: function() { return { l: "", v: "" }; },
+      fields: [{ k: "l", label: "Label (bijv. KvK)" }, { k: "v", label: "Waarde" }] },
+    "l-socials": { path: "contact.socials", name: "Social", add: "Social media toevoegen", cols: 2, make: function() { return { type: "instagram", url: "" }; },
+      fields: [{ k: "type", label: "Platform", type: "select", options: opts(SOCIALS, function(k) { return SOCIALS[k].n; }) }, { k: "url", label: "Link (URL)" }] },
+    "l-flinks": { path: "footer.links", name: "Link", add: "Link toevoegen", cols: 2, make: function() { return { t: "", u: "" }; },
+      fields: [{ k: "t", label: "Tekst" }, { k: "u", label: "Link (URL of #)" }] }
+  };
+
+  var state = null;
+
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function merge(def, val) {
+    if (val === undefined || val === null) return clone(def);
+    if (Array.isArray(def)) return Array.isArray(val) ? val : clone(def);
+    if (typeof def === "object") {
+      var out = {};
+      Object.keys(def).forEach(function(k) { out[k] = merge(def[k], val[k]); });
+      return out;
+    }
+    return val;
+  }
+  function getPath(o, p) { return p.split(".").reduce(function(a, k) { return a == null ? a : a[k]; }, o); }
+  function setPath(o, p, v) { var ks = p.split("."), last = ks.pop(); ks.reduce(function(a, k) { return a[k]; }, o)[last] = v; }
+
+  function showToast(msg, isErr) {
+    var t = document.getElementById("toast");
+    t.textContent = msg; t.className = "toast on" + (isErr ? " err" : "");
+    clearTimeout(t._h); t._h = setTimeout(function() { t.classList.remove("on"); }, 3500);
+  }
+
+  // ---------- Formulier ----------
+  function bindScalars() {
+    document.querySelectorAll("[data-k]").forEach(function(el) {
+      var v = getPath(state, el.getAttribute("data-k"));
+      el.value = v == null ? "" : v;
+      el.oninput = function() { setPath(state, el.getAttribute("data-k"), el.value); };
+    });
+    syncColor("c_or", "c_or_h"); syncColor("c_bg", "c_bg_h");
+  }
+  function syncColor(pickId, hexId) {
+    var pick = document.getElementById(pickId), hex = document.getElementById(hexId);
+    if (/^#[0-9a-fA-F]{6}$/.test(hex.value)) pick.value = hex.value;
+    pick.oninput = function() { hex.value = pick.value; setPath(state, hex.getAttribute("data-k"), pick.value); };
+    hex.onchange = function() { if (/^#[0-9a-fA-F]{6}$/.test(hex.value)) pick.value = hex.value; };
+  }
+
+  function el(tag, attrs, html) {
+    var e = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function(k) { e.setAttribute(k, attrs[k]); });
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function renderList(id) {
+    var cfg = LISTS[id], box = document.getElementById(id), arr = getPath(state, cfg.path);
+    box.innerHTML = "";
+    var list = el("div", { "class": "list" + (cfg.cols === 2 ? " cols2" : "") });
+    if (!arr.length) list.appendChild(el("div", { "class": "empty" }, "Nog niets toegevoegd."));
+    arr.forEach(function(item, i) {
+      var card = el("div", { "class": "item" });
+      var head = el("div", { "class": "ihead" });
+      head.appendChild(el("span", { "class": "pbadge" }, cfg.name + " " + (i + 1)));
+      var acts = el("div", { "class": "iacts" });
+      [["&#8593;", "Omhoog", -1], ["&#8595;", "Omlaag", 1]].forEach(function(b) {
+        var btn = el("button", { "class": "b-ico", title: b[1], type: "button" }, b[0]);
+        btn.disabled = (b[2] < 0 && i === 0) || (b[2] > 0 && i === arr.length - 1);
+        btn.onclick = function() { var j = i + b[2]; var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp; renderList(id); };
+        acts.appendChild(btn);
+      });
+      var del = el("button", { "class": "b-ico del", title: "Verwijderen", type: "button" }, "&#10005;");
+      del.onclick = function() { if (confirm(cfg.name + " " + (i + 1) + " verwijderen?")) { arr.splice(i, 1); renderList(id); } };
+      acts.appendChild(del);
+      head.appendChild(acts);
+      card.appendChild(head);
+      cfg.fields.forEach(function(f) { card.appendChild(renderField(cfg, arr, i, f)); });
+      list.appendChild(card);
+    });
+    box.appendChild(list);
+    var add = el("button", { "class": "b-add", type: "button" }, "+ " + cfg.add);
+    add.onclick = function() { arr.push(cfg.make()); renderList(id); };
+    box.appendChild(add);
+  }
+
+  function renderField(cfg, arr, i, f) {
+    var get = function() { return cfg.plain ? arr[i] : arr[i][f.k]; };
+    var set = function(v) { if (cfg.plain) arr[i] = v; else arr[i][f.k] = v; };
+    var wrap = el("div", { "class": "fg" });
+    if (f.type === "check") {
+      var lab = el("label", { "class": "chk" });
+      var cb = el("input", { type: "checkbox" }); cb.checked = !!get();
+      cb.onchange = function() { set(cb.checked); };
+      lab.appendChild(cb); lab.appendChild(document.createTextNode(f.label));
+      wrap.appendChild(lab);
+      return wrap;
+    }
+    wrap.appendChild(el("label", null, f.label));
+    var input;
+    if (f.type === "textarea") { input = el("textarea"); input.value = get() || ""; }
+    else if (f.type === "select") {
+      input = el("select");
+      f.options.forEach(function(o) { var op = el("option", { value: o.v }, o.t); input.appendChild(op); });
+      input.value = get();
+    } else if (f.type === "image") {
+      var ub = el("div", { "class": "upload-box" }, "<span class=\"ico\">&#128247;</span><div class=\"ut\">" + (get() ? "Foto vervangen" : "Foto uploaden") + "</div>");
+      var file = el("input", { type: "file", accept: "image/*" });
+      var prev = el("img", { "class": "prev" });
+      var us = el("div", { "class": "us" });
+      if (get()) { prev.src = get(); prev.classList.add("show"); prev.onerror = function() { prev.classList.remove("show"); }; }
+      file.onchange = function() {
+        var fl = file.files[0]; if (!fl) return;
+        var ext = (fl.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
+        var path = f.prefix + Date.now() + "." + ext;
+        uploadFile(fl, path, prev, us).then(function(ok) { if (ok) set(path); });
+      };
+      ub.insertBefore(file, ub.firstChild);
+      wrap.appendChild(ub); wrap.appendChild(prev); wrap.appendChild(us);
+      return wrap;
+    } else { input = el("input", { type: "text" }); input.value = get() || ""; }
+    input.oninput = input.onchange = function() { set(input.value); };
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  function renderAll() {
+    bindScalars();
+    Object.keys(LISTS).forEach(renderList);
+  }
+
   document.getElementById("nav").addEventListener("click", function(e) {
-    var btn = e.target; if (!btn.classList.contains("nav-item")) return;
+    var btn = e.target.closest(".nav-item"); if (!btn) return;
     var p = btn.getAttribute("data-p"); if (!p) return;
     document.querySelectorAll(".nav-item").forEach(function(b) { b.classList.remove("on"); });
     document.querySelectorAll(".panel").forEach(function(x) { x.classList.remove("on"); });
     btn.classList.add("on");
     var panel = document.getElementById("p-" + p); if (panel) panel.classList.add("on");
   });
-  document.getElementById("c_or").addEventListener("input", function() { document.getElementById("c_or_h").value = this.value; });
-  document.getElementById("c_or_h").addEventListener("change", function() { if (/^#[0-9a-fA-F]{6}$/.test(this.value)) document.getElementById("c_or").value = this.value; });
-  document.getElementById("c_bg").addEventListener("input", function() { document.getElementById("c_bg_h").value = this.value; });
-  document.getElementById("c_bg_h").addEventListener("change", function() { if (/^#[0-9a-fA-F]{6}$/.test(this.value)) document.getElementById("c_bg").value = this.value; });
-  function showToast(msg, isErr) {
-    var t = document.getElementById("toast");
-    t.textContent = msg; t.className = "toast on" + (isErr ? " err" : "");
-    setTimeout(function() { t.classList.remove("on"); }, 3500);
-  }
-  function g(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+
+  // ---------- GitHub ----------
+  function g(id) { var e = document.getElementById(id); return e ? e.value.trim() : ""; }
   function getTok() { return localStorage.getItem("ght") || g("gh_t"); }
   function getUser() { return localStorage.getItem("ghu") || "luukmekers"; }
   function getRepo() { return localStorage.getItem("ghr") || "STB-Heeten"; }
+  function apiUrl(path) { return "https://api.github.com/repos/" + getUser() + "/" + getRepo() + "/contents/" + path; }
+  function authHdr() { return { Authorization: "token " + getTok() }; }
+
   window.saveTok = function() {
     localStorage.setItem("ghu", g("gh_u")); localStorage.setItem("ghr", g("gh_r")); localStorage.setItem("ght", g("gh_t"));
     updateTokStatus(); showToast("Token opgeslagen!");
@@ -272,11 +452,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--or)}textarea{resize:v
     document.getElementById("tok_dot").className = "dot" + (ok ? " ok" : "");
     document.getElementById("tok_txt").textContent = ok ? "Geconfigureerd" : "Niet geconfigureerd";
   }
-  function loadSaved() {
-    if (!localStorage.getItem("ght")) { setTimeout(showSetup, 400); }
-    var u = localStorage.getItem("ghu"); if (u) { var el = document.getElementById("gh_u"); if(el) el.value = u; }
-    var r = localStorage.getItem("ghr"); if (r) { var el2 = document.getElementById("gh_r"); if(el2) el2.value = r; }
-    var t = localStorage.getItem("ght"); if (t) { var el3 = document.getElementById("gh_t"); if(el3) el3.value = t; }
+  function loadTokFields() {
+    var u = localStorage.getItem("ghu"); if (u) document.getElementById("gh_u").value = u;
+    var r = localStorage.getItem("ghr"); if (r) document.getElementById("gh_r").value = r;
+    var t = localStorage.getItem("ght"); if (t) document.getElementById("gh_t").value = t;
     updateTokStatus();
   }
   function showSetup() {
@@ -285,64 +464,129 @@ input:focus,select:focus,textarea:focus{border-color:var(--or)}textarea{resize:v
     ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;display:flex;align-items:center;justify-content:center";
     ov.innerHTML = "<div style='background:#1a1a1a;border:2px solid #E8820C;border-radius:10px;padding:2rem;max-width:440px;width:90%'><h2 style='font-size:1.1rem;margin-bottom:.5rem;color:#fff'>Eenmalige instelling</h2><p style='font-size:.83rem;color:#aaa;margin-bottom:1.25rem;line-height:1.6'>Voer je GitHub token in. Wordt opgeslagen zodat je dit niet meer hoeft te doen.</p><input type='password' id='setup_tok' placeholder='ghp_...' style='width:100%;background:#0d0d0d;border:1px solid #444;color:#fff;padding:.65rem .9rem;border-radius:4px;font-size:.9rem;outline:none;margin-bottom:1rem'><button onclick='doSetup()' style='width:100%;background:#E8820C;color:#000;border:none;padding:.75rem;border-radius:4px;font-size:.9rem;font-weight:700;cursor:pointer'>Opslaan en doorgaan</button></div>";
     document.body.appendChild(ov);
-    setTimeout(function() { var el = document.getElementById("setup_tok"); if(el) el.focus(); }, 100);
+    setTimeout(function() { var e = document.getElementById("setup_tok"); if (e) e.focus(); }, 100);
   }
   window.doSetup = function() {
     var t = document.getElementById("setup_tok").value.trim();
     if (!t || t.length < 10) { alert("Voer een geldig token in."); return; }
     localStorage.setItem("ght", t); localStorage.setItem("ghu", "luukmekers"); localStorage.setItem("ghr", "STB-Heeten");
     var ov = document.getElementById("setup-ov"); if (ov) ov.remove();
-    updateTokStatus(); var el = document.getElementById("gh_t"); if(el) el.value = t;
-    showToast("Token opgeslagen! Je kunt nu uploaden en publiceren.");
+    loadTokFields();
+    showToast("Token opgeslagen! Inhoud wordt opnieuw geladen.");
+    loadContent();
   };
-  window.upload = async function(input, id, path) {
-    var file = input.files[0]; if (!file) return;
-    var prev = document.getElementById(id + "-prev");
-    var us = document.getElementById(id + "-us");
-    var reader = new FileReader();
-    reader.onload = function(e) { if (prev) { prev.src = e.target.result; prev.classList.add("show"); } };
-    reader.readAsDataURL(file);
+
+  function b64ToUtf8(b64) { return decodeURIComponent(escape(atob(b64.replace(/\s/g, "")))); }
+  function utf8ToB64(s) { return btoa(unescape(encodeURIComponent(s))); }
+
+  async function getSha(path) {
+    var r = await fetch(apiUrl(path) + "?t=" + Date.now(), { headers: authHdr(), cache: "no-store" });
+    if (!r.ok) return null;
+    return (await r.json()).sha;
+  }
+  async function putFile(path, b64, message) {
+    var body = { message: message, content: b64 };
+    var sha = await getSha(path); if (sha) body.sha = sha;
+    var r = await fetch(apiUrl(path), { method: "PUT", headers: Object.assign({ "Content-Type": "application/json" }, authHdr()), body: JSON.stringify(body) });
+    if (!r.ok) { var e = {}; try { e = await r.json(); } catch (x) {} throw new Error(e.message || ("HTTP " + r.status)); }
+  }
+
+  async function loadContent() {
+    var loaded = null, src = "standaard";
     var tok = getTok();
-    if (!tok || tok.length < 10) { if(us){us.textContent="Sla eerst je token op!";us.className="us err";} return; }
-    if (us) { us.textContent = "Uploaden..."; us.className = "us"; }
-    var b64reader = new FileReader();
-    b64reader.onload = async function(e) {
-      var b64 = e.target.result.split(",")[1];
-      var usr = getUser(); var rep = getRepo();
-      var existing = null;
+    if (tok && tok.length > 10) {
       try {
-        var chk = await fetch("https://api.github.com/repos/" + usr + "/" + rep + "/contents/" + path, { headers: { Authorization: "token " + tok } });
-        if (chk.ok) { var cd = await chk.json(); existing = cd.sha; }
-      } catch(e2) {}
-      var body = { message: "Foto geupload: " + path, content: b64 };
-      if (existing) body.sha = existing;
-      var res = await fetch("https://api.github.com/repos/" + usr + "/" + rep + "/contents/" + path, {
-        method: "PUT", headers: { Authorization: "token " + tok, "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-      if (res.ok) { if(us){us.textContent="Geupload: "+file.name;us.className="us ok";} }
-      else { var err = await res.json(); if(us){us.textContent="Fout: "+(err.message||"?");us.className="us err";} }
-    };
-    b64reader.readAsDataURL(file);
-  };
-  function buildHTML() {
-    var or = g("c_or_h") || "#E8820C";
-    var bg = g("c_bg_h") || "#0D0D0D";
-    var ig = g("c_ig") || "#";
-    var fb = g("c_fb") || "#";
-    var pn = [g("p1_name")||"Industriele hal",g("p2_name")||"Aanbouw woning",g("p3_name")||"Maatwerk hekwerk",g("p4_name")||"Draagconstructie",g("p5_name")||"Stalen trap",g("p6_name")||"Industrieel complex"];
-    var pc = [g("p1_cat")||"Staalconstructie",g("p2_cat")||"Bouw en Verbouw",g("p3_cat")||"Lassen en Metaal",g("p4_cat")||"Constructiewerk",g("p5_cat")||"Staalwerk",g("p6_cat")||"Renovatie"];
-    var pItems = "";
-    for (var i = 0; i < 6; i++) {
-      pItems += "<div class=\"pi\" style=\"background-image:url('images/portfolio" + (i+1) + ".jpg')\">";
-      pItems += "<div class=\"pio\"></div>";
-      pItems += "<div class=\"pii\"><div class=\"pc\">" + pc[i] + "</div><div class=\"pn\">" + pn[i] + "</div></div>";
-      pItems += "</div>";
+        var r = await fetch(apiUrl("content.json") + "?t=" + Date.now(), { headers: authHdr(), cache: "no-store" });
+        if (r.ok) { loaded = JSON.parse(b64ToUtf8((await r.json()).content)); src = "github"; }
+      } catch (e) {}
     }
+    if (!loaded) {
+      try {
+        var r2 = await fetch("content.json?t=" + Date.now(), { cache: "no-store" });
+        if (r2.ok) { loaded = await r2.json(); src = "website"; }
+      } catch (e) {}
+    }
+    state = merge(DEFAULTS, loaded);
+    renderAll();
+    document.getElementById("loading").style.display = "none";
+    if (src === "standaard") showToast("Kon content.json niet laden: standaardteksten getoond", true);
+  }
+
+  function readAsDataURL(file) {
+    return new Promise(function(res, rej) { var fr = new FileReader(); fr.onload = function(e) { res(e.target.result); }; fr.onerror = rej; fr.readAsDataURL(file); });
+  }
+  async function uploadFile(file, path, prev, us) {
+    var data = await readAsDataURL(file);
+    if (prev) { prev.src = data; prev.classList.add("show"); }
+    var tok = getTok();
+    if (!tok || tok.length < 10) { if (us) { us.textContent = "Sla eerst je token op!"; us.className = "us err"; } return false; }
+    if (us) { us.textContent = "Uploaden..."; us.className = "us"; }
+    try {
+      await putFile(path, data.split(",")[1], "Foto geupload: " + path);
+      if (us) { us.textContent = "Geupload: " + file.name + " - klik nog op Opslaan en publiceren"; us.className = "us ok"; }
+      return true;
+    } catch (e) {
+      if (us) { us.textContent = "Fout: " + e.message; us.className = "us err"; }
+      return false;
+    }
+  }
+  window.uploadFixed = function(input, id, path) {
+    var f = input.files[0]; if (!f) return;
+    uploadFile(f, path, document.getElementById(id + "-prev"), document.getElementById(id + "-us"));
+  };
+
+  // ---------- Website bouwen ----------
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function nl2br(s) { return esc(s).replace(/\n/g, "<br>"); }
+  function jsStr(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/</g, "\\x3c"); }
+  function filled(arr, key) { return arr.filter(function(x) { return String(key ? x[key] : x).trim() !== ""; }); }
+  function head2(sl, title, accent) {
+    return "<div class=\"sl\">" + esc(sl) + "</div><h2 class=\"st\">" + esc(title) + (accent ? " <span>" + esc(accent) + "</span>" : "") + "</h2><div class=\"dv\"></div>";
+  }
+  function svgIcon(inner) { return "<svg viewBox=\"0 0 24 24\">" + inner + "</svg>"; }
+  function contactRow(icon, label, valueHtml) {
+    return "<div class=\"cii\"><div class=\"cic\">" + svgIcon(icon) + "</div><div><div class=\"cil\">" + esc(label) + "</div><div class=\"civ\">" + valueHtml + "</div></div></div>";
+  }
+  var SITE = "https://stbheeten.nl/";
+  var GSV = "X4QOUWrubuQZSk_BHdz0MmKhIV3a00xNA-VU8dpbB4g";
+
+  function buildHTML(c) {
+    var or = /^#[0-9a-fA-F]{6}$/.test(c.style.or) ? c.style.or : "#E8820C";
+    var bg = /^#[0-9a-fA-F]{6}$/.test(c.style.bg) ? c.style.bg : "#0D0D0D";
+    var diensten = filled(c.diensten.items, "t");
+    var paras = filled(c.over.paras);
+    var stats = filled(c.over.stats, "n");
+    var projects = filled(c.portfolio.items, "name");
+    var extras = c.extra.filter(function(x) { return (x.title || "").trim() || (x.text || "").trim(); });
+    var tags = filled(c.cta.tags);
+    var socials = filled(c.contact.socials, "url");
+    var cextra = filled(c.contact.extra, "v");
+    var flinks = filled(c.footer.links, "t");
+    var ct = c.contact;
+    var telDigits = (ct.tel || "").replace(/\(0\)/, "").replace(/[^\d+]/g, "");
+
+    // Structured data voor Google
+    var ld = { "@context": "https://schema.org", "@type": "GeneralContractor", name: "STB Heeten", url: SITE, image: SITE + "images/logo.png", areaServed: "NL" };
+    if (telDigits) ld.telephone = telDigits;
+    if (ct.mail) ld.email = ct.mail;
+    if (ct.street) {
+      var m = (ct.city || "").match(/^\s*(\d{4}\s?[A-Za-z]{2})\s+([^,]+)/);
+      ld.address = { "@type": "PostalAddress", streetAddress: ct.street, addressCountry: "NL" };
+      if (m) { ld.address.postalCode = m[1]; ld.address.addressLocality = m[2].trim(); }
+    }
+    if (socials.length) ld.sameAs = socials.map(function(s) { return s.url; });
+    if (c.seo.desc) ld.description = c.seo.desc;
+
     var h = [];
     h.push("<!DOCTYPE html><html lang=\"nl\"><head>");
     h.push("<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-    h.push("<title>STB Heeten - Staal, Techniek en Bouw</title>");
+    h.push("<title>" + esc(c.seo.title) + "</title>");
+    h.push("<meta name=\"google-site-verification\" content=\"" + GSV + "\">");
+    if (c.seo.desc) h.push("<meta name=\"description\" content=\"" + esc(c.seo.desc) + "\">");
+    h.push("<link rel=\"canonical\" href=\"" + SITE + "\"><meta name=\"robots\" content=\"index, follow\">");
+    h.push("<meta property=\"og:type\" content=\"website\"><meta property=\"og:site_name\" content=\"STB Heeten\"><meta property=\"og:title\" content=\"" + esc(c.seo.title) + "\"><meta property=\"og:description\" content=\"" + esc(c.seo.desc) + "\"><meta property=\"og:url\" content=\"" + SITE + "\"><meta property=\"og:image\" content=\"" + SITE + "images/over.jpg\"><meta property=\"og:locale\" content=\"nl_NL\">");
+    h.push("<meta name=\"twitter:card\" content=\"summary_large_image\"><meta name=\"twitter:title\" content=\"" + esc(c.seo.title) + "\"><meta name=\"twitter:description\" content=\"" + esc(c.seo.desc) + "\"><meta name=\"twitter:image\" content=\"" + SITE + "images/over.jpg\">");
+    h.push("<script type=\"application/ld+json\">" + JSON.stringify(ld).replace(/</g, "\\u003c") + "<\/script>");
     h.push("<link href=\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap\" rel=\"stylesheet\">");
     h.push("<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}:root{--or:" + or + ";--bg:" + bg + ";--dark:#141414;--c2:#1C1C1C;--c3:#252525;--gr:#888;--wh:#fff;--tx:#CCC}html{scroll-behavior:smooth}body{font-family:Barlow,sans-serif;background:var(--bg);color:var(--wh);overflow-x:hidden}");
     h.push("nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:72px;background:rgba(13,13,13,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,130,12,.15)}.nl{display:flex;align-items:center;gap:.75rem}.lt{font-family:Bebas Neue,sans-serif;font-size:1.6rem;letter-spacing:.08em;color:var(--wh)}.ls{font-family:Barlow Condensed,sans-serif;font-size:.65rem;letter-spacing:.25em;color:var(--or);display:block;margin-top:-4px}.nm{display:flex;gap:2rem;list-style:none}.nm a{font-family:Barlow Condensed,sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--tx);text-decoration:none;transition:color .2s}.nm a:hover{color:var(--or)}.nc{background:var(--or);color:var(--bg);font-family:Barlow Condensed,sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.4rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}");
@@ -351,45 +595,103 @@ input:focus,select:focus,textarea:focus{border-color:var(--or)}textarea{resize:v
     h.push("section{padding:6rem 2.5rem}.sl{font-family:Barlow Condensed,sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:.75rem}.st{font-family:Bebas Neue,sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:.04em;color:var(--wh);line-height:1}.st span{color:var(--or)}.cn{max-width:1100px;margin:0 auto}.dv{width:48px;height:3px;background:var(--or);margin:1.25rem 0 2.5rem}");
     h.push(".ds{background:var(--dark)}.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;margin-top:3rem}.dc{background:var(--c2);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background .2s}.dc::before{content:\"\";position:absolute;top:0;left:0;right:0;height:2px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .35s}.dc:hover::before{transform:scaleX(1)}.dc:hover{background:var(--c3)}.di{width:52px;height:52px;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(232,130,12,.3)}.di svg{width:26px;height:26px;stroke:var(--or);fill:none;stroke-width:1.5}.dn{font-family:Bebas Neue,sans-serif;font-size:3.5rem;color:rgba(232,130,12,.07);position:absolute;top:1.5rem;right:1.5rem;line-height:1}.dt{font-family:Bebas Neue,sans-serif;font-size:1.5rem;letter-spacing:.05em;color:var(--wh);margin-bottom:.75rem}.dd{font-size:.9rem;color:var(--tx);line-height:1.7}");
     h.push(".ov{background:var(--bg)}.oi{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}.ovis{aspect-ratio:4/3;border:1px solid rgba(232,130,12,.12);position:relative;background-size:cover;background-position:center;background-repeat:no-repeat}.obg{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--or);padding:1.25rem 1.5rem;text-align:center}.obn{font-family:Bebas Neue,sans-serif;font-size:2.5rem;color:var(--bg);line-height:1}.obt{font-family:Barlow Condensed,sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--bg);font-weight:700}.os{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2.5rem 0}.ostat{border-left:2px solid var(--or);padding-left:1rem}.osn{font-family:Bebas Neue,sans-serif;font-size:2rem;color:var(--wh)}.osl{font-size:.82rem;color:var(--tx)}.otx{font-size:1rem;color:var(--tx);line-height:1.8;margin-bottom:1rem}");
-    h.push(".pf{background:var(--dark)}.pg{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,280px);gap:4px;margin-top:3rem}.pi{position:relative;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--c2)}.pio{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,transparent 50%);opacity:0;transition:opacity .3s}.pi:hover .pio{opacity:1}.pii{position:absolute;bottom:0;left:0;right:0;padding:1.25rem;transform:translateY(100%);transition:transform .3s}.pi:hover .pii{transform:translateY(0)}.pc{font-family:Barlow Condensed,sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.25rem}.pn{font-family:Bebas Neue,sans-serif;font-size:1.3rem;color:var(--wh)}");
+    h.push(".pf{background:var(--dark)}.pg{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:280px;gap:4px;margin-top:3rem}.pi{position:relative;overflow:hidden;cursor:pointer;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:var(--c2)}.pio{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,transparent 50%);opacity:0;transition:opacity .3s}.pi:hover .pio{opacity:1}.pii{position:absolute;bottom:0;left:0;right:0;padding:1.25rem;transform:translateY(100%);transition:transform .3s}.pi:hover .pii{transform:translateY(0)}.pc{font-family:Barlow Condensed,sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.25rem}.pn{font-family:Bebas Neue,sans-serif;font-size:1.3rem;color:var(--wh)}");
+    h.push(".ex{background:var(--bg)}.ex.alt{background:var(--dark)}.ex .otx{max-width:760px}");
     h.push(".cb{background:var(--or);padding:3.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}.cbt{font-family:Bebas Neue,sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--bg)}.cbs{font-family:Barlow Condensed,sans-serif;font-size:.9rem;color:rgba(0,0,0,.6);text-transform:uppercase;margin-top:.25rem}.cbp{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem}.cbl{font-family:Barlow Condensed,sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.12);color:var(--bg);padding:.3rem .8rem}.bd{background:var(--bg);color:var(--wh);font-family:Barlow Condensed,sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:1rem 2.5rem;border:none;cursor:pointer;text-decoration:none;display:inline-block}");
-    h.push(".ct{background:var(--bg)}.ci{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem}.cii{display:flex;gap:1rem;margin-bottom:2rem;align-items:flex-start}.cic{width:44px;height:44px;border:1px solid rgba(232,130,12,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}.cic svg{width:20px;height:20px;stroke:var(--or);fill:none;stroke-width:1.5}.cil{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.25rem}.civ{font-size:.95rem;color:var(--wh)}.sr{display:flex;gap:.75rem;margin-top:2.5rem}.sb{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:border-color .2s}.sb:hover{border-color:var(--or)}.sb svg{width:18px;height:18px;stroke:#ccc;fill:none;stroke-width:1.5}.cf{display:flex;flex-direction:column;gap:1rem}.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.fg{display:flex;flex-direction:column;gap:.4rem}.fgl{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr)}.fi,.ft{background:var(--c2);border:1px solid rgba(255,255,255,.08);color:var(--wh);font-family:Barlow,sans-serif;font-size:.95rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;width:100%}.fi:focus,.ft:focus{border-color:var(--or)}.ft{min-height:130px;resize:vertical}");
-    h.push("footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}.fl{font-family:Bebas Neue,sans-serif;font-size:1.4rem;color:var(--wh)}.fl span{color:var(--or)}.fls{display:flex;gap:1.5rem}.fls a{font-family:Barlow Condensed,sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gr);text-decoration:none}.fc{font-size:.78rem;color:var(--gr)}");
-    h.push("@media(max-width:768px){.nm{display:none}section{padding:4rem 1.25rem}.dg,.oi,.ci,.fr{grid-template-columns:1fr}.pg{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,220px)}footer,.cb{flex-direction:column}.hdesc{font-size:1rem}.dd{font-size:.95rem}.otx{font-size:1rem}.osn{font-size:1.8rem}.osl{font-size:.85rem}.pc{font-size:.75rem}.pn{font-size:1.2rem}.cil{font-size:.8rem}.civ{font-size:1rem}.fgl{font-size:.8rem}.fi,.ft{font-size:16px}.fc,.fls a{font-size:.85rem}.cbs{font-size:.85rem}}");
+    h.push(".ct{background:var(--bg)}.ci{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem}.cii{display:flex;gap:1rem;margin-bottom:2rem;align-items:flex-start}.cic{width:44px;height:44px;border:1px solid rgba(232,130,12,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}.cic svg{width:20px;height:20px;stroke:var(--or);fill:none;stroke-width:1.5}.cil{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.25rem}.civ{font-size:.95rem;color:var(--wh)}.civ a{color:inherit;text-decoration:none}.civ a:hover{color:var(--or)}.sr{display:flex;gap:.75rem;margin-top:2.5rem;flex-wrap:wrap}.sb{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:border-color .2s}.sb:hover{border-color:var(--or)}.sb svg{width:18px;height:18px;stroke:#ccc;fill:none;stroke-width:1.5}.cf{display:flex;flex-direction:column;gap:1rem}.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.fg{display:flex;flex-direction:column;gap:.4rem}.fgl{font-family:Barlow Condensed,sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gr)}.fi,.ft{background:var(--c2);border:1px solid rgba(255,255,255,.08);color:var(--wh);font-family:Barlow,sans-serif;font-size:.95rem;padding:.75rem 1rem;outline:none;transition:border-color .2s;width:100%}.fi:focus,.ft:focus{border-color:var(--or)}.ft{min-height:130px;resize:vertical}");
+    h.push("footer{background:var(--dark);border-top:1px solid rgba(232,130,12,.1);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}.fl{font-family:Bebas Neue,sans-serif;font-size:1.4rem;color:var(--wh)}.fl span{color:var(--or)}.fls{display:flex;gap:1.5rem;flex-wrap:wrap}.fls a{font-family:Barlow Condensed,sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gr);text-decoration:none}.fls a:hover{color:var(--or)}.fc{font-size:.78rem;color:var(--gr)}");
+    h.push("@media(max-width:768px){.nm{display:none}section{padding:4rem 1.25rem}.dg,.oi,.ci,.fr{grid-template-columns:1fr}.pg{grid-template-columns:1fr 1fr;grid-auto-rows:220px}footer,.cb{flex-direction:column}.hdesc{font-size:1rem}.dd{font-size:.95rem}.otx{font-size:1rem}.osn{font-size:1.8rem}.osl{font-size:.85rem}.pc{font-size:.75rem}.pn{font-size:1.2rem}.cil{font-size:.8rem}.civ{font-size:1rem}.fgl{font-size:.8rem}.fi,.ft{font-size:16px}.fc,.fls a{font-size:.85rem}.cbs{font-size:.85rem}}");
     h.push("</style></head><body>");
-    h.push("<nav><div class=\"nl\"><img src=\"images/logo.png\" alt=\"STB Heeten\" style=\"height:42px;object-fit:contain\" onerror=\"this.style.display='none'\"><div><span class=\"lt\">STB HEETEN</span><span class=\"ls\">Staal - Techniek - Bouw</span></div></div><ul class=\"nm\"><li><a href=\"#ds\">Diensten</a></li><li><a href=\"#ov\">Over ons</a></li><li><a href=\"#pf\">Portfolio</a></li><li><a href=\"#ct\">Contact</a></li></ul><a href=\"#ct\" class=\"nc\">" + g("hero_b1") + "</a></nav>");
-    h.push("<section class=\"hero\" id=\"home\"><div class=\"hbg\"></div><div class=\"hsp\" id=\"sp\"></div><div class=\"hpl\"></div><div class=\"hc\"><div class=\"htag\">" + g("hero_tag") + "</div><h1 class=\"htit\">" + g("hero_r1") + "<br><span>" + g("hero_r2") + "</span><br>" + g("hero_r3") + "</h1><p class=\"hdesc\">" + g("hero_desc") + "</p><div class=\"hbtns\"><a href=\"#ct\" class=\"bp\">" + g("hero_b1") + "</a><a href=\"#pf\" class=\"bo\">" + g("hero_b2") + "</a></div></div><div class=\"hscr\"><div class=\"hscrl\"></div>Scroll</div></section>");
-    h.push("<section class=\"ds\" id=\"ds\"><div class=\"cn\"><div class=\"sl\">Wat wij doen</div><h2 class=\"st\">Onze <span>Diensten</span></h2><div class=\"dv\"></div><div class=\"dg\"><div class=\"dc\"><div class=\"dn\">01</div><div class=\"di\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 2L2 7l10 5 10-5-10-5z\"/><path d=\"M2 17l10 5 10-5\"/><path d=\"M2 12l10 5 10-5\"/></svg></div><div class=\"dt\">" + g("d1t") + "</div><p class=\"dd\">" + g("d1d") + "</p></div><div class=\"dc\"><div class=\"dn\">02</div><div class=\"di\"><svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"1\"/><path d=\"M8 21h8M12 17v4\"/></svg></div><div class=\"dt\">" + g("d2t") + "</div><p class=\"dd\">" + g("d2d") + "</p></div><div class=\"dc\"><div class=\"dn\">03</div><div class=\"di\"><svg viewBox=\"0 0 24 24\"><path d=\"M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\"/><polyline points=\"9,22 9,12 15,12 15,22\"/></svg></div><div class=\"dt\">" + g("d3t") + "</div><p class=\"dd\">" + g("d3d") + "</p></div></div></div></section>");
-    h.push("<section class=\"ov\" id=\"ov\"><div class=\"cn\"><div class=\"oi\"><div><div class=\"sl\">Over ons</div><h2 class=\"st\">" + g("ov_t") + "</h2><div class=\"dv\"></div><p class=\"otx\">" + g("ov_p1") + "</p><p class=\"otx\">" + g("ov_p2") + "</p><div class=\"os\"><div class=\"ostat\"><div class=\"osn\">" + g("s1n") + "</div><div class=\"osl\">" + g("s1l") + "</div></div><div class=\"ostat\"><div class=\"osn\">" + g("s2n") + "</div><div class=\"osl\">" + g("s2l") + "</div></div><div class=\"ostat\"><div class=\"osn\">" + g("s3n") + "</div><div class=\"osl\">" + g("s3l") + "</div></div><div class=\"ostat\"><div class=\"osn\">" + g("s4n") + "</div><div class=\"osl\">" + g("s4l") + "</div></div></div><a href=\"#ct\" class=\"bp\">Neem contact op</a></div><div style=\"position:relative;padding-bottom:2.5rem;padding-right:2.5rem\"><div class=\"ovis\" style=\"background-image:url('images/over.jpg')\"></div><div class=\"obg\"><div class=\"obn\">V</div><div class=\"obt\">Offerte op maat</div></div></div></div></div></section>");
-    h.push("<section class=\"pf\" id=\"pf\"><div class=\"cn\"><div class=\"sl\">Ons werk</div><h2 class=\"st\">Project<span>portfolio</span></h2><div class=\"dv\"></div></div><div style=\"max-width:1100px;margin:2rem auto 0\"><div class=\"pg\">" + pItems + "</div></div></section>");
-    h.push("<div class=\"cb\"><div><div class=\"cbt\">" + g("cta_t") + "</div><div class=\"cbs\">" + g("cta_s") + "</div><div class=\"cbp\"><span class=\"cbl\">Lassen</span><span class=\"cbl\">Staalconstructie</span><span class=\"cbl\">Bouw en Verbouw</span></div></div><a href=\"#ct\" class=\"bd\">Offerte aanvragen</a></div>");
-    h.push("<section class=\"ct\" id=\"ct\"><div class=\"cn\"><div class=\"sl\">Contact</div><h2 class=\"st\">Neem <span>Contact Op</span></h2><div class=\"dv\"></div><div class=\"ci\"><div><div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><path d=\"M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.13 1 .38 1.97.74 2.91a2 2 0 01-.45 2.11L6.09 9.2a16 16 0 006.71 6.71l1.28-1.27a2 2 0 012.11-.45c.94.36 1.91.61 2.91.74A2 2 0 0122 16.92z\"/></svg></div><div><div class=\"cil\">Telefoon</div><div class=\"civ\">" + g("c_tel") + "</div></div></div><div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/></svg></div><div><div class=\"cil\">E-mail</div><div class=\"civ\">" + g("c_mail") + "</div></div></div><div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/></svg></div><div><div class=\"cil\">Werkgebied</div><div class=\"civ\">" + g("c_area") + "</div></div></div>"
-    + (g("c_street") ? "<div class=\"cii\"><div class=\"cic\"><svg viewBox=\"0 0 24 24\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg></div><div><div class=\"cil\">Adres</div><div class=\"civ\">" + g("c_street") + (g("c_city") ? "<br>" + g("c_city") : "") + "</div></div></div>" : "")
-    + "<div class=\"sr\"><a href=\"" + ig + "\" class=\"sb\" target=\"_blank\"><svg viewBox=\"0 0 24 24\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/></svg></a><a href=\"" + fb + "\" class=\"sb\" target=\"_blank\"><svg viewBox=\"0 0 24 24\"><path d=\"M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z\"/></svg></a></div></div><div class=\"cf\"><div class=\"fr\"><div class=\"fg\"><label class=\"fgl\">Naam</label><input type=\"text\" class=\"fi\" id=\"cf-naam\" placeholder=\"Uw naam\"></div><div class=\"fg\"><label class=\"fgl\">Bedrijf</label><input type=\"text\" class=\"fi\" id=\"cf-bedrijf\" placeholder=\"Bedrijfsnaam\"></div></div><div class=\"fr\"><div class=\"fg\"><label class=\"fgl\">Telefoon</label><input type=\"tel\" class=\"fi\" id=\"cf-telefoon\" placeholder=\"+31 6 ...\"></div><div class=\"fg\"><label class=\"fgl\">E-mail</label><input type=\"email\" class=\"fi\" id=\"cf-email\" placeholder=\"uw@email.nl\"></div></div><div class=\"fg\"><label class=\"fgl\">Dienst</label><select class=\"fi\" id=\"cf-dienst\"><option>Lassen en Metaalbewerking</option><option>Constructiewerk en Staalwerk</option><option>Bouw en Verbouw</option><option>Overig</option></select></div><div class=\"fg\"><label class=\"fgl\">Omschrijving</label><textarea class=\"ft\" id=\"cf-omschrijving\" placeholder=\"Vertel ons over uw project...\"></textarea></div><button class=\"bp\" id=\"cf-submit\" type=\"button\" style=\"align-self:flex-start;padding:.9rem 2.5rem\">Offerte aanvragen</button><p id=\"cf-msg\" style=\"display:none;font-size:.85rem;margin-top:.75rem;line-height:1.5\"></p></div></div></div></section>");
-    h.push("<footer><div class=\"fl\">STB <span>HEETEN</span></div><div class=\"fls\"><a href=\"#\">Privacybeleid</a><a href=\"#\">Algemene voorwaarden</a><a href=\"#\">KvK</a></div><div class=\"fc\">" + g("f_copy") + "</div></footer>");
+
+    // Navigatie
+    var menu = [];
+    if (diensten.length) menu.push(["#ds", "Diensten"]);
+    menu.push(["#ov", "Over ons"]);
+    if (projects.length) menu.push(["#pf", "Portfolio"]);
+    extras.forEach(function(x, i) { if (x.menu) menu.push(["#ex" + (i + 1), x.label || x.title]); });
+    menu.push(["#ct", "Contact"]);
+    h.push("<nav><div class=\"nl\"><img src=\"images/logo.png\" alt=\"STB Heeten\" style=\"height:42px;object-fit:contain\" onerror=\"this.style.display='none'\"><div><span class=\"lt\">STB HEETEN</span><span class=\"ls\">Staal - Techniek - Bouw</span></div></div><ul class=\"nm\">" + menu.map(function(m) { return "<li><a href=\"" + m[0] + "\">" + esc(m[1]) + "</a></li>"; }).join("") + "</ul><a href=\"#ct\" class=\"nc\">" + esc(c.hero.b1) + "</a></nav>");
+
+    // Hero
+    var lines = filled(c.hero.lines, "t").map(function(l) { return l.or ? "<span>" + esc(l.t) + "</span>" : esc(l.t); }).join("<br>");
+    h.push("<section class=\"hero\" id=\"home\"><div class=\"hbg\"></div><div class=\"hsp\" id=\"sp\"></div><div class=\"hpl\"></div><div class=\"hc\">" + (c.hero.tag ? "<div class=\"htag\">" + esc(c.hero.tag) + "</div>" : "") + "<h1 class=\"htit\">" + lines + "</h1><p class=\"hdesc\">" + nl2br(c.hero.desc) + "</p><div class=\"hbtns\"><a href=\"#ct\" class=\"bp\">" + esc(c.hero.b1) + "</a>" + (c.hero.b2 && projects.length ? "<a href=\"#pf\" class=\"bo\">" + esc(c.hero.b2) + "</a>" : "") + "</div></div><div class=\"hscr\"><div class=\"hscrl\"></div>Scroll</div></section>");
+
+    // Diensten
+    if (diensten.length) {
+      var dHtml = diensten.map(function(d, i) {
+        return "<div class=\"dc\"><div class=\"dn\">" + (i < 9 ? "0" : "") + (i + 1) + "</div><div class=\"di\">" + svgIcon(ICONS[d.icon] || ICONS.moersleutel) + "</div><div class=\"dt\">" + esc(d.t) + "</div><p class=\"dd\">" + nl2br(d.d) + "</p></div>";
+      }).join("");
+      h.push("<section class=\"ds\" id=\"ds\"><div class=\"cn\">" + head2(c.diensten.label, c.diensten.title, c.diensten.accent) + "<div class=\"dg\">" + dHtml + "</div></div></section>");
+    }
+
+    // Over ons
+    var oParas = paras.map(function(p) { return "<p class=\"otx\">" + nl2br(p) + "</p>"; }).join("");
+    var oStats = stats.length ? "<div class=\"os\">" + stats.map(function(s) { return "<div class=\"ostat\"><div class=\"osn\">" + esc(s.n) + "</div><div class=\"osl\">" + esc(s.l) + "</div></div>"; }).join("") + "</div>" : "";
+    var badge = (c.over.badgeN || c.over.badgeT) ? "<div class=\"obg\"><div class=\"obn\">" + esc(c.over.badgeN) + "</div><div class=\"obt\">" + esc(c.over.badgeT) + "</div></div>" : "";
+    h.push("<section class=\"ov\" id=\"ov\"><div class=\"cn\"><div class=\"oi\"><div>" + head2(c.over.label, c.over.title, "") + oParas + oStats + (c.over.btn ? "<a href=\"#ct\" class=\"bp\">" + esc(c.over.btn) + "</a>" : "") + "</div><div style=\"position:relative;padding-bottom:2.5rem;padding-right:2.5rem\"><div class=\"ovis\" style=\"background-image:url('images/over.jpg')\"></div>" + badge + "</div></div></div></section>");
+
+    // Portfolio
+    if (projects.length) {
+      var pItems = projects.map(function(p) {
+        var bgImg = p.img ? " style=\"background-image:url('" + esc(p.img) + "')\"" : "";
+        return "<div class=\"pi\"" + bgImg + "><div class=\"pio\"></div><div class=\"pii\"><div class=\"pc\">" + esc(p.cat) + "</div><div class=\"pn\">" + esc(p.name) + "</div></div></div>";
+      }).join("");
+      h.push("<section class=\"pf\" id=\"pf\"><div class=\"cn\">" + head2(c.portfolio.label, c.portfolio.title, c.portfolio.accent).replace(" <span>", "<span>") + "</div><div style=\"max-width:1100px;margin:2rem auto 0\"><div class=\"pg\">" + pItems + "</div></div></section>");
+    }
+
+    // Extra secties
+    extras.forEach(function(x, i) {
+      var ps = String(x.text || "").split(/\n\s*\n/).filter(function(p) { return p.trim(); }).map(function(p) { return "<p class=\"otx\">" + nl2br(p.trim()) + "</p>"; }).join("");
+      h.push("<section class=\"ex" + (i % 2 ? " alt" : "") + "\" id=\"ex" + (i + 1) + "\"><div class=\"cn\">" + head2(x.label, x.title, x.accent) + ps + "</div></section>");
+    });
+
+    // CTA
+    h.push("<div class=\"cb\"><div><div class=\"cbt\">" + esc(c.cta.t) + "</div><div class=\"cbs\">" + esc(c.cta.s) + "</div>" + (tags.length ? "<div class=\"cbp\">" + tags.map(function(t) { return "<span class=\"cbl\">" + esc(t) + "</span>"; }).join("") + "</div>" : "") + "</div><a href=\"#ct\" class=\"bd\">" + esc(c.cta.btn) + "</a></div>");
+
+    // Contact
+    var rows = "";
+    if (ct.tel) rows += contactRow("<path d=\"M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.13 1 .38 1.97.74 2.91a2 2 0 01-.45 2.11L6.09 9.2a16 16 0 006.71 6.71l1.28-1.27a2 2 0 012.11-.45c.94.36 1.91.61 2.91.74A2 2 0 0122 16.92z\"/>", "Telefoon", telDigits ? "<a href=\"tel:" + esc(telDigits) + "\">" + esc(ct.tel) + "</a>" : esc(ct.tel));
+    if (ct.mail) rows += contactRow("<path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/>", "E-mail", "<a href=\"mailto:" + esc(ct.mail) + "\">" + esc(ct.mail) + "</a>");
+    if (ct.area) rows += contactRow("<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/>", "Werkgebied", esc(ct.area));
+    if (ct.street) rows += contactRow("<path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>", "Adres", esc(ct.street) + (ct.city ? "<br>" + esc(ct.city) : ""));
+    cextra.forEach(function(x) { rows += contactRow("<circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"/>", x.l, nl2br(x.v)); });
+    var soc = socials.length ? "<div class=\"sr\">" + socials.map(function(s) { var so = SOCIALS[s.type] || SOCIALS.website; return "<a href=\"" + esc(s.url) + "\" class=\"sb\" target=\"_blank\" rel=\"noopener\" aria-label=\"" + so.n + "\">" + svgIcon(so.svg) + "</a>"; }).join("") + "</div>" : "";
+    var dOpts = diensten.map(function(d) { return "<option>" + esc(d.t) + "</option>"; }).join("") + "<option>Overig</option>";
+    var formBtn = ct.formBtn || "Offerte aanvragen";
+    h.push("<section class=\"ct\" id=\"ct\"><div class=\"cn\">" + head2(ct.label, ct.title, ct.accent) + "<div class=\"ci\"><div>" + rows + soc + "</div><div class=\"cf\"><div class=\"fr\"><div class=\"fg\"><label class=\"fgl\">Naam</label><input type=\"text\" class=\"fi\" id=\"cf-naam\" placeholder=\"Uw naam\"></div><div class=\"fg\"><label class=\"fgl\">Bedrijf</label><input type=\"text\" class=\"fi\" id=\"cf-bedrijf\" placeholder=\"Bedrijfsnaam\"></div></div><div class=\"fr\"><div class=\"fg\"><label class=\"fgl\">Telefoon</label><input type=\"tel\" class=\"fi\" id=\"cf-telefoon\" placeholder=\"+31 6 ...\"></div><div class=\"fg\"><label class=\"fgl\">E-mail</label><input type=\"email\" class=\"fi\" id=\"cf-email\" placeholder=\"uw@email.nl\"></div></div><div class=\"fg\"><label class=\"fgl\">Dienst</label><select class=\"fi\" id=\"cf-dienst\">" + dOpts + "</select></div><div class=\"fg\"><label class=\"fgl\">Omschrijving</label><textarea class=\"ft\" id=\"cf-omschrijving\" placeholder=\"Vertel ons over uw project...\"></textarea></div><button class=\"bp\" id=\"cf-submit\" type=\"button\" style=\"align-self:flex-start;padding:.9rem 2.5rem\">" + esc(formBtn) + "</button><p id=\"cf-msg\" style=\"display:none;font-size:.85rem;margin-top:.75rem;line-height:1.5\"></p></div></div></div></section>");
+
+    // Footer
+    h.push("<footer><div class=\"fl\">STB <span>HEETEN</span></div>" + (flinks.length ? "<div class=\"fls\">" + flinks.map(function(l) { return "<a href=\"" + esc(l.u || "#") + "\">" + esc(l.t) + "</a>"; }).join("") + "</div>" : "") + "<div class=\"fc\">" + esc(c.footer.copy) + "</div></footer>");
+
+    // Scripts
     h.push("<script>var s=document.getElementById('sp');for(var i=0;i<18;i++){var el=document.createElement('div');el.className='sp';var l=30+Math.random()*40,d=4+Math.random()*5,dl=Math.random()*6,dx=(Math.random()-.5)*120,sz=1+Math.random()*2.5;el.style.cssText='left:'+l+'%;bottom:-10px;width:'+sz+'px;height:'+sz+'px;animation-duration:'+d+'s;animation-delay:'+dl+'s;--dx:'+dx+'px;';s.appendChild(el);}<\/script>");
-    var w3f = g("c_w3f");
-    var failMail = g("c_mail") || "info@stbheeten.nl";
-    h.push("<script>(function(){var b=document.getElementById('cf-submit');if(!b)return;b.addEventListener('click',async function(){var m=document.getElementById('cf-msg');var naam=document.getElementById('cf-naam').value.trim();var email=document.getElementById('cf-email').value.trim();if(!naam||!email){m.style.display='block';m.style.color='#ff6b6b';m.textContent='Vul minimaal uw naam en e-mailadres in.';return;}var data={access_key:'" + w3f + "',subject:'Nieuwe offerteaanvraag via stbheeten.nl',naam:naam,bedrijf:document.getElementById('cf-bedrijf').value.trim(),telefoon:document.getElementById('cf-telefoon').value.trim(),email:email,dienst:document.getElementById('cf-dienst').value,omschrijving:document.getElementById('cf-omschrijving').value.trim()};b.disabled=true;b.textContent='Versturen...';try{var r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});var j=await r.json();if(j.success){m.style.display='block';m.style.color='#4caf50';m.textContent='Bedankt! Uw aanvraag is verstuurd, we nemen zo snel mogelijk contact met u op.';['cf-naam','cf-bedrijf','cf-telefoon','cf-email','cf-omschrijving'].forEach(function(id){document.getElementById(id).value='';});}else{throw new Error(j.message||'fout');}}catch(err){m.style.display='block';m.style.color='#ff6b6b';m.textContent='Er ging iets mis bij het versturen. Mail ons direct op " + failMail + ".';}finally{b.disabled=false;b.textContent='Offerte aanvragen';}});})()<\/script>");
+    var failMail = jsStr(ct.mail || "info@stbheeten.nl");
+    h.push("<script>(function(){var b=document.getElementById('cf-submit');if(!b)return;b.addEventListener('click',async function(){var m=document.getElementById('cf-msg');var naam=document.getElementById('cf-naam').value.trim();var email=document.getElementById('cf-email').value.trim();if(!naam||!email){m.style.display='block';m.style.color='#ff6b6b';m.textContent='Vul minimaal uw naam en e-mailadres in.';return;}var data={access_key:'" + jsStr(ct.w3f) + "',subject:'Nieuwe offerteaanvraag via stbheeten.nl',naam:naam,bedrijf:document.getElementById('cf-bedrijf').value.trim(),telefoon:document.getElementById('cf-telefoon').value.trim(),email:email,dienst:document.getElementById('cf-dienst').value,omschrijving:document.getElementById('cf-omschrijving').value.trim()};b.disabled=true;b.textContent='Versturen...';try{var r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});var j=await r.json();if(j.success){m.style.display='block';m.style.color='#4caf50';m.textContent='Bedankt! Uw aanvraag is verstuurd, we nemen zo snel mogelijk contact met u op.';['cf-naam','cf-bedrijf','cf-telefoon','cf-email','cf-omschrijving'].forEach(function(id){document.getElementById(id).value='';});}else{throw new Error(j.message||'fout');}}catch(err){m.style.display='block';m.style.color='#ff6b6b';m.textContent='Er ging iets mis bij het versturen. Mail ons direct op " + failMail + ".';}finally{b.disabled=false;b.textContent='" + jsStr(formBtn) + "';}});})()<\/script>");
     h.push("</body></html>");
     return h.join("");
   }
+  window.buildHTML = function() { return buildHTML(state); };
+
   window.saveAll = async function() {
-    var tok = getTok(); var usr = getUser(); var rep = getRepo();
+    if (!state) return;
+    var tok = getTok();
     if (!tok || tok.length < 10) { showToast("Vul een GitHub token in!", true); return; }
-    var btn = document.getElementById("saveBtn"); btn.textContent = "Bezig..."; btn.disabled = true;
+    var btns = document.querySelectorAll("button[onclick='saveAll()']");
+    btns.forEach(function(b) { b.disabled = true; });
+    var btn = document.getElementById("saveBtn"); btn.textContent = "Bezig...";
     try {
-      var html = buildHTML();
-      var enc = btoa(unescape(encodeURIComponent(html)));
-      var g1 = await fetch("https://api.github.com/repos/" + usr + "/" + rep + "/contents/index.html", { headers: { Authorization: "token " + tok } });
-      var d1 = await g1.json();
-      var p1 = await fetch("https://api.github.com/repos/" + usr + "/" + rep + "/contents/index.html", { method: "PUT", headers: { Authorization: "token " + tok, "Content-Type": "application/json" }, body: JSON.stringify({ message: "Bijgewerkt via beheerpaneel", content: enc, sha: d1.sha }) });
-      if (p1.ok) { showToast("Opgeslagen en gepubliceerd!"); }
-      else { var e1 = await p1.json(); showToast("Fout: " + (e1.message || "?"), true); }
-    } catch(err) { showToast("Fout: " + err.message, true); }
-    btn.textContent = "Opslaan en publiceren"; btn.disabled = false;
+      var html = buildHTML(state);
+      await putFile("content.json", utf8ToB64(JSON.stringify(state, null, 2) + "\n"), "Inhoud bijgewerkt via beheerpaneel");
+      await putFile("index.html", utf8ToB64(html), "Bijgewerkt via beheerpaneel");
+      showToast("Opgeslagen en gepubliceerd!");
+    } catch (err) { showToast("Fout: " + err.message, true); }
+    btn.textContent = "Opslaan en publiceren";
+    btns.forEach(function(b) { b.disabled = false; });
   };
-  loadSaved();
+
+  loadTokFields();
+  if (!localStorage.getItem("ght")) setTimeout(showSetup, 400);
+  loadContent();
 })();
 </script>
 </body>
