@@ -91,8 +91,8 @@
         "img": "images/portfolio2.jpg"
       },
       {
-        "name": "Maatwerk staal",
-        "cat": "Brug ",
+        "name": "Brug",
+        "cat": "Maatwerk staal",
         "img": "images/portfolio3.jpg"
       },
       {
@@ -128,7 +128,7 @@
       {
         "name": "Reclamebord RVS",
         "cat": "Maatwerk RVS",
-        "img": ""
+        "img": "images/portfolio-1791404282840.jpg"
       }
     ]
   },
