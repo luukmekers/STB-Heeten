@@ -109,6 +109,11 @@
         "name": "Keuken",
         "cat": "Interieur",
         "img": "images/portfolio6.jpg"
+      },
+      {
+        "name": "Tuin",
+        "cat": "Kunstgras",
+        "img": "images/portfolio-1791403660532.jpg"
       }
     ]
   },
