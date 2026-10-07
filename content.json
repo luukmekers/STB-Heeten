@@ -111,18 +111,18 @@
         "img": "images/portfolio6.jpg"
       },
       {
-        "name": "Tuin",
-        "cat": "Kunstgras",
+        "name": "Kunstgras",
+        "cat": "Tuin",
         "img": "images/portfolio-1791403660532.jpg"
       },
       {
-        "name": "Landbouw",
-        "cat": "Reparatie haakkarm",
+        "name": "Reparatie haakkarm",
+        "cat": "Landbouw",
         "img": "images/portfolio-1791403770517.jpg"
       },
       {
-        "name": "Maatwerk",
-        "cat": "Verrijdbare febomuur",
+        "name": "Verrijdbare febomuur",
+        "cat": "Maatwerk",
         "img": "images/portfolio-1791403891848.jpg"
       }
     ]
