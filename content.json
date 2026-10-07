@@ -36,8 +36,13 @@
       },
       {
         "t": "Bouw en Verbouw",
-        "d": "Nieuwbouw, verbouwingen en renovatieprojecten.",
+        "d": "Nieuwbouw, verbouwingen, renovatieprojecten en overkappingen.",
         "icon": "huis"
+      },
+      {
+        "t": "Montage",
+        "d": "Montage van o.a staal constructies & houten construcies, maar ook van keukens, maatwerk kasten. ",
+        "icon": "moersleutel"
       }
     ]
   },
