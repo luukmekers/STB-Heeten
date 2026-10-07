@@ -87,7 +87,7 @@
       },
       {
         "name": "Renovatie naar levensloop bestendige woning",
-        "cat": "Bouw en Verbouw",
+        "cat": "Verbouw",
         "img": "images/portfolio2.jpg"
       },
       {
@@ -149,6 +149,11 @@
         "name": "Repareren doorgezakte schamelaanhanger",
         "cat": "Techniek",
         "img": "images/portfolio-1791405354548.jpg"
+      },
+      {
+        "name": "Vervangen gevelbekleding",
+        "cat": "Bouw",
+        "img": "images/portfolio-1791405636483.jpg"
       }
     ]
   },
